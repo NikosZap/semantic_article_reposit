@@ -3,12 +3,13 @@ require_once dirname(__DIR__) . '/config.php';
 require_once BASE_PATH . 'includes/sparql_queries.php';
 
 header('Content-Type: application/json');
+ob_clean();
 
 $limit = 15;
 $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Συλλογή φίλτρων από POST
+// filter POST
 $filters = [
     'role'       => $_POST['role'] ?? '',
     'is_active'  => $_POST['is_active'] ?? '',
@@ -18,11 +19,9 @@ $filters = [
 ];
 $users = getUsers($filters, $offset, $limit);
 
-// Λήψη συνολικού αριθμού
 $totalUsers = countUsers($filters);
 $totalPages = ceil($totalUsers / $limit);
 
-// Επιστροφή JSON
 echo json_encode([
     'users' => $users,
     'totalPages' => $totalPages,

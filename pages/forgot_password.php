@@ -1,10 +1,16 @@
 <?php 
 require_once dirname(__DIR__) . '/config.php'; 
+
+if (empty($_SESSION['user']['is_logged_in'])) {
+    $_SESSION['unauthorized'] = true;
+    header("Location: ../pages/login.php");
+    exit;
+}
 ?>
 
 <head>
 <?php include(BASE_PATH . 'includes/header.php')?>
-    <title>Semantic demo</title>
+    <title>Password recovery</title>
 </head>
 <body>
 <?php include(BASE_PATH . 'includes/navbar.php')?>

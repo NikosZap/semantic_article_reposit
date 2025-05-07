@@ -1,10 +1,11 @@
+
 <?php
 require_once dirname(__DIR__) . '/config.php';
+require_once BASE_PATH . 'includes/sparql_queries.php';
 
-
-// Έλεγχος αν ο χρήστης είναι συνδεδεμένος
-if (!isset($_SESSION['user']['is_logged_in'])) {
-    header("Location: login.php?error=Πρέπει να συνδεθείτε πρώτα!");
+if (!isset($_SESSION['user']) || !$_SESSION['user']['is_logged_in']) {
+    $_SESSION['unauthorized'] = true;
+    header('Location: ../pages/login.php');
     exit;
 }
 
@@ -14,89 +15,102 @@ $user = $_SESSION['user'];
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <?php include(BASE_PATH . 'includes/header.php'); ?>
     <title>User Profile</title>
 </head>
 <body>
-    <?php include(BASE_PATH . 'includes/navbar.php'); ?>
+<?php include(BASE_PATH . 'includes/navbar.php'); ?>
 
-    <div class="container mt-5">
-        <h2>My profile</h2>
+<div class="container mt-5">
+    <h3>User's Information</h3>
+    <div id="message"></div>
+    <form id="profileForm">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" class="form-control" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="form-control" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" name="firstname" value="<?= htmlspecialchars($user['firstname']) ?>" class="form-control" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" name="lastname" value="<?= htmlspecialchars($user['lastname']) ?>" class="form-control" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Role</label>
+            <input type="text" name="role" value="<?= htmlspecialchars($user['role']) ?>" class="form-control" disabled>
+        </div>
 
-        <div id="message"></div>
+        <div class="d-flex gap-2">
+            <button type="button" id="editBtn" class="btn btn-warning"><i class="bi bi-pencil"></i> Edit</button>
+            <button type="submit" id="saveBtn" class="btn btn-success" style="display:none;"><i class="bi bi-save"></i> Save</button>
+            <button type="button" id="deleteBtn" class="btn btn-danger ms-auto"><i class="bi bi-trash"></i> Delete User</button>
+        </div>
+    </form>
+</div>
 
-        <form id="profileForm" action="../backend/profile_backend.php" method="POST">
-            <input type="hidden" name="userID" value="<?php echo $user['id']; ?>">
+<script>
+function showMessage(type, message) {
+    const el = document.getElementById("message");
+    el.innerHTML = '<div class="alert alert-' + (type === "success" ? "success" : "danger") + '">' + message + '</div>';
+    setTimeout(() => { el.innerHTML = ""; }, 4000);
+}
 
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" readonly>
-            </div>
+document.getElementById("editBtn").addEventListener("click", function () {
+    document.querySelectorAll("#profileForm input").forEach(input => {
+        if (!["username", "role"].includes(input.name)) {
+            input.removeAttribute("disabled");
+        }
+    });
+    document.getElementById("editBtn").style.display = "none";
+    document.getElementById("saveBtn").style.display = "inline-block";
+});
 
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" readonly>
-            </div>
+document.getElementById("profileForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    formData.append("action", "saveEditedAccount");
 
-            <div class="mb-3">
-                <label class="form-label">Firstame</label>
-                <input type="text" class="form-control" name="firstname" value="<?php echo htmlspecialchars($user['firstname']); ?>" readonly>
-            </div>
+    fetch("../backend/profile_backend.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            showMessage("success", data.message);
+            document.querySelectorAll("#profileForm input").forEach(input => input.setAttribute("readonly", true));
+            document.getElementById("editBtn").style.display = "inline-block";
+            document.getElementById("saveBtn").style.display = "none";
+        } else {
+            showMessage("error", data.message);
+        }
+    });
+});
 
-            <div class="mb-3">
-                <label class="form-label">Lastname</label>
-                <input type="text" class="form-control" name="lastname" value="<?php echo htmlspecialchars($user['lastname']); ?>" readonly>
-            </div>
+document.getElementById("deleteBtn").addEventListener("click", function () {
+    if (!confirm("Θέλεις σίγουρα να διαγράψεις τον λογαριασμό σου;")) return;
+    fetch("../backend/profile_backend.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "action=deleteAccount"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert(data.message);
+            window.location.href = "../pages/login.php";
+        } else {
+            showMessage("error", data.message);
+        }
+    });
+});
+</script>
 
-            <div class="mb-3">
-                <label class="form-label">Role</label>
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($user['role']); ?>" readonly>
-            </div>
-
-            <button type="button" id="editButton" class="btn btn-warning">Edit</button>
-            <button type="submit" id="saveButton" class="btn btn-success" style="display: none;">Save</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <?php include(BASE_PATH . 'includes/footer.php'); ?>
-    </div>
-
-    <script>
-        document.getElementById("editButton").addEventListener("click", function() {
-            let inputs = document.querySelectorAll(" input[name='firstname'], input[name='lastname'], input[name='email']");
-            inputs.forEach(input => input.removeAttribute("readonly"));
-            document.getElementById("editButton").style.display = "none";
-            document.getElementById("saveButton").style.display = "block";
-        });
-
-        document.getElementById("profileForm").addEventListener("submit", function(event) {
-           event.preventDefault(); // Αποτρέπει το default submit
-
-        let formData = new FormData(this);
-
-        fetch('../backend/profile_backend.php', {
-               method: 'POST',
-               body: new FormData(document.getElementById("profileForm"))  })
-            .then(response => response.json())
-            .then(data => {
-            if (data.status === "success") {
-                document.getElementById("message").innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-            } else {
-                document.getElementById("message").innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-            }   
-        })
-        .catch(error => console.error("Error:", error));
-        });
-    </script>
 </body>
 </html>

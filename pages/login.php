@@ -44,7 +44,8 @@
         </form>
 
         <p class="mt-3">Don't have an account; <a href="<?php echo BASE_URL;?>pages/register.php">Sign Up</a><br>
-        Forgot password? <a href="forgot_password.php">Reset password</a></p>
+        Forgot password? <a href="forgot_password.php">Reset password</a></br>
+        Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a></p>
     </div>
     </div>
     </div>

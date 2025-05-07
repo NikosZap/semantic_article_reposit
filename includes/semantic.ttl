@@ -1,0 +1,436 @@
+@prefix : <http://www.semanticweb.org/nikos/ontologies/2025/2/semantic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/nikos/ontologies/2025/2/semantic> .
+
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semantic> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#hasFullText
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#hasFullText> rdf:type owl:ObjectProperty ;
+                                                                             owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#isFullTextOF> ;
+                                                                             rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                             rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/TextOntology/FullText> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#isFullTextOF
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#isFullTextOF> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/TextOntology/FullText> ;
+                                                                              rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/belongsToUser
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/belongsToUser> rdf:type owl:ObjectProperty ;
+                                                                               owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasToken> ;
+                                                                               rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> ;
+                                                                               rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/cites
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/cites> rdf:type owl:ObjectProperty ;
+                                                                       owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCitedBy> ;
+                                                                       rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                       rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/correspondsTo
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/correspondsTo> rdf:type owl:ObjectProperty ;
+                                                                               owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCorrespondingUser> ;
+                                                                               rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ;
+                                                                               rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasAuthor
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasAuthor> rdf:type owl:ObjectProperty ;
+                                                                           owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isAuthorOf> ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                           rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasKeyword
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasKeyword> rdf:type owl:ObjectProperty ;
+                                                                            owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isKeywordOf> ;
+                                                                            rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                            rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasToken
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasToken> rdf:type owl:ObjectProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ;
+                                                                          rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasUploaded
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasUploaded> rdf:type owl:ObjectProperty ;
+                                                                             owl:inverseOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadedBy> ;
+                                                                             rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ;
+                                                                             rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isAuthorOf
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isAuthorOf> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> ;
+                                                                            rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCitedBy
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCitedBy> rdf:type owl:ObjectProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                           rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCorrespondingUser
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCorrespondingUser> rdf:type owl:ObjectProperty ;
+                                                                                     rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> ;
+                                                                                     rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isKeywordOf
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isKeywordOf> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword> ;
+                                                                             rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadedBy
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadedBy> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                            rdfs:range <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/ORCID
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/ORCID> rdf:type owl:DatatypeProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/abstract
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/abstract> rdf:type owl:DatatypeProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/affiliation
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/affiliation> rdf:type owl:DatatypeProperty ;
+                                                                             rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> ;
+                                                                             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/conferenceName
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/conferenceName> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> ;
+                                                                                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/createdAt
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/createdAt> rdf:type owl:DatatypeProperty ,
+                                                                                    owl:FunctionalProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ,
+                                                                                       <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ,
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/createdAt> ;
+                                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                         owl:onDataRange xsd:dateTime
+                                                                                       ] ;
+                                                                           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/doi
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/doi> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/email
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/email> rdf:type owl:DatatypeProperty ,
+                                                                                owl:FunctionalProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/email> ;
+                                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                     owl:onDataRange xsd:string
+                                                                                   ] ;
+                                                                       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/expiresAt
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/expiresAt> rdf:type owl:DatatypeProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> ;
+                                                                           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/filePath
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/filePath> rdf:type owl:DatatypeProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/firstname
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/firstname> rdf:type owl:DatatypeProperty ,
+                                                                                    owl:FunctionalProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> ,
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/firstname> ;
+                                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                         owl:onDataRange xsd:string
+                                                                                       ] ;
+                                                                           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/is_active
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/is_active> rdf:type owl:DatatypeProperty ,
+                                                                                    owl:FunctionalProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ,
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/is_active> ;
+                                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                         owl:onDataRange xsd:boolean
+                                                                                       ] ;
+                                                                           rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isbn
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isbn> rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/issn
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/issn> rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/keywordLabel
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/keywordLabel> rdf:type owl:DatatypeProperty ,
+                                                                                       owl:FunctionalProperty ;
+                                                                              rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/keywordLabel> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onDataRange xsd:string
+                                                                                          ] ;
+                                                                              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/lastname
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/lastname> rdf:type owl:DatatypeProperty ,
+                                                                                   owl:FunctionalProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/lastname> ;
+                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onDataRange xsd:string
+                                                                                      ] ;
+                                                                          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/nationality
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/nationality> rdf:type owl:DatatypeProperty ;
+                                                                             rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/password
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/password> rdf:type owl:DatatypeProperty ,
+                                                                                   owl:FunctionalProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/password> ;
+                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onDataRange xsd:string
+                                                                                      ] ;
+                                                                          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/publicationDate
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/publicationDate> rdf:type owl:DatatypeProperty ,
+                                                                                          owl:FunctionalProperty ;
+                                                                                 rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/publicationDate> ;
+                                                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onDataRange xsd:dateTime
+                                                                                             ] ;
+                                                                                 rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/scientificArea
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/scientificArea> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> ,
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/scientificArea> ;
+                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                              owl:onDataRange xsd:string
+                                                                                            ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/title
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/title> rdf:type owl:DatatypeProperty ,
+                                                                                owl:FunctionalProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ,
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/title> ;
+                                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                     owl:onDataRange xsd:string
+                                                                                   ] ;
+                                                                       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/tokenType
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/tokenType> rdf:type owl:DatatypeProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> ;
+                                                                           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/tokenValue
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/tokenValue> rdf:type owl:DatatypeProperty ;
+                                                                            rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> ;
+                                                                            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/updatedAt
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/updatedAt> rdf:type owl:DatatypeProperty ;
+                                                                           rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ,
+                                                                                       <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ;
+                                                                           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadDate
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadDate> rdf:type owl:DatatypeProperty ;
+                                                                            rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> ;
+                                                                            rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/username
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/username> rdf:type owl:DatatypeProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/username> ;
+                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onDataRange xsd:string
+                                                                                      ] .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/TextOntology/FullText
+<http://www.semanticweb.org/nikos/ontologies/2025/2/TextOntology/FullText> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                             owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#isFullTextOF> ;
+                                                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                             owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                           ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Admin
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Admin> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isAuthorOf> ;
+                                                                                          owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                        ] ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCorrespondingUser> ;
+                                                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User>
+                                                                                        ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isKeywordOf> ;
+                                                                                           owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                           owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                         ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/cites> ;
+                                                                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasAuthor> ;
+                                                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasKeyword> ;
+                                                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Keyword>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/isCitedBy> ;
+                                                                                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/uploadedBy> ;
+                                                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#hasFullText> ;
+                                                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/TextOntology/FullText>
+                                                                                             ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Researcher
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Researcher> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/belongsToUser> ;
+                                                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                         owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User>
+                                                                                       ] .
+
+
+###  http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User
+<http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/User> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Person> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasToken> ;
+                                                                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Token>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/hasUploaded> ;
+                                                                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Publication>
+                                                                                      ] ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/correspondsTo> ;
+                                                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onClass <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp/Author>
+                                                                                      ] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

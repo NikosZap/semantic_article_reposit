@@ -14,24 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
 
-    // Έλεγχος αν οι κωδικοί ταιριάζουν
     if ($password !== $confirm_password) {
         echo json_encode(["status" => "error", "message" => "Passwords do not match!"], JSON_UNESCAPED_UNICODE);
         exit;
     }
 
-      // Έλεγχος αν υπάρχει ήδη χρήστης με το ίδιο username ή email
+
       if (getUserByUsernameOrEmail($username, $email)) {
         echo json_encode(["status" => "error", "message" => "Username or email already exists!"], JSON_UNESCAPED_UNICODE);
         exit;
     }
-      
-    // password hashing
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
     $activation_token = bin2hex(random_bytes(16));
 
-     // Εισαγωγή χρήστη μέσω της `registerUser()`
      if (registerUser($username, $email, $hashedPassword, $firstname, $lastname, $activation_token)) {
         
         $activation_link = BASE_URL . "pages/verify.php?token=" . $activation_token;

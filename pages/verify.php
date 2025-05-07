@@ -7,6 +7,7 @@ if (isset($_GET['token'])) {
 
     // Αναζήτηση χρήστη με το token
     $user = getUserByActivationToken($token);
+    echo $user['uri'];
 
     if ($user) {
         $userURI = $user['uri'];

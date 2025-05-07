@@ -42,7 +42,7 @@
                 <input type="password" name="confirm_password" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label>Firstame</label>
+                <label>Firstname</label>
                 <input type="text" name="firstname" class="form-control" required>
             </div>
             <div class="mb-3">
@@ -52,7 +52,8 @@
             <button type="submit" class="btn btn-primary w-100">Εγγραφή</button>
         </form>
 
-        <p class="mt-3 text-center">Already have an account?<a href="login.php">Log In</a></p>
+        <p class="mt-3 text-center">Already have an account?<a href="login.php">Log In</a></br>
+        Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a></p>
     </div>
     </div>
     </div>
@@ -74,7 +75,6 @@
         .then(response => response.json())
         .then(data => {
         if (data.status === "success") {
-           //window.location.href = "register.php?success=" + encodeURIComponent(data.message);
            document.getElementById("message").innerHTML = `<div class="alert alert-success">${data.message}</div>`;
         } else {
            document.getElementById("message").innerHTML = `<div class="alert alert-danger">${data.message}</div>`;

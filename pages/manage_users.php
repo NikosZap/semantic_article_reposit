@@ -2,9 +2,9 @@
 require_once dirname(__DIR__) . '/config.php';
 require_once BASE_PATH .'includes/sparql_queries.php';
 
-// Έλεγχος αν ο χρήστης είναι admin
 if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'Admin') {
-    header("Location: login.php?error=Δεν έχετε δικαιώματα πρόσβασης!");
+    $_SESSION['unauthorized'] = true;
+    header("Location: ../pages/login.php");
     exit;
 }
 ?>
@@ -12,8 +12,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<?php include(BASE_PATH . 'includes/header.php'); ?>
-
+    <?php include(BASE_PATH . 'includes/header.php'); ?>
     <title>User Management</title>
 </head>
 <body>
@@ -23,7 +22,9 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
             <h2>User Management</h2>
             <button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
         </div>
-            <!-- Φόρμα φίλτρων -->
+
+         <div id="message"></div>
+
         <div id="filterSection" style="display: none;">
             <form id="filterForm" class="mb-3">
                 <input type="text" id="search" name="search" placeholder="Search User..." class="form-control mb-2">
@@ -50,11 +51,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                 <button type="submit" class="btn btn-primary">Apply Filters</button>
             </form>
         </div>
-        <!-- Περιοχή Μηνυμάτων -->
-        <div id="message"></div>
-        
-
-        <!-- Πίνακας χρηστών -->
+         
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -75,7 +72,6 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
             </table>
         </div>
 
-        <!-- Κουμπιά Pagination -->
         <div id="pagination" class="mt-3"></div>
     </div>
     <div class="container">
@@ -85,7 +81,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
     <script>
         let currentPage = 1;
         
-        function loadUsers(page = 1) {
+        function loadUsers(page = 1, callback = null) {
             let search = $("#search").val();
             let role = $("#role").val();
             let is_active = $("#is_active").val();
@@ -102,7 +98,17 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                     if (response.users.length === 0) {
                         $("#message").html('<div class="alert alert-warning">No users found.</div>');
                     } else {
-                        $("#message").html('');
+
+                        $("#userTableContainer").html(response);
+
+
+const savedMessage = sessionStorage.getItem("userActionMessage");
+if (savedMessage) {
+    const { type, text } = JSON.parse(savedMessage);
+    showMessage(type, text);
+    sessionStorage.removeItem("userActionMessage");
+}
+                        
                         response.users.forEach(user => {
 
                             const formattedCreatedAt = user.createdAt ? 
@@ -130,6 +136,13 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                                 <button type="submit" class="btn btn-primary btn-sm update-role-btn" title="Role update">
                                     <i class="bi bi-arrow-repeat"></i></button>
                             </form>
+                                 <button type="button" 
+                                         class="btn btn-${user.isSuspended == 1 ? 'success' : 'warning'} btn-sm toggle-suspend-user" 
+                                         data-userid="${user.userID}" 
+                                         data-suspended="${user.isSuspended}" 
+                                         title="${user.isSuspended == 1 ? 'Lift of suspension' : 'Suspend user'}">
+                                    <i class="bi ${user.isSuspended == 1 ? 'bi-unlock' : 'bi-lock'}"></i>
+                                </button>
                                 <button type="submit" class="btn btn-danger btn-sm delete-user" data-userid="${user.userID}" title=Delete>
                                   <i class="bi bi-trash"></i></button>
                             </td>
@@ -138,6 +151,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                         });
                     }
                     updatePagination(response.totalPages, response.currentPage);
+                    if (typeof callback === "function") callback();
                 },
                 error: function() {
                     $("#message").html('<div class="alert alert-danger">Data loading error.</div>');
@@ -183,10 +197,11 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                 success: function(response) {
                     console.log("Successful Response:", response);
                     if (response.status === "success") {
-                        showMessage("success", response.message);
-                        setTimeout(() => {
-                            loadUsers(currentPage);
-                        }, 3000);
+                        sessionStorage.setItem("userActionMessage", JSON.stringify({
+                        type: "success",
+                        text: response.message
+                    }));
+                    loadUsers(currentPage);
                     
                     } else {
                         showMessage("error", response.message);
@@ -216,9 +231,11 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
             success: function(response) {
             if (response.status === "success") {
                 showMessage("success", response.message);
-                setTimeout(() => {
-                            loadUsers(currentPage);
-                        }, 3000);
+                sessionStorage.setItem("userActionMessage", JSON.stringify({
+                type: "success",
+                text: response.message
+            }));
+loadUsers(currentPage);
             } else {
                 showMessage("error", response.message);
             }
@@ -230,28 +247,65 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
         });
     });
 
+    $(document).on("click", ".toggle-suspend-user", function () {
+    let userID = $(this).data("userid");
+    let isSuspended = $(this).data("suspended") == 1;
+    let newStatus = isSuspended ? 0 : 1;
 
-function showMessage(type, message) {
-    let alertClass = type === "success" ? "alert-success" : "alert-danger";
+    let confirmText = isSuspended
+        ? "Are you sure you want to lift the user's suspension? "
+        : "Are you sure you want to suspend the user?";
 
-    if ($("#message").length === 0) {
-        console.log("The #message component does not exist");
+    if (!confirm(confirmText)) {
         return;
     }
 
-    console.log("Display message:", message);
-    $("#message").html(`<div class="alert ${alertClass}">${message}</div>`).fadeIn();
+    $.ajax({
+        url: "../backend/manage_users_backend.php",
+        method: "POST",
+        data: {
+            action: "toggle_suspend_user",
+            userID: userID,
+            suspend: newStatus
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.status === "success") {
+                sessionStorage.setItem("userActionMessage", JSON.stringify({
+                type: "success",
+                text: response.message
+            }));
+            loadUsers(currentPage);
+            } else {
+                showMessage("error", response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("AJAX Error:", error);
+            showMessage("error", "Server connection error!");
+        }
+    });
+});
 
-    setTimeout(() => { $("#message").fadeOut(); }, 5000);
+function showMessage(type, message) {
+    const container = document.getElementById("message"); // <-- να ταιριάζει με το div!
+    container.innerHTML = '<div class="alert alert-' + (type === "success" ? "success" : "danger") + '">' + message + '</div>';
+    setTimeout(() => container.innerHTML = "", 4000);
 }
-$(document).ready(function() {
-    loadUsers();
+
+$(document).ready(function () {
+    const savedMessage = sessionStorage.getItem("userActionMessage");
+    if (savedMessage) {
+        const { type, text } = JSON.parse(savedMessage);
+        showMessage(type, text);
+        sessionStorage.removeItem("userActionMessage");
+    }
+    loadUsers(currentPage);  
 });
 
 $("#toggleFilters").on("click", function () {
     $("#filterSection").slideToggle(200);
 
-    // Εναλλαγή κειμένου κουμπιού
     const current = $(this).text();
     $(this).text(current === "Show Filters" ? "Hide Filters" : "Show Filters");
 });

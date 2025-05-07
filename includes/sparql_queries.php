@@ -4,16 +4,17 @@ function getUserByUsername($username) {
     // Ετοίμασε το SPARQL query
     $sparql = "PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-                SELECT ?userID ?username ?password ?role ?firstname ?lastname ?email
+                SELECT ?user ?userID ?username ?password ?role ?firstname ?lastname ?email ?isSuspended
                 WHERE { 
                     ?user a app:User ;
-                        app:userID ?userID ;
-                        app:username ?username ;
-                        app:password ?password ;
-                        app:role ?role ;
-                        app:firstname ?firstname ;
-                        app:lastname ?lastname ;
-                        app:email ?email.
+                    app:userID ?userID ;
+                    app:username ?username ;
+                    app:password ?password ;
+                    app:role ?role ;
+                    app:firstname ?firstname ;
+                    app:lastname ?lastname ;
+                    app:email ?email.
+                     OPTIONAL { ?user app:isSuspended ?isSuspended }
                 FILTER(?username = \"$username\")
                 }
                 LIMIT 1";
@@ -26,14 +27,16 @@ function getUserByUsername($username) {
 
     $userData = $result['results']['bindings'][0];
 
-    // Επιστρέφει array όπως έκανε το bind_result
-    return ['userID'    => $userData['userID']['value'],
+       // Επιστρέφει array όπως έκανε το bind_result
+    return ['uri'       => $userData['user']['value'], 
+            'userID'    => $userData['userID']['value'],
             'username'  => $userData['username']['value'],
             'password'  => $userData['password']['value'],
             'role'      => $userData['role']['value'],
             'firstname' => $userData['firstname']['value'],
             'lastname'  => $userData['lastname']['value'],
-            'email'     => $userData['email']['value']];
+            'email'     => $userData['email']['value'],
+            'isSuspended' => isset($userData['isSuspended']) ? $userData['isSuspended']['value'] : "0"];
 
 }
 
@@ -72,6 +75,7 @@ function registerUser($username, $email, $hashedPassword, $firstname, $lastname,
                 app:role \"Researcher\" ;
                 app:activation_token \"$activation_token\";
                 app:is_active \"0\" ;
+                app:isSuspended \"0\"  ;
                 app:createdAt \"". date('Y-m-d\TH:i:s') .  "\"^^xsd:dateTime .
         }
     ";
@@ -114,12 +118,14 @@ function activateUser($userURI, $token) {
 
         DELETE {
             <$userURI> app:activation_token \"$token\" .
+            <$userURI> app:is_active ?status .
         }
         INSERT {
             <$userURI> app:is_active \"1\" .
         }
         WHERE {
             <$userURI> app:activation_token \"$token\" .
+            OPTIONAL { <$userURI> app:is_active ?status . }
         }
     ";
 
@@ -334,7 +340,7 @@ function getUsers($filters, $offset = 0, $limit = 15) {
        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-       SELECT ?user ?userID ?username ?firstname ?lastname ?email ?role ?createdAt ?is_active
+       SELECT ?user ?userID ?username ?firstname ?lastname ?email ?role ?createdAt ?is_active ?isSuspended
        WHERE {
         ?user a app:User .
         OPTIONAL { ?user app:userID ?userID }
@@ -345,6 +351,7 @@ function getUsers($filters, $offset = 0, $limit = 15) {
         OPTIONAL { ?user app:role ?role }
         OPTIONAL { ?user app:createdAt ?createdAt }
         OPTIONAL { ?user app:is_active ?is_active }
+        OPTIONAL { ?user app:isSuspended ?isSuspended }
 
     ";
 
@@ -396,7 +403,8 @@ function getUsers($filters, $offset = 0, $limit = 15) {
             'role'       => $b['role']['value'],
             'createdAt'  => isset($b['createdAt']) ? $b['createdAt']['value'] : '',
             'updatedAt'  => isset($b['updatedAt']) ? $b['updatedAt']['value'] : '',
-            'is_active'  => isset($b['is_active']) ? ($b['is_active']['value'] === '1' ? 1 : 0) : 0
+            'is_active'  => isset($b['is_active']) ? ($b['is_active']['value'] === '1' ? 1 : 0) : 0,
+            'isSuspended'  => isset($b['isSuspended']) ? ($b['isSuspended']['value'] === '1' ? 1 : 0) : 0
         ];
     }
     return $users;
@@ -418,6 +426,7 @@ function countUsers($filters) {
             OPTIONAL { ?user app:role ?role }
             OPTIONAL { ?user app:createdAt ?createdAt }
             OPTIONAL { ?user app:is_active ?is_active }
+            OPTIONAL { ?user app:isSuspended ?isSuspended }
     ";
 
     // Ίδιοι FILTERS όπως πριν
@@ -457,5 +466,249 @@ function countUsers($filters) {
         : 0;
 }
 
+function deleteUserByURI($userUri) {
+    $deleteQuery = "
+        DELETE WHERE {
+            <$userUri> ?p ?o .
+        };
+    ";
+
+    return executeSparqlUpdate($deleteQuery);
+}
+
+function updateUserSuspension($userURI, $suspendBool) {
+    $value = $suspendBool ? "1" : "0";
+    $query = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        DELETE {
+            <$userURI> app:isSuspended ?status .
+        }
+        INSERT {
+            <$userURI> app:isSuspended \"$value\".
+        }
+        WHERE {
+            <$userURI> a app:User ;
+                      app:isSuspended ?status  .
+        }
+    ";
+
+    return executeSparqlUpdate($query);
+}
+
+function getUserByOrcidId($orcid_id) {
+
+    $query = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    SELECT ?user ?userID ?username ?email ?firstname ?lastname ?role
+    WHERE {
+        ?author a app:Author ;
+                app:orcid \"$orcid_id\" ;
+                app:correspondTo ?user .
+
+        ?user a app:User ;
+              app:userID ?userID ;
+              app:username ?username ;
+              app:email ?email ;
+              app:firstname ?firstname ;
+              app:lastname ?lastname ;
+              app:role ?role .
+    }
+    LIMIT 1
+    ";
+
+    $response = executeSparqlQuery($query); // συνάρτηση που καλεί το Fuseki (υποθέτουμε ότι υπάρχει)
+
+    if (isset($response['results']['bindings'][0])) {
+        $b = $response['results']['bindings'][0];
+        return [
+            'uri' => $b['user']['value'],
+            'userID' => $b['userID']['value'],
+            'username' => $b['username']['value'],
+            'email' => $b['email']['value'],
+            'firstname' => $b['firstname']['value'],
+            'lastname' => $b['lastname']['value'],
+            'role' => $b['role']['value']
+        ];
+    }
+
+    return false;
+}
+
+function insertAuthorWithUser($author_uri, $userID, $data) {
+    $userID = uniqid();
+    $user_uri = "app:user_". $userID;
+    $createdAt = date('Y-m-d\TH:i:s');
+
+    $query = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    
+    INSERT DATA {
+        <$author_uri> a app:Author ;
+            app:orcid \"{$data['orcid_id']}\" ;
+            app:firstname \"{$data['firstname']}\" ;
+            app:lastname \"{$data['lastname']}\" ;
+            app:email \"{$data['email']}\" ;
+            app:username \"{$data['username']}\" ;
+            app:correspondTo <$user_uri>";
+    
+        if (!empty($data['affiliation'])) {
+            $query .= " ;\n        app:affiliation \"{$data['affiliation']}\"";
+        }
+        if (!empty($data['scientific_area'])) {
+            $query .= " ;\n        app:scientificArea \"{$data['scientific_area']}\"";
+        }
+        if (!empty($data['nationality'])) {
+            $query .= " ;\n        app:nationality \"{$data['nationality']}\"";
+        }
+    
+        $query .= " .\n\n";
+    
+        $query .= "    <$user_uri> a app:User ;
+            app:userID \"$userID\" ;
+            app:username \"{$data['username']}\" ;
+            app:firstname \"{$data['firstname']}\" ;
+            app:lastname \"{$data['lastname']}\" ;
+            app:email \"{$data['email']}\" ;
+            app:role \"Researcher\" ;
+            app:is_active \"0\" ;
+            app:isSuspended \"0\" ;
+            app:createdAt \"$createdAt\"^^xsd:dateTime ;
+            app:isCorrespondingUser <$author_uri> .
+    }
+    ";
+
+return executeSparqlUpdate($query);
+
+}
+
+function checkUsernameExists($username) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        SELECT ?user WHERE {
+            ?user a app:User ;
+                  app:username \"$username\" .
+        } LIMIT 1
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return !empty($result['results']['bindings']);
+}
+
+function checkEmailExists($email) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        SELECT ?user WHERE {
+            ?user a app:User ;
+                  app:email \"$email\" .
+        } LIMIT 1
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return !empty($result['results']['bindings']);
+}
+
+function getAuthorURIByOrcid($orcid) {
+    $escapedOrcid = addslashes($orcid);
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        SELECT ?a WHERE {
+            ?a a app:Author ;
+               app:orcid \"$escapedOrcid\" .
+        } LIMIT 1
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return !empty($result['results']['bindings']) ? $result['results']['bindings'][0]['a']['value'] : null;
+}
+
+function createAuthorFromOrcid($orcid, $firstname = '', $lastname = '') {
+    $uri = "https://orcid.org/" . $orcid;
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        INSERT DATA {
+            <$uri> a app:Author ;
+                  app:orcid \"$orcid\" ;
+                  app:firstname \"$firstname\" ;
+                  app:lastname \"$lastname\" .
+        }
+    ";
+    executeSparqlUpdate($sparql);
+    return $uri;
+}
+
+function linkUserToAuthor($userURI, $authorURI) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        INSERT DATA {
+            <$userURI> app:correspondsTo <$authorURI> .
+            <$authorURI> app:isCorrespondingUser <$userURI> .
+        }
+    ";
+    return executeSparqlUpdate($sparql);
+}
+
+function updateAuthorProfile($authorURI, $fields) {
+    $deletes = "";
+    $inserts = "";
+    foreach ($fields as $predicate => $value) {
+        if ($value !== '') {
+            $deletes .= "<$authorURI> app:$predicate ?v .\n";
+            $inserts .= "<$authorURI> app:$predicate \"" . addslashes($value) . "\" .\n";
+        }
+    }
+
+    if ($deletes && $inserts) {
+        $sparql = "
+            PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+            DELETE { $deletes }
+            INSERT { $inserts }
+            WHERE  { $deletes }
+        ";
+        return executeSparqlUpdate($sparql);
+    }
+    return false;
+}
+
+function getAuthorDetails($orcid) {
+    
+    $query = "
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?author ?firstname ?lastname ?orcid ?affiliation ?nationality ?scientificArea
+        WHERE {
+            ?author a app:Author ;
+            app:orcid ?orcid ;
+            app:firstname ?firstname ;
+            app:lastname ?lastname .
+    
+        OPTIONAL { ?author app:affiliation ?affiliation }
+        OPTIONAL { ?author app:nationality ?nationality }
+        OPTIONAL { ?author app:scientificArea ?scientificArea }
+
+        FILTER(STR(?orcid) = \"$orcid\")
+    }
+    ";
+
+    $response = executeSparqlQuery($query);
+
+    if (!empty($response['results']['bindings'])) {
+        $row = $response['results']['bindings'][0];
+        return [
+            'uri' => $row['author']['value'],
+            'firstname' => $row['firstname']['value'],
+            'lastname' => $row['lastname']['value'],
+            'orcid' => $row['orcid']['value'],
+            'affiliation' => $row['affiliation']['value'] ?? '',
+            'nationality' => $row['nationality']['value'] ?? '',
+            'scientificArea' => $row['scientificArea']['value'] ?? '',
+        ];
+    }
+
+    return null;
+}
 
 ?>

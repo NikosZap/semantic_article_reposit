@@ -3,7 +3,8 @@ require_once dirname(__DIR__) . '/config.php';
 require_once BASE_PATH . 'includes/sparql_queries.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Admin') {
-    header("Location: login.php?error=Δεν έχετε δικαιώματα πρόσβασης!");
+    $_SESSION['unauthorized'] = true;
+    header("Location: ../pages/login.php");
     exit;
 }
 ?>

@@ -17,9 +17,11 @@
         <p class="lead">This is a simple draft page.</p>
     </div>
     <div class="container text-center mt-5">
-        <form role="search" class="search-form">
-            <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
-        </form>
+        <div class="mb-3">
+            <form action="search_results.php" method="get">
+                <input type="search" name="q" placeholder="Search..."  class="form-control"  required>
+            </form>
+        </div>
     </div>
 
 

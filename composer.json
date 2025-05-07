@@ -1,0 +1,17 @@
+{
+    "name": "nikos/my_project2",
+    "autoload": {
+        "psr-4": {
+            "Nikos\\MyProject2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "NikosZap",
+            "email": "nikoszapantis@gmail.com"
+        }
+    ],
+    "require": {
+        "smalot/pdfparser": "^2.12"
+    }
+}

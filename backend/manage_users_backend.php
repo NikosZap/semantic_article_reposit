@@ -49,6 +49,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
     }
+    if ($action === 'toggle_suspend_user'){
+      
+        $suspend = isset($_POST['suspend']) ? (bool)$_POST['suspend'] : false;
+        $userURI = getUserUriById($userID);
+         
+        if (!$userURI) {
+            echo json_encode(["status" => "error", "message" => "User not found"], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+
+        if ( updateUserSuspension($userURI, $suspend) ) {
+
+            $message = $suspend ? "User suspended" : "User's suspension has been lifted";
+            echo json_encode(["status" => "success", "message" => "User successfully suspended"], JSON_UNESCAPED_UNICODE);
+            exit;
+        } else {
+            echo json_encode(["status" => "error", "message" => "Failed to suspend / lift suspension user"], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+
+    }
+    
     exit;
 }
 ?>

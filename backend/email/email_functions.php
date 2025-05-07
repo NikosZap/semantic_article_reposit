@@ -104,4 +104,45 @@ function send_email($to, $name, $subject, $body) {
         return false;
     }
 }
+
+function sendPublicationApprovalEmail($toEmail, $toName, $title) {
+    $mail = new PHPMailer(true);
+    try {
+        setupMailer($mail, $toEmail, $toName);
+        $mail->Subject = 'Your publication has been approved!';
+        $mail->Body = "Dear $toName,<br><br>Your publication titled <strong>\"$title\"</strong> has been approved and is now live in the system.<br><br>Thank you!";
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        error_log("Approval Email Error: " . $mail->ErrorInfo);
+        return false;
+    }
+}
+function sendPublicationRejectionEmail($toEmail, $toName, $title, $reason) {
+    $mail = new PHPMailer(true);
+    try {
+        setupMailer($mail, $toEmail, $toName);
+        $mail->Subject = 'Your publication has been rejected';
+        $mail->Body = "Dear $toName,<br><br>Your publication titled <strong>\"$title\"</strong> has been rejected.<br><br><strong>Reason:</strong><br>$reason<br><br>Feel free to contact us for clarification.";
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        error_log("Rejection Email Error: " . $mail->ErrorInfo);
+        return false;
+    }
+}
+
+function setupMailer($mail, $toEmail, $toName) {
+    $mail->isSMTP();
+    $mail->Host = EMAIL_HOST;
+    $mail->SMTPAuth = true;
+    $mail->Username = EMAIL_USERNAME;
+    $mail->Password = EMAIL_PASSWORD;
+    $mail->SMTPSecure = EMAIL_SMTP_SECURE;
+    $mail->Port = EMAIL_PORT;
+    $mail->setFrom(EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME);
+    $mail->addAddress($toEmail, $toName);
+    $mail->isHTML(true);
+}
+
 ?>

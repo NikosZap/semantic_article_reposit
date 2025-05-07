@@ -1,7 +1,7 @@
-
+<?php require_once BASE_PATH .'includes/pub_sparql_queries.php';?>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<?php echo BASE_URL;?>index.php">MyApp</a>
+        <a class="navbar-brand" href="<?php echo BASE_URL;?>index.php">SARS App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>about.php">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>pages/about.php">About</a></li>
                 <?php if (isset($_SESSION['user']) && isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'Admin'): ?>
                    <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,9 +28,15 @@
                     </a>
                     
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/new_manual_publication.php">New Publication Manually</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/new_auto_publication.php">New Publication Automatically</a></li>                   
-                    </ul>
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/insert_manual_publication.php">Insert New Publication Manually</a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/new_auto_publication.php">New Publication Automatically</a></li>
+                            <?php if( $_SESSION['user']['role'] === 'Admin'){ ?>
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/manage_publications.php">Manage Publications</a></li>                   
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/approve_publications.php">Approve Publications<?php  if(countPendingPublications() > 0): ?>
+                                <span class="badge bg-danger ms-2"><?= countPendingPublications() ?></span>
+                                <?php endif; ?></a></li>
+                            <?php } ?>
+                        </ul>
                     <?php endif; ?>               
                 </li>
             </ul>
@@ -85,8 +91,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
-                <p class="mt-3 text-center">Don't hava an account? <a href="<?php echo BASE_URL ;?>pages/register.php">Register</a></br>
-            Forgot Password? <a href="<?php echo BASE_URL ;?>pages/forgot_password.php">Reset Password</a></p>
+                <p class="mt-3 text-center">Don't have an account? <a href="<?php echo BASE_URL ;?>pages/register.php">Register</a></br>
+            Forgot Password? <a href="<?php echo BASE_URL ;?>pages/forgot_password.php">Reset Password</a></br>
+            Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a>   
+            </a></p>
             </div>
         </div>
     </div>

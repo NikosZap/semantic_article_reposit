@@ -1,11 +1,13 @@
 <?php
 
 define("BASE_PATH", __DIR__ . "/"); // project root
-define("BASE_URL", "http://localhost/my_project2/");
+define("BASE_URL", " https://e6e4-37-6-204-130.ngrok-free.app/my_project2/");
 
 // Fuseki SPARQL Endpoint 
 define('SPARQL_ENDPOINT', 'http://localhost:3030/semanticApp/sparql');
 define('SPARQL_UPDATE_ENDPOINT','http://localhost:3030/semanticApp/update');
+
+define('BASE_URI', 'http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#');
 
 // SPARQL SELECT query
 function executeSparqlQuery($query) {

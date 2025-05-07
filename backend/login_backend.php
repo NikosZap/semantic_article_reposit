@@ -7,21 +7,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     $user = getUserByUsername($username);
-        
+  
+    if (isset($user['isSuspended']) && $user['isSuspended'] == "1") {
+        echo json_encode(["status" => "error", "message" => "Account has been suspended"], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
 
     if ($user) {
 
         $hashedPassword = $user['password'];
 
         if (password_verify($password, $hashedPassword)) {
-            $_SESSION['user'] = ['id' => $user['userID'],
+            
+            session_regenerate_id(true);
+            $_SESSION['user'] = ['uri' => $user['uri'],
+                                 'id' => $user['userID'],
                                  'username' => $user['username'],
                                  'role' => $user['role'],
                                  'firstname' => $user['firstname'],
                                  'lastname' => $user['lastname'],
                                  'email' => $user['email'],
-                                 'is_logged_in' => true]; 
-
+                                 'is_logged_in' => true];           
+                                
             echo json_encode(["status" => "success", "redirect" => BASE_URL . "pages/dashboard.php"]);
             exit;
         } else {
