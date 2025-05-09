@@ -686,3 +686,39 @@ function addMentionsToPublication($pubURI, $entityURIs) {
 
    
 }
+
+function getPublicationsByMention($uri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?pub ?title ?abstract WHERE {
+            ?pub app:mentions <{$uri}> .
+            ?pub app:title ?title .
+            ?pub app:abstract ?abstract .
+        }
+    ";
+
+
+
+    $data = executeSparqlQuery($sparql);
+ 
+    if ($data === false) {
+        return [];
+    }
+
+    $results = [];
+    if (isset($data['results']['bindings'])) {
+        foreach ($data['results']['bindings'] as $row) {
+
+            $results[] = [
+                'uri' => $row['pub']['value'],
+                'title' => $row['title']['value'],
+                'abstract' => $row['abstract']['value'],
+                'authors' => getAuthorsByPublication($row['pub']['value']),
+                'keywords' => getKeywordsByPublication($row['pub']['value'])
+            ];
+        }
+    }
+    
+    return $results;
+}
