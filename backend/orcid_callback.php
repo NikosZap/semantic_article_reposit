@@ -16,7 +16,7 @@ $code = $_GET['code'];
 
 $client_id = 'APP-CVZ1AZXUZ8XWB81T';         
 $client_secret = '8a147c23-0971-41a4-adda-3c175f4e0bca';
-$redirect_uri = 'https://cf50-37-6-204-130.ngrok-free.app/my_project2/backend/orcid_callback.php'; 
+$redirect_uri = BASE_URL . 'backend/orcid_callback.php'; 
 
 
 $token_url = 'https://sandbox.orcid.org/oauth/token';
@@ -56,8 +56,8 @@ if ($user) {
     
     session_unset();    
     session_destroy();  
-    session_start();    
-
+    session_start(); 
+    
     $_SESSION['user'] = [
         'uri' => $user['uri'],
         'id' => $user['userID'],
@@ -66,9 +66,10 @@ if ($user) {
         'firstname' => $user['firstname'],
         'lastname' => $user['lastname'],
         'email' => $user['email'],
-        'is_logged_in' => true
+        'is_logged_in' => true,
+        'orcid' => $user['orcid']
     ];
-    header("Location: ". BASE_URL . "pages/dashboard.php"); 
+    header("Location: ". BASE_URL . "index.php"); 
     exit;
 } else {
     // if orcid is new

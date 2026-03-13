@@ -31,7 +31,7 @@ function insertManualPublication( $type, $doi, $title, $pubDate, $pdfFile, $abst
 
 
 
-    $pubID = uniqid(); // δημιουργεί μοναδικό ID
+    $pubID = uniqid(); 
     
     $sparql = "PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
                PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -60,8 +60,6 @@ function insertManualPublication( $type, $doi, $title, $pubDate, $pdfFile, $abst
     $sparql .= "<$userUri> app:uploadedBy app:pub_$pubID \n";         
                 
     $sparql .= ".}";
-
-    print_r($sparql);
 
     $url = SPARQL_UPDATE_ENDPOINT;
     $headers = ['Content-Type: application/x-www-form-urlencoded'];
@@ -179,26 +177,17 @@ function approvePublication($uri) {
 }
 
 function deletePublication($uri) {
-    $sparql = "
+     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
         DELETE WHERE {
-            <{$uri}> ?p ?o .
+            { <{$uri}> ?p ?o }
+            UNION
+            { ?s ?p <{$uri}> }
         }
     ";
 
-    $url = SPARQL_UPDATE_ENDPOINT;
-    $headers = ['Content-Type: application/x-www-form-urlencoded'];
-    $data = http_build_query(['update' => $sparql]);
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    return $response !== false;
+    return executeSparqlUpdate($sparql);
 }
 
 function getPublicationByURI($uri) {
@@ -675,50 +664,601 @@ function countPublications($filters) {
 function addMentionsToPublication($pubURI, $entityURIs) {
     $prefix = "PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>";
 
+    $entityURIs = array_unique(array_filter($entityURIs));
+
+    if (empty($pubURI) || empty($entityURIs)) {
+        return false;
+    }
+
     $triples = "";
     foreach ($entityURIs as $uri) {
         $triples .= "<$pubURI> app:mentions <$uri> .\n";
     }
 
-    $query = $prefix . "\nINSERT DATA { $triples }";
+    $query = $prefix . "\nINSERT DATA {\n" . $triples . "}";
 
     return executeSparqlUpdate($query);
-
-   
 }
 
-function getPublicationsByMention($uri) {
+function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris = []) {
+    if (empty($uris) || !is_array($uris)) {
+        return [];
+    }
+
+    $cleanUris = array_values(array_unique(array_filter($uris)));
+
+    if (empty($cleanUris)) {
+        return [];
+    }
+
+    $values = '';
+    foreach ($cleanUris as $uri) {
+        $values .= "<{$uri}> ";
+    }
+
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-        SELECT ?pub ?title ?abstract WHERE {
-            ?pub app:mentions <{$uri}> .
+        SELECT ?pub ?title ?abstract (COUNT(DISTINCT ?mention) AS ?matchCount)
+        WHERE {
+
+            VALUES ?mention { $values }
+
+            ?pub app:mentions ?mention .
             ?pub app:title ?title .
-            ?pub app:abstract ?abstract .
+
+            OPTIONAL {
+                ?pub app:abstract ?abstract .
+            }
+
         }
+        GROUP BY ?pub ?title ?abstract
+        ORDER BY DESC(?matchCount)
     ";
 
-
-
     $data = executeSparqlQuery($sparql);
- 
+
     if ($data === false) {
         return [];
     }
 
     $results = [];
-    if (isset($data['results']['bindings'])) {
-        foreach ($data['results']['bindings'] as $row) {
 
-            $results[] = [
-                'uri' => $row['pub']['value'],
-                'title' => $row['title']['value'],
-                'abstract' => $row['abstract']['value'],
-                'authors' => getAuthorsByPublication($row['pub']['value']),
-                'keywords' => getKeywordsByPublication($row['pub']['value'])
+    if (isset($data['results']['bindings'])) {
+    foreach ($data['results']['bindings'] as $row) {
+        $pubUri = $row['pub']['value'];
+
+        $pubMentions = getMentionUrisByPublication($pubUri);
+
+        $exactMatches = array_intersect($pubMentions, $selectedUris);
+        $relatedMatches = array_intersect($pubMentions, $relatedOnlyUris);
+
+        $exactMatchCount = count($exactMatches);
+        $relatedMatchCount = count($relatedMatches);
+        $semanticScore = $exactMatchCount + ($relatedMatchCount * 0.5);
+
+        $results[] = [ 
+            'uri' => $pubUri,
+            'title' => $row['title']['value'] ?? 'Unknown title',
+            'abstract' => $row['abstract']['value'] ?? '',
+            'matchCount' => isset($row['matchCount']['value']) ? (int)$row['matchCount']['value'] : 0,
+            'exactMatchCount' => $exactMatchCount,
+            'relatedMatchCount' => $relatedMatchCount,
+            'exactConcepts' => array_map('dbpediaUriToLabel', array_values($exactMatches)),
+            'relatedConcepts' => array_map('dbpediaUriToLabel', array_values($relatedMatches)),
+            'semanticScore' => $semanticScore,
+            'authors' => getAuthorsByPublication($pubUri),
+            'keywords' => getKeywordsByPublication($pubUri)];
+        }
+    }    
+
+    usort($results, function ($a, $b) {
+    return $b['semanticScore'] <=> $a['semanticScore'];
+    });
+
+    return $results;
+}
+function dbpediaUriToLabel($uri) {
+    $lastPart = basename($uri);
+    $label = str_replace('_', ' ', $lastPart);
+    return urldecode($label);
+}
+function getRelatedMentionsFromLocalGraph($uri, $limit = 5) {
+    $uri = trim($uri);
+
+    if (empty($uri)) {
+        return [];
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?related (COUNT(?pub) AS ?freq)
+        WHERE {
+            ?pub app:mentions <{$uri}> .
+            ?pub app:mentions ?related .
+
+            FILTER(?related != <{$uri}>)
+        }
+        GROUP BY ?related
+        ORDER BY DESC(?freq)
+        LIMIT {$limit}
+    ";
+
+    $data = executeSparqlQuery($sparql);
+
+    if ($data === false || !isset($data['results']['bindings'])) {
+        return [];
+    }
+
+    $relatedUris = [];
+
+    foreach ($data['results']['bindings'] as $row) {
+        if (!empty($row['related']['value'])) {
+            $relatedUris[] = $row['related']['value'];
+        }
+    }
+
+    return $relatedUris;
+}
+
+function expandConceptUris($uris, $limitPerUri = 5) {
+    if (empty($uris) || !is_array($uris)) {
+        return [];
+    }
+
+    $expanded = array_unique(array_filter($uris));
+
+    foreach ($uris as $uri) {
+        $related = getRelatedMentionsFromLocalGraph($uri, $limitPerUri);
+        $expanded = array_merge($expanded, $related);
+    }
+
+    return array_values(array_unique(array_filter($expanded)));
+}
+
+function getMentionUrisByPublication($pubUri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?mention
+        WHERE {
+            <{$pubUri}> app:mentions ?mention .
+        }
+    ";
+
+    $data = executeSparqlQuery($sparql);
+
+    if ($data === false || !isset($data['results']['bindings'])) {
+        return [];
+    }
+
+    $mentions = [];
+
+    foreach ($data['results']['bindings'] as $row) {
+        if (!empty($row['mention']['value'])) {
+            $mentions[] = $row['mention']['value'];
+        }
+    }
+
+    return array_values(array_unique($mentions));
+}
+
+
+function searchPublicationsWithAuthors($searchTerm) {
+    $escapedTerm = addslashes($searchTerm);
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?pub ?title ?authorUri ?firstName ?lastName WHERE {
+            ?pub app:title ?title .
+        FILTER(CONTAINS(LCASE(?title), LCASE(\"$escapedTerm\"))) .
+        OPTIONAL {
+            ?pub app:hasAuthor ?authorUri .
+            ?authorUri app:firstname ?firstName .
+            ?authorUri app:lastname ?lastName .
+            }
+        }
+    ";
+
+    $results = executeSparqlQuery($sparql);
+    $bindings = $results['results']['bindings'] ?? [];
+
+    $publications = [];
+
+    foreach ($bindings as $row) {
+        $pubUri = $row['pub']['value'];
+
+        // Αν δεν υπάρχει ήδη, φτιάξε το
+        if (!isset($publications[$pubUri])) {
+            $publications[$pubUri] = [
+                'uri' => $pubUri,
+                'title' => $row['title']['value'] ?? '(Untitled)',
+                'authors' => []
+            ];
+        }
+
+        // Αν έχει συγγραφέα, πρόσθεσέ τον
+        if (!empty($row['authorUri']['value'])) {
+            $publications[$pubUri]['authors'][] = [
+                'uri' => $row['authorUri']['value'],
+                'firstname' => $row['firstName']['value'] ?? '',
+                'lastname' => $row['lastName']['value'] ?? ''
             ];
         }
     }
+
+    return array_values($publications);
+}
+
+function getPublicationWithAuthors($uri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?title ?author ?firstname ?lastname ?orcid WHERE {
+            <{$uri}> app:title ?title .
+            OPTIONAL {
+                <{$uri}> app:hasAuthor ?author .
+                OPTIONAL { ?author app:firstname ?firstname . }
+                OPTIONAL { ?author app:lastname ?lastname . }
+                OPTIONAL { ?author app:orcid ?orcid . }
+            }
+        }
+    ";
+
+    $results = executeSparqlQuery($sparql);
+    $publication = [
+        'uri' => $uri,
+        'title' => '',
+        'authors' => []
+    ];
+
+    $bindings = $results['results']['bindings'] ?? [];
+
+
+    foreach ($bindings as $row) {
+        // Βάζω τον τίτλο μόνο μία φορά
+        if (empty($publication['title']) && isset($row['title']['value'])) {
+            $publication['title'] = $row['title']['value'];
+        }
     
+        // Προσθέτω κάθε συγγραφέα ξεχωριστά
+        if (!empty($row['author']['value'])) {
+            $publication['authors'][] = [
+                'uri' => $row['author']['value'],
+                'firstname' => $row['firstname']['value'] ?? '',
+                'lastname' => $row['lastname']['value'] ?? '',
+                'orcid' => $row['orcid']['value'] ?? ''
+            ];
+        }
+    }
+
+    return $publication;
+}
+
+function insertClaimPublicationAuthor($userUri, $claimedAuthorUri, $publicationUri, $reason) {
+    
+    $claimId = uniqid("claim_");
+    $claimUri = "app:$claimId";
+    $dateNow = date('Y-m-d');
+
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    
+    INSERT DATA {
+        $claimUri a app:Claim ;
+                app:claimedBy <$userUri> ;
+                app:claimedAuthor <$claimedAuthorUri> ;
+                app:isClaimOf <$publicationUri> ;
+                app:reason \"" . addslashes($reason) . "\" ;
+                app:claimDate \"$dateNow\"^^xsd:date ;
+                app:claimStatus \"Pending\" .
+}
+";
+
+return executeSparqlUpdate($sparql);
+
+}
+
+function countPendingClaims() {
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    SELECT (COUNT(?claim) AS ?pendingCount)
+    WHERE {
+        ?claim a app:Claim ;
+               app:claimStatus \"Pending\" .
+    }
+    ";
+
+    $results = executeSparqlQuery($sparql);
+    return isset($results['results']['bindings'][0]['pendingCount']['value'])
+        ? (int)$results['results']['bindings'][0]['pendingCount']['value']
+        : 0;
+}
+
+function getPendingClaims($offset = 0, $limit = 15) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+            SELECT  ?claim ?claimDate ?reason ?publication 
+                    ?pubTitle ?user ?userFirstName ?userLastName 
+                    ?author ?firstname    ?lastname
+            WHERE {
+                    ?claim a app:Claim ;
+                    app:claimStatus \"Pending\" ;
+                    app:claimDate ?claimDate;
+                    app:claimedBy ?user ;
+                    app:claimedAuthor ?author ;
+                    app:isClaimOf ?publication ;
+		            app:reason ?reason ;
+
+            OPTIONAL { ?publication app:title ?pubTitle . }
+
+            OPTIONAL { 
+                    ?user app:firstname ?userFirstName ;
+                    app:lastname ?userLastName .   }
+    
+            OPTIONAL { 
+                    ?author app:firstname ?firstname ;
+                    app:lastname ?lastname . }
+            }
+            ORDER BY DESC(?claimDate)
+            OFFSET {$offset} LIMIT {$limit} ";
+
+    $results = executeSparqlQuery($sparql);
+    $bindings = $results["results"]["bindings"] ?? [];
+
+    $claims = [];
+
+    foreach ($bindings as $b) {
+        $claims[] = [
+            'uri'     => $b['claim']['value'],
+            'claimDate'   => $b['claimDate']['value'],
+            'reason'     => $b['reason']['value'],
+            'publication' => $b['publication']['value'],
+            'pubTitle' => $b['pubTitle']['value'],
+            'user' => $b['user']['value'],
+            'userFirstName' => $b['userFirstName']['value'],
+            'userLastName' => $b['userLastName']['value'],
+            'author' => $b['author']['value'],
+            'authorFirstname' => $b['firstname']['value'],
+            'authorLastname' => $b['lastname']['value'],
+            'pubDate' => $b['publication']['value'],
+        ];
+    }
+
+    return $claims;
+}
+
+function getClaimByURI($uri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT 
+            ?claimDate 
+            ?status 
+            ?reason 
+            ?publicationURI 
+            ?doi 
+            ?pubTitle 
+            ?userURI
+            ?userEmail 
+            ?userFirstName 
+            ?userLastName 
+            ?oldAuthorURI
+            ?authorFirstName
+            ?authorLastName 
+            ?authorOrcid
+            ?realAuthorURI
+        WHERE {
+
+            <$uri> a app:Claim ;
+                app:claimDate ?claimDate ;
+                app:claimStatus ?status ;
+                app:claimedBy ?userURI ;
+                app:claimedAuthor ?oldAuthorURI ;
+                app:isClaimOf ?publicationURI .
+
+            OPTIONAL { <$uri> app:reason ?reason . }
+            OPTIONAL { ?publicationURI app:title ?pubTitle . }
+            OPTIONAL { ?publicationURI app:doi ?doi . }
+
+            OPTIONAL { ?userURI app:email ?userEmail . }
+            OPTIONAL { ?userURI app:firstname ?userFirstName . }
+            OPTIONAL { ?userURI app:lastname ?userLastName . }
+
+            OPTIONAL { ?oldAuthorURI app:firstname ?authorFirstName . }
+            OPTIONAL { ?oldAuthorURI app:lastname ?authorLastName . }
+            OPTIONAL { ?oldAuthorURI app:orcid ?authorOrcid . }
+
+            # Αυτό που επιβεβαίωσες:
+            OPTIONAL { 
+                ?userURI app:isCorrespondingUser ?realAuthorURI .
+            }
+        }
+        LIMIT 1";
+
+    $json = executeSparqlQuery($sparql);
+    $results = [];
+
+    if (!empty($json['results']['bindings'])) {
+        $row = $json['results']['bindings'][0];
+
+        $results['claimDate']        = $row['claimDate']['value'] ?? null;
+        $results['status']           = $row['status']['value'] ?? null;
+        $results['reason']           = $row['reason']['value'] ?? null;
+
+        $results['publication']   = $row['publicationURI']['value'] ?? null;
+        $results['oldAuthorURI']     = $row['oldAuthorURI']['value'] ?? null;     // claimedAuthor (παλιός)
+        $results['userURI']          = $row['userURI']['value'] ?? null;          // claimedBy (user)
+        $results['realAuthorURI']    = $row['realAuthorURI']['value'] ?? null;    // isCorrespondingUser (author-user)
+
+        $results['pubTitle']         = $row['pubTitle']['value'] ?? null;
+        $results['doi']              = $row['doi']['value'] ?? null;
+
+        $results['userFirstname']    = $row['userFirstName']['value'] ?? null;
+        $results['userLastname']     = $row['userLastName']['value'] ?? null;
+        $results['userEmail']        = $row['userEmail']['value'] ?? null;
+
+        $results['authorFirstname']  = $row['authorFirstName']['value'] ?? null;
+        $results['authorLastname']   = $row['authorLastName']['value'] ?? null;
+        $results['authorOrcid']      = $row['authorOrcid']['value'] ?? null;
+    }
+
     return $results;
 }
+
+function updateClaimStatus($claimUri, $newStatus)
+{
+    $claimUri = trim($claimUri);
+    $newStatus = addslashes($newStatus);
+
+    if (empty($claimUri) || empty($newStatus)) {
+        return false;
+    }
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    DELETE {
+        <$claimUri> app:claimStatus ?oldStatus .
+    }
+    INSERT {
+        <$claimUri> app:claimStatus \"$newStatus\" .
+    }
+    WHERE {
+        <$claimUri> app:claimStatus ?oldStatus .
+    }
+    ";
+
+    return executeSparqlUpdate($sparql);
+}
+
+function getClaimsHistoryByPublication($publicationUri)
+{
+    $publicationUri = trim($publicationUri);
+    if ($publicationUri === '') {
+        return [];
+    }
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    SELECT
+        ?claim
+        ?claimDate
+        ?status
+        ?reason
+
+        ?userEmail
+        ?userFirstName
+        ?userLastName
+
+        ?authorFirstName
+        ?authorLastName
+        ?authorOrcid
+    WHERE {
+        ?claim a app:Claim ;
+               app:isClaimOf <$publicationUri> ;
+               app:claimDate ?claimDate ;
+               app:claimStatus ?status ;
+               app:claimedBy ?user ;
+               app:claimedAuthor ?author .
+
+        OPTIONAL { ?claim app:reason ?reason . }
+
+        OPTIONAL { ?user app:email ?userEmail . }
+        OPTIONAL { ?user app:firstname ?userFirstName . }
+        OPTIONAL { ?user app:lastname ?userLastName . }
+
+        OPTIONAL { ?author app:firstname ?authorFirstName . }
+        OPTIONAL { ?author app:lastname ?authorLastName . }
+        OPTIONAL { ?author app:orcid ?authorOrcid . }
+    }
+    ORDER BY DESC(?claimDate)
+    ";
+
+    $json = executeSparqlQuery($sparql);
+    $bindings = $json['results']['bindings'] ?? [];
+
+    $history = [];
+    foreach ($bindings as $b) {
+        $history[] = [
+            'claim' => $b['claim']['value'] ?? '',
+            'claimDate' => $b['claimDate']['value'] ?? '',
+            'status' => $b['status']['value'] ?? '',
+            'reason' => $b['reason']['value'] ?? '',
+
+            'userEmail' => $b['userEmail']['value'] ?? '',
+            'userFirstName' => $b['userFirstName']['value'] ?? '',
+            'userLastName' => $b['userLastName']['value'] ?? '',
+
+            'authorFirstName' => $b['authorFirstName']['value'] ?? '',
+            'authorLastName' => $b['authorLastName']['value'] ?? '',
+            'authorOrcid' => $b['authorOrcid']['value'] ?? '',
+        ];
+    }
+
+    return $history;
+}
+
+function getPublicationTitleByUri($publicationUri)
+{
+    $publicationUri = trim($publicationUri);
+    if ($publicationUri === '') {
+        return null;
+    }
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    SELECT ?title
+    WHERE {
+            <$publicationUri> app:title ?title .
+    }
+    LIMIT 1
+    ";
+
+    $json = executeSparqlQuery($sparql);
+    $bindings = $json['results']['bindings'] ?? [];
+
+    if (empty($bindings)) {
+        return null;
+    }
+
+    return $bindings[0]['title']['value'] ?? null;
+}
+
+function changePublicationAuthor($publicationUri, $oldAuthorUri, $newAuthorUri)
+{
+    $publicationUri = trim($publicationUri);
+    $oldAuthorUri = trim($oldAuthorUri);
+    $newAuthorUri = trim($newAuthorUri);
+
+    if ($publicationUri === '' || $oldAuthorUri === '' || $newAuthorUri === '') {
+        return false;
+    }
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    DELETE {
+        <$publicationUri> app:hasAuthor <$oldAuthorUri> .
+        <$oldAuthorUri> app:isAuthorOf <$publicationUri> .
+    }
+    INSERT {
+        <$publicationUri> app:hasAuthor <$newAuthorUri> .
+        <$newAuthorUri> app:isAuthorOf <$publicationUri> .
+    }
+    WHERE {
+        OPTIONAL { <$publicationUri> app:hasAuthor <$oldAuthorUri> . }
+        OPTIONAL { <$oldAuthorUri> app:isAuthorOf <$publicationUri> . }
+    }
+    ";
+
+    return executeSparqlUpdate($sparql);
+}
+

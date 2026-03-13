@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($action === 'delete') {
-        if(deletePublication($uri)){
+        $rdfDeleted = deletePublicationCompletely($uri);
+        $solrDeleted = deleteSolrDocumentByPublication($uri);
+
+        if ($rdfDeleted) {
             echo json_encode(['status' => 'success', 'message' => 'Publication deleted.']);
             exit;
         }else{

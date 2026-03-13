@@ -11,87 +11,82 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
     <?php include (BASE_PATH . 'includes/header.php'); ?>
-    <title>Publication Management</title>
-</head>
-<body>
+		<title>Publication Management</title>
+	</head>
+	<body>
 <?php include (BASE_PATH . 'includes/navbar.php'); ?>
-<div class="container mt-5">
-<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-        <h2>Publication Management</h2>
-        <button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
-    </div>
-        <div id="message"></div>
-    <div id="filterSection" style="display: none;">
-        <form id="filterForm" class="mb-4">
-  <div class="mb-3">
-    <label for="search">Search</label>
-    <input type="text" class="form-control" id="search" name="search" placeholder="Search (title, DOI, keyword, author etc)">
+		<main>
+			<div class="container mt-5">
+				<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+					<h2 class="display-6">Publication Management</h2>
+					<button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
+				</div>
+				<div id="message"/>
+				<div id="filterSection" style="display: none;">
+					<form id="filterForm" class="mb-4">
+						<div class="mb-3">
+							<label for="search">Search</label>
+							<input type="text" class="form-control" id="search" name="search" placeholder="Search (title, DOI, keyword, author etc)">
   </div>
-
-  <div class="mb-3">
-    <label for="type">Type</label>
-    <select id="type" name="type" class="form-select">
-      <option value="">All</option>
-      <option value="Article">Article</option>
-      <option value="ConferencePaper">Conference Paper</option>
-      <option value="Book">Book</option>
-      <option value="Thesis">Thesis</option>
-    </select>
-  </div>
-
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="pubDateFrom">Publication Date (From)</label>
-      <input type="date" class="form-control" id="pubDateFrom" name="pubDateFrom">
+							<div class="mb-3">
+								<label for="type">Type</label>
+								<select id="type" name="type" class="form-select">
+									<option value="">All</option>
+									<option value="Article">Article</option>
+									<option value="ConferencePaper">Conference Paper</option>
+									<option value="Book">Book</option>
+									<option value="Thesis">Thesis</option>
+								</select>
+							</div>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<label for="pubDateFrom">Publication Date (From)</label>
+									<input type="date" class="form-control" id="pubDateFrom" name="pubDateFrom">
     </div>
-    <div class="col-md-6">
-      <label for="pubDateTo">Publication Date (To)</label>
-      <input type="date" class="form-control" id="pubDateTo" name="pubDateTo">
+									<div class="col-md-6">
+										<label for="pubDateTo">Publication Date (To)</label>
+										<input type="date" class="form-control" id="pubDateTo" name="pubDateTo">
     </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="uploadDateFrom">Upload Date (From)</label>
-      <input type="date" class="form-control" id="uploadDateFrom" name="uploadDateFrom">
+									</div>
+									<div class="row mb-3">
+										<div class="col-md-6">
+											<label for="uploadDateFrom">Upload Date (From)</label>
+											<input type="date" class="form-control" id="uploadDateFrom" name="uploadDateFrom">
     </div>
-    <div class="col-md-6">
-      <label for="uploadDateTo">Upload Date (To)</label>
-      <input type="date" class="form-control" id="uploadDateTo" name="uploadDateTo">
+											<div class="col-md-6">
+												<label for="uploadDateTo">Upload Date (To)</label>
+												<input type="date" class="form-control" id="uploadDateTo" name="uploadDateTo">
     </div>
-  </div>
-
-  <div class="text-end">
-    <button type="submit" class="btn btn-primary">Apply Filters</button>
-  </div>
-</form>
-        </div>
-
-        <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>DOI</th>
-                    <th>Publication Date</th>
-                    <th>Upload Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="publicationTableBody"></tbody>
-        </table>
-        </div>
-        <div id="pagination" class="mt-3"></div>
-</div>
-
-
-<div class="container">
+											</div>
+											<div class="text-end">
+												<button type="submit" class="btn btn-primary">Apply Filters</button>
+											</div>
+										</form>
+									</div>
+									<div class="table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Title</th>
+													<th>DOI</th>
+													<th>Publication Date</th>
+													<th>Upload Date</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody id="publicationTableBody"/>
+										</table>
+									</div>
+									<div id="pagination" class="mt-3"/>
+								</div>
+							</main>
+							<div class="container">
         <?php include (BASE_PATH . 'includes/footer.php'); ?>
-    </div>
-</body>
-
-<script>
+							</div>
+						</body>
+						<script>
 
     let currentPage = 1;
         
@@ -121,15 +116,19 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                 response.publications.forEach(pub => {
                     const row = `
                         <tr>
-                            <td>${pub.title}</td>
-                            <td>${pub.doi}</td>
-                            <td>${pub.pubDate}</td>
-                            <td>${pub.uploadDate}</td>
-                            <td>
-                                <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></button>
-                                <button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>`;
+								<td>${pub.title}</td>
+								<td>${pub.doi}</td>
+								<td>${pub.pubDate}</td>
+								<td>${pub.uploadDate}</td>
+								<td>
+									<button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
+										<i class="bi bi-eye"/>
+									</button>
+									<button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')">
+										<i class="bi bi-trash"/>
+									</button>
+								</td>
+							</tr>`;
                     tbody.append(row);
                 });
             }
@@ -145,14 +144,9 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 }
 
         function updatePagination(totalPages, currentPage) {
-            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage == 1 ? "disabled" : ""}>Back</button>
-                                  <span class="mx-3">Page ${currentPage} / ${totalPages}</span>
-                                  <button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage == totalPages ? "disabled" : ""}>Next</button>`;
-            $("#pagination").html(paginationHtml);
-        }
-
-        function changePage(newPage) {
-            if (newPage > 0) {
+            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage==1 ?"disabled" :"" }>Back< button>
+							<span class="mx-3">Page ${currentPage} / ${totalPages}</span>
+							<button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage==totalPages ?"disabled" :"" }>Next< button>`; $("#pagination").html(paginationHtml); } function changePage(newPage) { if (newPage> 0) {
                 currentPage = newPage;
                 loadPublications(currentPage);
             }
@@ -226,6 +220,5 @@ $("#toggleFilters").on("click", function () {
     $(this).text(current === "Show Filters" ? "Hide Filters" : "Show Filters");
 });
 
-</script>    
-
-</html>
+</script>
+						</html>

@@ -1,7 +1,9 @@
 <?php
 
+require_once dirname(__DIR__) . '/config.php';
+
 $client_id = 'APP-CVZ1AZXUZ8XWB81T'; 
-$redirect_uri = 'https://cf50-37-6-204-130.ngrok-free.app/my_project2/backend/orcid_callback.php';
+$redirect_uri = BASE_URL . 'backend/orcid_callback.php';
 $scope = '/authenticate'; 
 $response_type = 'code';
 

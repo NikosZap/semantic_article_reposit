@@ -8,9 +8,9 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>pages/about.php">About</a></li>
+                <li class="nav-item"><a class="nav-link text-nowrap" href="<?php echo BASE_URL;?>semantic_search.php">Semantic Search</a></li>
                 <?php if (isset($_SESSION['user']) && isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'Admin'): ?>
                    <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,13 +35,22 @@
                             <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/approve_publications.php">Approve Publications<?php  if(countPendingPublications() > 0): ?>
                                 <span class="badge bg-danger ms-2"><?= countPendingPublications() ?></span>
                                 <?php endif; ?></a></li>
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/approve_claims.php">Approve Claims<?php  if(countPendingClaims() > 0): ?>
+                                <span class="badge bg-danger ms-2"><?= countPendingClaims() ?></span>
+                                <?php endif; ?></a></li>    
+                            <?php } ?>
+                            <?php if( $_SESSION['user']['role'] === 'Researcher'){ ?>
+                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/claim_publication.php">Claim Publication</a></li>  
                             <?php } ?>
                         </ul>
                     <?php endif; ?>               
                 </li>
+                <?php if( isset($_SESSION['user']) && $_SESSION['user']['role'] === 'Admin'){ ?>               
+                <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL;?>pages/statistics.php">Statistics</a></li>
+                <?php } ?>
             </ul>
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mb-2 mb-md-0">
                 <?php if (isset($_SESSION['user'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="userDropdown" role="button"

@@ -1,18 +1,19 @@
 <?php require dirname(__DIR__) . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="el">
-<head>
-    <?php include(BASE_PATH . 'includes/header.php')?> 
-    <title>Register</title>
-   </head>
-<body>
+	<head>
+    <?php include(BASE_PATH . 'includes/header.php')?>
+		<title>Register</title>
+	</head>
+	<body>
     <?php include(BASE_PATH . 'includes/navbar.php')?>
-    <div class="container mt-5">
-    <div class="row">
-            <div class="col-md-6 mx-auto"> 
-                <div class="card p-4 ">
-        <h2 class="text-center">Sign up</h2>
-        <p class="text-center lead">Request access to the system</p>
+		<main>
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col-md-6 mx-auto">
+						<div class="card p-4 ">
+							<h2 class="text-center">Sign up</h2>
+							<p class="text-center lead">Request access to the system</p>
         <?php
         // Εμφάνιση μηνύματος αν υπάρχει σφάλμα ή επιτυχία
         if (isset($_GET['error'])) {
@@ -22,47 +23,47 @@
             echo "<div class='alert alert-success'>" . htmlspecialchars($_GET['success']) . "</div>";
         }
         ?>
-         <div id="message"></div>
-
-        <form id="registerForm" method="POST" action="../backend/register_backend.php">
-            <div class="mb-3">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Email</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Reset Password</label>
-                <input type="password" name="confirm_password" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Firstname</label>
-                <input type="text" name="firstname" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label>Lastname</label>
-                <input type="text" name="lastname" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Εγγραφή</button>
-        </form>
-
-        <p class="mt-3 text-center">Already have an account?<a href="login.php">Log In</a></br>
-        Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a></p>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="container">
+							<div id="message"/>
+							<form id="registerForm" method="POST" action="../backend/register_backend.php">
+								<div class="mb-3">
+									<label>Username</label>
+									<input type="text" name="username" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label>Email</label>
+									<input type="email" name="email" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label>Password</label>
+									<input type="password" name="password" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label>Reset Password</label>
+									<input type="password" name="confirm_password" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label>Firstname</label>
+									<input type="text" name="firstname" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label>Lastname</label>
+									<input type="text" name="lastname" class="form-control" required>
+								</div>
+								<button type="submit" class="btn btn-primary w-100">Εγγραφή</button>
+							</form>
+							<p class="mt-3 text-center">Already have an account?<a href="login.php">Log In</a>
+							</br>
+        Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="container">
         <?php include( BASE_PATH . 'includes/footer.php')?>
-    </div>
+	</div>
 </body>
-
 <script>
       document.getElementById("registerForm").addEventListener("submit", function(event) {
       event.preventDefault(); // Αποτρέπει το default submit
@@ -84,5 +85,4 @@
 });
 
     </script>
-
 </html>

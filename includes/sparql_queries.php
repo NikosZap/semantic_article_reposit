@@ -1,10 +1,10 @@
 <?php 
 
 function getUserByUsername($username) {
-    // Ετοίμασε το SPARQL query
+
     $sparql = "PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-                SELECT ?user ?userID ?username ?password ?role ?firstname ?lastname ?email ?isSuspended
+                SELECT ?user ?userID ?username ?password ?role ?firstname ?lastname ?email ?isSuspended ?orcid
                 WHERE { 
                     ?user a app:User ;
                     app:userID ?userID ;
@@ -14,7 +14,11 @@ function getUserByUsername($username) {
                     app:firstname ?firstname ;
                     app:lastname ?lastname ;
                     app:email ?email.
-                     OPTIONAL { ?user app:isSuspended ?isSuspended }
+                    OPTIONAL { ?user app:isSuspended ?isSuspended }
+
+                    OPTIONAL { ?author a app:Author ;
+                            app:correspondTo ?user ;
+                            app:orcid ?orcid . }
                 FILTER(?username = \"$username\")
                 }
                 LIMIT 1";
@@ -36,6 +40,7 @@ function getUserByUsername($username) {
             'firstname' => $userData['firstname']['value'],
             'lastname'  => $userData['lastname']['value'],
             'email'     => $userData['email']['value'],
+            'orcid'     => $userData['orcid']['value'] ?? null,
             'isSuspended' => isset($userData['isSuspended']) ? $userData['isSuspended']['value'] : "0"];
 
 }
@@ -501,11 +506,12 @@ function getUserByOrcidId($orcid_id) {
     $query = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-    SELECT ?user ?userID ?username ?email ?firstname ?lastname ?role
+    SELECT ?user ?userID ?username ?email ?firstname ?lastname ?role ?orcid
     WHERE {
         ?author a app:Author ;
                 app:orcid \"$orcid_id\" ;
-                app:correspondTo ?user .
+                app:correspondTo ?user  ;
+                app:orcid ?orcid .
 
         ?user a app:User ;
               app:userID ?userID ;
@@ -518,7 +524,7 @@ function getUserByOrcidId($orcid_id) {
     LIMIT 1
     ";
 
-    $response = executeSparqlQuery($query); // συνάρτηση που καλεί το Fuseki (υποθέτουμε ότι υπάρχει)
+    $response = executeSparqlQuery($query); 
 
     if (isset($response['results']['bindings'][0])) {
         $b = $response['results']['bindings'][0];
@@ -529,7 +535,8 @@ function getUserByOrcidId($orcid_id) {
             'email' => $b['email']['value'],
             'firstname' => $b['firstname']['value'],
             'lastname' => $b['lastname']['value'],
-            'role' => $b['role']['value']
+            'role' => $b['role']['value'],
+            'orcid' => $b['orcid']['value'] 
         ];
     }
 

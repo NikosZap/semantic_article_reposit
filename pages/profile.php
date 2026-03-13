@@ -14,51 +14,57 @@ $user = $_SESSION['user'];
 
 <!DOCTYPE html>
 <html lang="el">
-<head>
+	<head>
     <?php include(BASE_PATH . 'includes/header.php'); ?>
-    <title>User Profile</title>
-</head>
-<body>
+		<title>User Profile</title>
+	</head>
+	<body>
 <?php include(BASE_PATH . 'includes/navbar.php'); ?>
-
-<div class="container mt-5">
-    <h3>User's Information</h3>
-    <div id="message"></div>
-    <form id="profileForm">
-        <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" class="form-control" disabled>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="form-control" disabled>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">First Name</label>
-            <input type="text" name="firstname" value="<?= htmlspecialchars($user['firstname']) ?>" class="form-control" disabled>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Last Name</label>
-            <input type="text" name="lastname" value="<?= htmlspecialchars($user['lastname']) ?>" class="form-control" disabled>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Role</label>
-            <input type="text" name="role" value="<?= htmlspecialchars($user['role']) ?>" class="form-control" disabled>
-        </div>
-
-        <div class="d-flex gap-2">
-            <button type="button" id="editBtn" class="btn btn-warning"><i class="bi bi-pencil"></i> Edit</button>
-            <button type="submit" id="saveBtn" class="btn btn-success" style="display:none;"><i class="bi bi-save"></i> Save</button>
-            <button type="button" id="deleteBtn" class="btn btn-danger ms-auto"><i class="bi bi-trash"></i> Delete User</button>
-        </div>
-    </form>
-</div>
-
+		<main>
+			<div class="container mt-5">
+				<h3>User's Information</h3>
+				<div id="message"/>
+				<form id="profileForm">
+					<div class="mb-3">
+						<label class="form-label">Username</label>
+						<input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" class="form-control" disabled>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="form-control" disabled>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">First Name</label>
+						<input type="text" name="firstname" value="<?= htmlspecialchars($user['firstname']) ?>" class="form-control" disabled>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Last Name</label>
+						<input type="text" name="lastname" value="<?= htmlspecialchars($user['lastname']) ?>" class="form-control" disabled>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Role</label>
+						<input type="text" name="role" value="<?= htmlspecialchars($user['role']) ?>" class="form-control" disabled>
+					</div>
+					<div class="d-flex gap-2">
+						<button type="button" id="editBtn" class="btn btn-warning">
+							<i class="bi bi-pencil"/> Edit</button>
+						<button type="submit" id="saveBtn" class="btn btn-success" style="display:none;">
+							<i class="bi bi-save"/> Save</button>
+						<button type="button" id="deleteBtn" class="btn btn-danger ms-auto">
+							<i class="bi bi-trash"/> Delete User</button>
+					</div>
+				</form>
+			</div>
+		</main>
+		<div class="container mt-auto">
+        <?php include(BASE_PATH . 'includes/footer.php')?>
+		</div>
+	</body>
+</html>
 <script>
 function showMessage(type, message) {
     const el = document.getElementById("message");
-    el.innerHTML = '<div class="alert alert-' + (type === "success" ? "success" : "danger") + '">' + message + '</div>';
-    setTimeout(() => { el.innerHTML = ""; }, 4000);
+    el.innerHTML = '<div class="alert alert-' + (type === " success" ?"success" :"danger" ) +'">' + message +'</div>' ; setTimeout(()=> { el.innerHTML = ""; }, 4000);
 }
 
 document.getElementById("editBtn").addEventListener("click", function () {
@@ -112,5 +118,3 @@ document.getElementById("deleteBtn").addEventListener("click", function () {
 });
 </script>
 
-</body>
-</html>

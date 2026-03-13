@@ -11,74 +11,71 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 
 <!DOCTYPE html>
 <html lang="el">
-<head>
+	<head>
     <?php include(BASE_PATH . 'includes/header.php'); ?>
-    <title>User Management</title>
-</head>
-<body>
+		<title>User Management</title>
+	</head>
+	<body>
     <?php include(BASE_PATH . 'includes/navbar.php'); ?>
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <h2>User Management</h2>
-            <button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
-        </div>
-
-         <div id="message"></div>
-
-        <div id="filterSection" style="display: none;">
-            <form id="filterForm" class="mb-3">
-                <input type="text" id="search" name="search" placeholder="Search User..." class="form-control mb-2">
-                <select id="role" name="role" class="form-select mb-2">
-                    <option value="">All roles</option>
-                    <option value="researcher">Researcher</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <select id="is_active" name="is_active" class="form-select mb-2">
-                    <option value="">All</option>
-                    <option value="1">Active</option>
-                    <option value="0">Not active</option>
-                </select>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>From:</label>
-                        <input type="date" id="from_date" name="from_date" class="form-control mb-2">
+		<main>
+			<div class="container mt-5">
+				<div class="d-flex justify-content-between align-items-center mb-2">
+					<h2>User Management</h2>
+					<button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
+				</div>
+				<div id="message"/>
+				<div id="filterSection" style="display: none;">
+					<form id="filterForm" class="mb-3">
+						<input type="text" id="search" name="search" placeholder="Search User..." class="form-control mb-2">
+							<select id="role" name="role" class="form-select mb-2">
+								<option value="">All roles</option>
+								<option value="researcher">Researcher</option>
+								<option value="admin">Admin</option>
+							</select>
+							<select id="is_active" name="is_active" class="form-select mb-2">
+								<option value="">All</option>
+								<option value="1">Active</option>
+								<option value="0">Not active</option>
+							</select>
+							<div class="row">
+								<div class="col-md-6">
+									<label>From:</label>
+									<input type="date" id="from_date" name="from_date" class="form-control mb-2">
                     </div>
-                    <div class="col-md-6">
-                        <label>To:</label>
-                        <input type="date" id="to_date" name="to_date" class="form-control mb-2" >
+									<div class="col-md-6">
+										<label>To:</label>
+										<input type="date" id="to_date" name="to_date" class="form-control mb-2">
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Apply Filters</button>
-            </form>
-        </div>
-         
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Registr. Date</th>
-                        <th>Last Update</th>
-                        <th>Activation</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="userTableBody"></tbody>
-            </table>
-        </div>
-
-        <div id="pagination" class="mt-3"></div>
-    </div>
-    <div class="container">
+									</div>
+									<button type="submit" class="btn btn-primary">Apply Filters</button>
+								</form>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Username</th>
+											<th>Firstname</th>
+											<th>Lastname</th>
+											<th>Email</th>
+											<th>Role</th>
+											<th>Registr. Date</th>
+											<th>Last Update</th>
+											<th>Activation</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody id="userTableBody"/>
+								</table>
+							</div>
+							<div id="pagination" class="mt-3"/>
+						</div>
+					</main>
+					<div class="container">
         <?php include BASE_PATH . 'includes/footer.php'?>
-    </div>
-
-    <script>
+					</div>
+					<script>
         let currentPage = 1;
         
         function loadUsers(page = 1, callback = null) {
@@ -118,35 +115,34 @@ if (savedMessage) {
                             }) : '';
 
                             let row = `<tr id="userRow_${user.userID}">
-                                <td>${user.userID}</td>
-                                <td>${user.username}</td>
-                                <td>${user.firstname}</td>
-                                <td>${user.lastname}</td>
-                                <td>${user.email}</td>
-                                <td>${user.role}</td>
-                                <td>${formattedCreatedAt}</td>
-                                <td>${user.updatedAt}</td>
-                                <td>${user.is_active == 1 ? "<span class='badge bg-success'>Yes</span>" : "<span class='badge bg-danger'>No</span>"}</td>
-                                <td> <form  class="update-role-form" data-userid="${user.userID}">
-                                <input type="hidden" name="userID" value="${user.userID}">
-                               <select name="role" class="form-select role-select" data-userid="${user.userID}">
-                                    <option value="Researcher" ${user.role === "Researcher" ? "selected" : ""}>Researcher</option>
-                                    <option value="Admin" ${user.role === "Admin" ? "selected" : ""}>Admin</option>
-                                </select>
-                                <button type="submit" class="btn btn-primary btn-sm update-role-btn" title="Role update">
-                                    <i class="bi bi-arrow-repeat"></i></button>
-                            </form>
-                                 <button type="button" 
-                                         class="btn btn-${user.isSuspended == 1 ? 'success' : 'warning'} btn-sm toggle-suspend-user" 
-                                         data-userid="${user.userID}" 
-                                         data-suspended="${user.isSuspended}" 
-                                         title="${user.isSuspended == 1 ? 'Lift of suspension' : 'Suspend user'}">
-                                    <i class="bi ${user.isSuspended == 1 ? 'bi-unlock' : 'bi-lock'}"></i>
-                                </button>
-                                <button type="submit" class="btn btn-danger btn-sm delete-user" data-userid="${user.userID}" title=Delete>
-                                  <i class="bi bi-trash"></i></button>
-                            </td>
-                            </tr>`;
+							<td>${user.userID}</td>
+							<td>${user.username}</td>
+							<td>${user.firstname}</td>
+							<td>${user.lastname}</td>
+							<td>${user.email}</td>
+							<td>${user.role}</td>
+							<td>${formattedCreatedAt}</td>
+							<td>${user.updatedAt}</td>
+							<td>${user.is_active == 1 ? "<span class='badge bg-success'>Yes</span>" : "<span class='badge bg-danger'>No</span>"}</td>
+							<td>
+								<form class="update-role-form" data-userid="${user.userID}">
+									<input type="hidden" name="userID" value="${user.userID}">
+										<select name="role" class="form-select role-select" data-userid="${user.userID}">
+											<option value="Researcher" ${user.role==="Researcher" ?"selected" :"" }>Researcher< option>
+											<option value="Admin" ${user.role==="Admin" ?"selected" :"" }>Admin< option>
+										</select>
+										<button type="submit" class="btn btn-primary btn-sm update-role-btn" title="Role update">
+											<i class="bi bi-arrow-repeat"/>
+										</button>
+									</form>
+									<button type="button" class="btn btn-${user.isSuspended == 1 ? 'success' : 'warning'} btn-sm toggle-suspend-user" data-userid="${user.userID}" data-suspended="${user.isSuspended}" title="${user.isSuspended == 1 ? 'Lift of suspension' : 'Suspend user'}">
+										<i class="bi ${user.isSuspended == 1 ? 'bi-unlock' : 'bi-lock'}"/>
+									</button>
+									<button type="submit" class="btn btn-danger btn-sm delete-user" data-userid="${user.userID}" title=Delete>
+									<i class="bi bi-trash"/>
+								</button>
+							</td>
+						</tr>`;
                             $("#userTableBody").append(row);
                         });
                     }
@@ -160,14 +156,9 @@ if (savedMessage) {
         }
 
         function updatePagination(totalPages, currentPage) {
-            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage == 1 ? "disabled" : ""}>Back</button>
-                                  <span class="mx-3">Page ${currentPage} / ${totalPages}</span>
-                                  <button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage == totalPages ? "disabled" : ""}>Next</button>`;
-            $("#pagination").html(paginationHtml);
-        }
-
-        function changePage(newPage) {
-            if (newPage > 0) {
+            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage==1 ?"disabled" :"" }>Back< button>
+						<span class="mx-3">Page ${currentPage} / ${totalPages}</span>
+						<button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage==totalPages ?"disabled" :"" }>Next< button>`; $("#pagination").html(paginationHtml); } function changePage(newPage) { if (newPage> 0) {
                 currentPage = newPage;
                 loadUsers(currentPage);
             }
@@ -288,9 +279,7 @@ loadUsers(currentPage);
 });
 
 function showMessage(type, message) {
-    const container = document.getElementById("message"); // <-- να ταιριάζει με το div!
-    container.innerHTML = '<div class="alert alert-' + (type === "success" ? "success" : "danger") + '">' + message + '</div>';
-    setTimeout(() => container.innerHTML = "", 4000);
+    const container = document.getElementById("message"); // <-- να ταιριάζει με το div! container.innerHTML='<div class="alert alert-' + (type==="success" ?"success" :"danger" ) +'">' + message +'</div>' ; setTimeout(()=> container.innerHTML = "", 4000);
 }
 
 $(document).ready(function () {
@@ -311,5 +300,5 @@ $("#toggleFilters").on("click", function () {
 });
 
     </script>
-</body>
-</html>
+						</body>
+					</html>

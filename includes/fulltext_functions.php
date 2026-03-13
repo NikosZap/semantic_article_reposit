@@ -17,7 +17,7 @@ function storeFullTextFromPDF($publicationURI, $pdfFilePath) {
     $fullTextID = uniqid("fulltext_");
     $fullTextURI = BASE_URI . $fullTextID;
 
-    $$text = escapeForSPARQLLiteral($text);
+    $text = escapeForSPARQLLiteral($text);
 
     $text = addslashes($text); 
 
@@ -62,7 +62,7 @@ function createSolrDocumentFromPublication($pubURI, $title, $fulltext, $abstract
         "authors" => $authors
     ];
 
-    print_r($doc);
+    //print_r($doc);
 
     $payload = json_encode([$doc], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
@@ -124,5 +124,50 @@ function getDBpediaEntities($text, $confidence = 0.5, $support = 20) {
     return $entities;
 }
 
+function deleteSolrDocumentByPublication($pubURI) {
+    $docId = basename($pubURI);
+
+    $payload = json_encode([
+        'delete' => ['id' => $docId]
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    $ch = curl_init('http://localhost:8983/solr/sem_text_core/update?commit=true');
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    return $response !== false && $httpCode === 200;
+}
+
+function deletePublicationCompletely($uri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        DELETE {
+            <{$uri}> ?p ?o .
+            ?s ?p2 <{$uri}> .
+
+            ?fullText ?fp ?fo .
+            ?fs ?fp2 ?fullText .
+        }
+        WHERE {
+            OPTIONAL { <{$uri}> ?p ?o . }
+            OPTIONAL { ?s ?p2 <{$uri}> . }
+
+            OPTIONAL {
+                <{$uri}> app:hasFullText ?fullText .
+                OPTIONAL { ?fullText ?fp ?fo . }
+                OPTIONAL { ?fs ?fp2 ?fullText . }
+            }
+        }
+    ";
+
+    return executeSparqlUpdate($sparql);
+}
 
 ?>

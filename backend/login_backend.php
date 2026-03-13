@@ -27,9 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                  'firstname' => $user['firstname'],
                                  'lastname' => $user['lastname'],
                                  'email' => $user['email'],
-                                 'is_logged_in' => true];           
+                                 'is_logged_in' => true,
+                                 'orcid' => $user['orcid']];           
                                 
-            echo json_encode(["status" => "success", "redirect" => BASE_URL . "pages/dashboard.php"]);
+            echo json_encode(["status" => "success", "redirect" => BASE_URL . "index.php"]);
             exit;
         } else {
 

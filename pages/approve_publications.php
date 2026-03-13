@@ -11,36 +11,35 @@ if ($_SESSION['user']['role'] !== 'Admin') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
     <?php include (BASE_PATH . 'includes/header.php'); ?>
-    <title>Approve Publication</title>
-</head>
-<body>
+		<title>Approve Publication</title>
+	</head>
+	<body>
 <?php include (BASE_PATH . 'includes/navbar.php'); ?>
-<div class="container mt-5">
-    <h2>Unapproved publications</h2>
-        <div id="message"></div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>DOI</th>
-                    <th>Date Uploaded</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="unapprovedPubTableBody"></tbody>
-        </table>
-        <div id="pagination" class="mt-3"></div>
-</div>
-
-
-<div class="container">
+		<main>
+			<div class="container mt-5">
+				<h2 class="display-6">Unapproved publications</h2>
+				<div id="message"/>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>DOI</th>
+							<th>Date Uploaded</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody id="unapprovedPubTableBody"/>
+				</table>
+				<div id="pagination" class="mt-3"/>
+			</div>
+		</main>
+		<div class="container">
         <?php include (BASE_PATH . 'includes/footer.php'); ?>
-    </div>
-</body>
-
-<script>
+		</div>
+	</body>
+	<script>
     let currentPage = 1;
         
     function loadPendingPublications(page = 1, callback = null) {
@@ -60,15 +59,21 @@ if ($_SESSION['user']['role'] !== 'Admin') {
                 response.publications.forEach(pub => {
                     const row = `
                         <tr>
-                            <td>${pub.title}</td>
-                            <td>${pub.doi}</td>
-                            <td>${pub.pubDate}</td>
-                            <td>
-                                <button class="btn btn-success btn-sm" onclick="approve('${pub.uri}')"><i class="bi bi-check-circle"></i></button>
-                                <button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')"><i class="bi bi-trash"></i></button>
-                                <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></button>
-                            </td>
-                        </tr>`;
+			<td>${pub.title}</td>
+			<td>${pub.doi}</td>
+			<td>${pub.pubDate}</td>
+			<td>
+				<button class="btn btn-success btn-sm" onclick="approve('${pub.uri}')">
+					<i class="bi bi-check-circle"/>
+				</button>
+				<button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')">
+					<i class="bi bi-trash"/>
+				</button>
+				<button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
+					<i class="bi bi-eye"/>
+				</button>
+			</td>
+		</tr>`;
                     tbody.append(row);
                 });
             }
@@ -84,14 +89,9 @@ if ($_SESSION['user']['role'] !== 'Admin') {
 }
 
         function updatePagination(totalPages, currentPage) {
-            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage == 1 ? "disabled" : ""}>Back</button>
-                                  <span class="mx-3">Page ${currentPage} / ${totalPages}</span>
-                                  <button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage == totalPages ? "disabled" : ""}>Next</button>`;
-            $("#pagination").html(paginationHtml);
-        }
-
-        function changePage(newPage) {
-            if (newPage > 0) {
+            let paginationHtml = `<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage==1 ?"disabled" :"" }>Back< button>
+		<span class="mx-3">Page ${currentPage} / ${totalPages}</span>
+		<button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage==totalPages ?"disabled" :"" }>Next< button>`; $("#pagination").html(paginationHtml); } function changePage(newPage) { if (newPage> 0) {
                 currentPage = newPage;
                 loadPendingPublications(currentPage);
             }
@@ -160,6 +160,5 @@ if ($_SESSION['user']['role'] !== 'Admin') {
         }
     });
 });
-</script>    
-
-</html>
+</script>
+	</html>

@@ -11,12 +11,12 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
     <?php include(BASE_PATH . 'includes/header.php'); ?>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-    <title>Insert New Publication</title>
-  <style>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+			<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"/>
+			<title>Insert New Publication</title>
+			<style>
     .required:after {
       content: " *";
       color: red;
@@ -28,138 +28,137 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
       cursor: pointer;
     }
   </style>
-</head>
-<body>
+		</head>
+		<body>
 <?php include(BASE_PATH . 'includes/navbar.php'); ?>
-<div class="container mt-5">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-        <h3>Insert New Publication</h3>
-        <button id="showDetails" class="btn btn-primary btn-sm">
-        <i class="bi bi-lightbulb" id="helpIcon"></i>
-</button>
-    </div>    
-    <div id="message"></div>
-
-    <div id="detailsSection" style="display: none;">
-        <p>Instructions will be added</p>
-    </div>    
-
-    <form action="../backend/insert_manual_publication_backend.php" method="POST" id="publicationForm" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label class="form-label">Publication Title</label>
-            <input type="text" name="title" class="form-control" required>
+			<main>
+				<div class="container mt-5">
+					<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+						<h3 class="display-6">Insert New Publication</h3>
+						<button id="showDetails" class="btn btn-primary btn-sm">
+							<i class="bi bi-lightbulb" id="helpIcon"/>
+						</button>
+					</div>
+					<div id="message"/>
+					<div id="detailsSection" style="display: none;">
+						<p>Instructions will be added</p>
+					</div>
+					<form action="../backend/insert_manual_publication_backend.php" method="POST" id="publicationForm" enctype="multipart/form-data">
+						<div class="mb-3">
+							<label class="form-label">Publication Title</label>
+							<input type="text" name="title" class="form-control" required>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">Date</label>
+							<input type="date" name="pubDate" class="form-control" required>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">DOI</label>
+							<input type="text" name="doi" id='doi' class="form-control">
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Date</label>
-            <input type="date" name="pubDate" class="form-control" required>
+							<div class="mb-3">
+								<label for="keywords" class="form-label">Keywords</label>
+								<input id="keywords" name="keywords" placeholder="Add keywords seperated with commas" class="form-control">
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">DOI</label>
-            <input type="text" name="doi" id='doi' class="form-control">
-        </div>
-
-        <div class="mb-3">
-            <label for="keywords" class="form-label">Keywords</label>
-            <input id="keywords" name="keywords" placeholder="Add keywords seperated with commas" class="form-control">
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Abstract</label>
-            <textarea name="abstract" rows="5" class="form-control" placeholder="Write the abstract of the article here..."></textarea>
-        </div>
-
-        <div class="mb-3">
-            <p><strong>Authors</strong></p>
-            <div id="authors-container">
-            <div class="row g-2 align-items-center mb-2 author-entry" data-index="${index}">
-                <div class="col-md-3">
-                    <input type="text" name="authors[][orcid]" class="form-control orcid-input" placeholder="ORCID ID #1">
+								<div class="mb-3">
+									<label class="form-label">Abstract</label>
+									<textarea name="abstract" rows="5" class="form-control" placeholder="Write the abstract of the article here..."/>
+								</div>
+								<div class="mb-3">
+									<!-- <p><strong>Authors</strong></p> -->
+									<label class="form-label">Authors</label>
+									<div id="authors-container">
+										<div class="row g-2 align-items-center mb-2 author-entry" data-index="${index}">
+											<div class="col-md-3">
+												<input type="text" name="authors[][orcid]" class="form-control orcid-input" placeholder="ORCID ID #1">
                 </div>
-                <div class="col-md-3">
-                    <input type="text" name="authors[][firstname]" class="form-control firstname" placeholder="First Name #1" disabled>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" name="authors[][lastname]" class="form-control lastname" placeholder="Last Name #1" disabled>
-                </div>
-                <div class="col-md-2 text-center">
-                    <input type="checkbox" class="form-check-input author-toggle" id="manualAuthorCheck" title="Manual entry">
-                    <label class="form-check-label" for="manualAuthorCheck">
-                    <span id="entryModeLabel">Manual entry</span>
-  </label>
-                
-            </div>
-                
-            </div>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="add-author"><i class="bi bi-person-plus-fill"></i> Add Author</button>
+												<div class="col-md-3">
+													<input type="text" name="authors[][firstname]" class="form-control firstname" placeholder="First Name #1" disabled>
+												</div>
+												<div class="col-md-3">
+													<input type="text" name="authors[][lastname]" class="form-control lastname" placeholder="Last Name #1" disabled>
+												</div>
+												<div class="col-md-2 text-center">
+													<input type="checkbox" class="form-check-input author-toggle" id="manualAuthorCheck" title="Manual entry">
+														<label class="form-check-label" for="manualAuthorCheck">
+															<span id="entryModeLabel">Manual entry</span>
+														</label>
+													</div>
+												</div>
+												<button type="button" class="btn btn-sm btn-outline-primary" id="add-author">
+													<i class="bi bi-person-plus-fill"/> Add Author</button>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Upload PDF</label>
+												<input type="file" name="pdf" accept=".pdf" class="form-control">
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Upload PDF</label>
-            <input type="file" name="pdf" accept=".pdf" class="form-control">
-        </div>
-
-        <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Type of Publication</label>
-    <div class="col-12 col-md-9 d-flex justify-content-center flex-wrap gap-2">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="pubType" value="Article" checked>
-            <label class="form-check-label">Article</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="pubType" value="ConferencePaper">
-            <label class="form-check-label">Conference Paper</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="pubType" value="Book">
-            <label class="form-check-label">Book</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="pubType" value="Thesis">
-            <label class="form-check-label">Thesis</label>
-        </div>
-    </div>
-</div>
-
-        <!-- Article Fields -->
-        <div id="ArticleFields" class="type-fields">
-            <div class="mb-2"><input type="text" name="journal" class="form-control" placeholder="Journal"></div>
-            <div class="mb-2"><input type="number" name="volume" class="form-control" placeholder="Volume"></div>
-            <div class="mb-2"><input type="number" name="number" class="form-control" placeholder="Number"></div>
-            <div class="mb-2"><input type="text" name="pages" class="form-control" placeholder="Pages"></div>
-        </div>
-
-        <!-- Conference Paper Fields -->
-        <div id="ConferencePaperFields" class="type-fields" style="display:none">
-            <div class="mb-2"><input type="text" name="conferenceName" class="form-control" placeholder="Conference Name"></div>
-            <div class="mb-2"><input type="text" name="pages" class="form-control" placeholder="Pages"></div>
-            <div class="mb-2"><input type="text" name="publisher" class="form-control" placeholder="Publisher"></div>
-        </div>
-
-        <!-- Book Fields -->
-        <div id="BookFields" class="type-fields" style="display:none">
-            <div class="mb-2"><input type="text" name="publisher" class="form-control" placeholder="Publisher"></div>
-            <div class="mb-2"><input type="number" name="volume" class="form-control" placeholder="Volume"></div>
-            <div class="mb-2"><input type="text" name="series" class="form-control" placeholder="Series"></div>
-            <div class="mb-2"><input type="text" name="edition" class="form-control" placeholder="Edition"></div>
-            <div class="mb-2"><input type="text" name="isbn" class="form-control" placeholder="ISBN"></div>
-        </div>
-
-        <!-- Thesis Fields -->
-        <div id="ThesisFields" class="type-fields" style="display:none">
-            <div class="mb-2"><input type="text" name="school" class="form-control" placeholder="School"></div>
-        </div>
-
-
-        <button type="submit" class="btn btn-success">Submit Publication</button>
-    </form>
-</div>
-<div class="container">
+												<div class="mb-3 row">
+													<label class="col-sm-3 col-form-label">Type of Publication</label>
+													<div class="col-12 col-md-9 d-flex justify-content-center flex-wrap gap-2">
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio" name="pubType" value="Article" checked>
+															<label class="form-check-label">Journal Article</label>
+														</div>
+														<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio" name="pubType" value="ConferencePaper">
+																<label class="form-check-label">Conference Paper</label>
+															</div>
+															<div class="form-check form-check-inline">
+																<input class="form-check-input" type="radio" name="pubType" value="Book">
+																	<label class="form-check-label">Book</label>
+																</div>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio" name="pubType" value="Thesis">
+																		<label class="form-check-label">Thesis</label>
+																	</div>
+																</div>
+															</div>
+															<!-- Article Fields -->
+															<div id="ArticleFields" class="type-fields">
+																<div class="mb-2">
+																	<input type="text" name="journal" class="form-control" placeholder="Journal"/>
+																	<div class="mb-2">
+																		<input type="number" name="volume" class="form-control" placeholder="Volume"/>
+																		<div class="mb-2">
+																			<input type="number" name="number" class="form-control" placeholder="Number"/>
+																			<div class="mb-2">
+																				<input type="text" name="pages" class="form-control" placeholder="Pages"/>
+																			</div>
+																			<!-- Conference Paper Fields -->
+																			<div id="ConferencePaperFields" class="type-fields" style="display:none">
+																				<div class="mb-2">
+																					<input type="text" name="conferenceName" class="form-control" placeholder="Conference Name"/>
+																					<div class="mb-2">
+																						<input type="text" name="pages" class="form-control" placeholder="Pages"/>
+																						<div class="mb-2">
+																							<input type="text" name="publisher" class="form-control" placeholder="Publisher"/>
+																						</div>
+																						<!-- Book Fields -->
+																						<div id="BookFields" class="type-fields" style="display:none">
+																							<div class="mb-2">
+																								<input type="text" name="publisher" class="form-control" placeholder="Publisher"/>
+																								<div class="mb-2">
+																									<input type="number" name="volume" class="form-control" placeholder="Volume"/>
+																									<div class="mb-2">
+																										<input type="text" name="series" class="form-control" placeholder="Series"/>
+																										<div class="mb-2">
+																											<input type="text" name="edition" class="form-control" placeholder="Edition"/>
+																											<div class="mb-2">
+																												<input type="text" name="isbn" class="form-control" placeholder="ISBN"/>
+																											</div>
+																											<!-- Thesis Fields -->
+																											<div id="ThesisFields" class="type-fields" style="display:none">
+																												<div class="mb-2">
+																													<input type="text" name="school" class="form-control" placeholder="School"/>
+																												</div>
+																												<button type="submit" class="btn btn-success">Submit Publication</button>
+																											</form>
+																										</div>
+																									</main>
+																									<div class="container">
         <?php include(BASE_PATH . 'includes/footer.php'); ?>
-    </div>
-
-<script>
+																									</div>
+																									<script>
 
 var input = document.querySelector('input[name=keywords]');
 new Tagify(input);
@@ -193,24 +192,25 @@ function showFieldsForType(type) {
 function createAuthorEntry(index) {
     return `
     <div class="row g-2 align-items-center mb-2 author-entry" data-index="${index}">
-        <div class="col-md-3">
-            <input type="text" name="authors[${index}][orcid]" class="form-control orcid-input" placeholder="ORCID ID #${index+1}">
+																											<div class="col-md-3">
+																												<input type="text" name="authors[${index}][orcid]" class="form-control orcid-input" placeholder="ORCID ID #${index+1}">
         </div>
-        <div class="col-md-3">
-            <input type="text" name="authors[${index}][firstname]" class="form-control firstname" placeholder="First Name #${index+1}" disabled>
-        </div>
-        <div class="col-md-3">
-            <input type="text" name="authors[${index}][lastname]" class="form-control lastname" placeholder="Last Name #${index+1}" disabled>
-        </div>
-        <div class="col-md-2 text-center">
-            <input type="checkbox" class="form-check-input author-toggle" id="manualAuthorCheck" title="Manual entry">
-                    <label class="form-check-label" for="manualAuthorCheck">
-                    <span id="entryModeLabel">Manual entry</span>
-        </div>
-        <div class="col-md-1 text-center"">
-            <button type="button" class="btn btn-sm btn-danger remove-author"><i class="bi bi-trash"></i> Remove</button>
-        </div>
-    </div>
+																												<div class="col-md-3">
+																													<input type="text" name="authors[${index}][firstname]" class="form-control firstname" placeholder="First Name #${index+1}" disabled>
+																												</div>
+																												<div class="col-md-3">
+																													<input type="text" name="authors[${index}][lastname]" class="form-control lastname" placeholder="Last Name #${index+1}" disabled>
+																												</div>
+																												<div class="col-md-2 text-center">
+																													<input type="checkbox" class="form-check-input author-toggle" id="manualAuthorCheck" title="Manual entry">
+																														<label class="form-check-label" for="manualAuthorCheck">
+																															<span id="entryModeLabel">Manual entry</span>
+																														</div>
+																														<div class="col-md-1 text-center" ">
+																														<button type="button" class="btn btn-sm btn-danger remove-author">
+																															<i class="bi bi-trash"/> Remove</button>
+																													</div>
+																												</div>
     `;
 }
 
@@ -301,6 +301,5 @@ $("#showDetails").on("click", function () {
 
 
 </script>
-
-</body>
-</html>
+																										</body>
+																									</html>

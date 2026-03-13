@@ -22,40 +22,81 @@ if ($q !== '') {
 ?>
 <!DOCTYPE html>
 <html lang="el">
-<head>
-    <?php include(BASE_PATH . 'includes/header.php')?> 
-    <title>Search Results</title>
-</head>
-<body>
-<?php include(BASE_PATH . 'includes/navbar.php')?> 
-
-<div class="container mt-5">
-    <form class="d-flex justify-content-center mb-5" action="search_results.php" method="get">
-        <input type="search" name="q" placeholder="Search..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>"  class="form-control"  required>
-    </form>
-
-    <h4>Results</h4>
+	<head>
+    <?php include(BASE_PATH . 'includes/header.php')?>
+		<title>Search Results</title>
+	</head>
+	<body>
+<?php include(BASE_PATH . 'includes/navbar.php')?>
+		<main class="flex-grow-1">
+			<div class="container mt-5">
+				<form class="d-flex justify-content-center mb-5" action="search_results.php" method="get">
+					<input type="search" name="q" placeholder="Search..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" class="form-control" required>
+				</form>
+				<h4>Results</h4>
     <?php if (count($results) === 0): ?>
-        <p>No results found</p>
+				<p>No results found</p>
     <?php endif; ?>
 
-    <?php foreach ($results as $doc): ?>
-        <div class="card shadow rounded-4 p-3 mb-4 row">
-            
-            <div class="col-md-12">
-                <h5><strong><a href="publication.php?uri=<?= urlencode($doc['publication_uri']) ?>">
-                    <?= htmlspecialchars($doc['title'] ?? 'Unknown title') ?></a></strong></h5>
-                <p><?= isset($doc['authors']) ? implode(', ', $doc['authors']) : 'Unknown Authors' ?></p>
-                <div class="mb-2">
-                    <small><?= htmlspecialchars(mb_substr($doc['abstract'], 0, 400)) ?>...</small>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted"><?= isset($doc['keywords']) ? implode(', ', $doc['keywords']) : '-' ?></span>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+<?php foreach ($results as $doc): ?>
+    <?php
+        $title = htmlspecialchars($doc['title'] ?? 'Unknown title');
+        $pubUri = urlencode($doc['publication_uri'] ?? '');
+        $authors = isset($doc['authors']) && is_array($doc['authors'])
+            ? implode(', ', $doc['authors'])
+            : 'Unknown Authors';
 
-</body>
-</html>
+        $abstract = !empty($doc['abstract'])
+            ? mb_substr($doc['abstract'], 0, 350) . (mb_strlen($doc['abstract']) > 350 ? '...' : '')
+            : 'No abstract available.';
+
+        $keywords = isset($doc['keywords']) && is_array($doc['keywords'])
+            ? $doc['keywords']
+            : [];
+    ?>
+				<div class="card shadow rounded-4 mb-4 search-result-card">
+					<div class="card-body p-4">
+						<h4 class="mb-3">
+							<a href="publication.php?uri=<?= $pubUri ?>" class="text-decoration-underline fw-bold">
+                    <?= $title ?>
+							</a>
+						</h4>
+						<div class="row g-4">
+							<div class="col-md-7">
+								<h5>Abstract</h5>
+								<div class="bg-light p-3 rounded shadow-sm" style="max-height: 220px; overflow-y: auto;">
+                        <?= htmlspecialchars($abstract) ?>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<strong>Authors:</strong>
+										<br>
+                            <?= htmlspecialchars($authors) ?>
+										</li>
+										<li class="list-group-item">
+											<strong>Keywords:</strong>
+											<br>
+                            <?php if (!empty($keywords)): ?>
+                                <?php foreach ($keywords as $kw): ?>
+												<span class="badge bg-secondary me-1 mb-1"><?= htmlspecialchars($kw) ?>
+												</span>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+												<span>-</span>
+                            <?php endif; ?>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+<?php endforeach; ?>
+					</div>
+				</main>
+				<div class="container">
+    <?php include(BASE_PATH . 'includes/footer.php')?>
+				</div>
+			</body>
+		</html>

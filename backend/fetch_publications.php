@@ -11,7 +11,7 @@ $offset = ($page - 1) * $limit;
 
 
 
-$pendingPublications =  getPendingPublications();
+$pendingPublications =  getPendingPublications($offset, $limit);
 
 $totalPendingPubs = countPendingPublications() ;
 

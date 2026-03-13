@@ -82,7 +82,7 @@ if ($success) {
                           'email' => $email,
                           'is_logged_in' => true]; 
 
-    echo json_encode(["status" => "success", "redirect" => "dashboard.php"]);
+    echo json_encode(["status" => "success", "redirect" => "index.php"]);
     exit;
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Insert with Orcid Failed!']);
