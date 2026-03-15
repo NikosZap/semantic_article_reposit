@@ -3,7 +3,7 @@
 <html lang="el">
 	<head>
     <?php include(BASE_PATH . 'includes/header.php')?>
-		<title>Σύνδεση</title>
+		<title>Sign in</title>
 	</head>
 	<body>
 <?php include(BASE_PATH . 'includes/navbar.php')?>
@@ -33,7 +33,7 @@
                 You must be logged in with ORCID to claim a publication!
             </div>
         <?php unset($_SESSION['unauthorized_orcid']); }?>
-							<div id="message"/>
+							<div id="message"></div>
 							<form id="loginForm2">
 								<div class="mb-3">
 									<label>Username</label>

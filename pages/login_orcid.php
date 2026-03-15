@@ -15,7 +15,7 @@ require_once dirname(__DIR__) . '/config.php';
 				<div class="col-md-6 mx-auto">
 					<div class="card p-4 ">
 						<h3>Access via ORCID</h3>
-						<div id="message"/>
+						<div id="message"></div>
 						<form action="../backend/login_orcid_backend.php" method="post">
 							<button type="submit" class="btn btn-primary">Log In with ORCID</button>
 						</form>

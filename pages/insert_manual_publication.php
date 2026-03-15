@@ -14,7 +14,7 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
 	<head>
     <?php include(BASE_PATH . 'includes/header.php'); ?>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
-			<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"/>
+			<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 			<title>Insert New Publication</title>
 			<style>
     .required:after {
@@ -36,10 +36,10 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
 					<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
 						<h3 class="display-6">Insert New Publication</h3>
 						<button id="showDetails" class="btn btn-primary btn-sm">
-							<i class="bi bi-lightbulb" id="helpIcon"/>
+							<i class="bi bi-lightbulb" id="helpIcon"></i>
 						</button>
 					</div>
-					<div id="message"/>
+					<div id="message">
 					<div id="detailsSection" style="display: none;">
 						<p>Instructions will be added</p>
 					</div>
@@ -62,7 +62,7 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
         </div>
 								<div class="mb-3">
 									<label class="form-label">Abstract</label>
-									<textarea name="abstract" rows="5" class="form-control" placeholder="Write the abstract of the article here..."/>
+									<textarea name="abstract" rows="5" class="form-control" placeholder="Write the abstract of the article here..."></textarea>
 								</div>
 								<div class="mb-3">
 									<!-- <p><strong>Authors</strong></p> -->
@@ -86,72 +86,95 @@ if (empty($_SESSION['user']['is_logged_in']) || ($_SESSION['user']['role'] !== '
 													</div>
 												</div>
 												<button type="button" class="btn btn-sm btn-outline-primary" id="add-author">
-													<i class="bi bi-person-plus-fill"/> Add Author</button>
+													<i class="bi bi-person-plus-fill"> Add Author</i>
+												</button>
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Upload PDF</label>
-												<input type="file" name="pdf" accept=".pdf" class="form-control">
+    <label class="form-label">Upload PDF</label>
+    <input type="file" name="pdf" accept=".pdf" class="form-control">
+</div>
+
+<div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Type of Publication</label>
+    <div class="col-12 col-md-9 d-flex justify-content-center flex-wrap gap-2">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pubType" value="Article" checked>
+            <label class="form-check-label">Journal Article</label>
         </div>
-												<div class="mb-3 row">
-													<label class="col-sm-3 col-form-label">Type of Publication</label>
-													<div class="col-12 col-md-9 d-flex justify-content-center flex-wrap gap-2">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio" name="pubType" value="Article" checked>
-															<label class="form-check-label">Journal Article</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio" name="pubType" value="ConferencePaper">
-																<label class="form-check-label">Conference Paper</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="radio" name="pubType" value="Book">
-																	<label class="form-check-label">Book</label>
-																</div>
-																<div class="form-check form-check-inline">
-																	<input class="form-check-input" type="radio" name="pubType" value="Thesis">
-																		<label class="form-check-label">Thesis</label>
-																	</div>
-																</div>
-															</div>
-															<!-- Article Fields -->
-															<div id="ArticleFields" class="type-fields">
-																<div class="mb-2">
-																	<input type="text" name="journal" class="form-control" placeholder="Journal"/>
-																	<div class="mb-2">
-																		<input type="number" name="volume" class="form-control" placeholder="Volume"/>
-																		<div class="mb-2">
-																			<input type="number" name="number" class="form-control" placeholder="Number"/>
-																			<div class="mb-2">
-																				<input type="text" name="pages" class="form-control" placeholder="Pages"/>
-																			</div>
-																			<!-- Conference Paper Fields -->
-																			<div id="ConferencePaperFields" class="type-fields" style="display:none">
-																				<div class="mb-2">
-																					<input type="text" name="conferenceName" class="form-control" placeholder="Conference Name"/>
-																					<div class="mb-2">
-																						<input type="text" name="pages" class="form-control" placeholder="Pages"/>
-																						<div class="mb-2">
-																							<input type="text" name="publisher" class="form-control" placeholder="Publisher"/>
-																						</div>
-																						<!-- Book Fields -->
-																						<div id="BookFields" class="type-fields" style="display:none">
-																							<div class="mb-2">
-																								<input type="text" name="publisher" class="form-control" placeholder="Publisher"/>
-																								<div class="mb-2">
-																									<input type="number" name="volume" class="form-control" placeholder="Volume"/>
-																									<div class="mb-2">
-																										<input type="text" name="series" class="form-control" placeholder="Series"/>
-																										<div class="mb-2">
-																											<input type="text" name="edition" class="form-control" placeholder="Edition"/>
-																											<div class="mb-2">
-																												<input type="text" name="isbn" class="form-control" placeholder="ISBN"/>
-																											</div>
-																											<!-- Thesis Fields -->
-																											<div id="ThesisFields" class="type-fields" style="display:none">
-																												<div class="mb-2">
-																													<input type="text" name="school" class="form-control" placeholder="School"/>
-																												</div>
-																												<button type="submit" class="btn btn-success">Submit Publication</button>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pubType" value="ConferencePaper">
+            <label class="form-check-label">Conference Paper</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pubType" value="Book">
+            <label class="form-check-label">Book</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="pubType" value="Thesis">
+            <label class="form-check-label">Thesis</label>
+        </div>
+    </div>
+</div>
+
+<!-- Article Fields -->
+<div id="ArticleFields" class="type-fields">
+    <div class="mb-2">
+        <input type="text" name="journal" class="form-control" placeholder="Journal">
+    </div>
+    <div class="mb-2">
+        <input type="number" name="volume" class="form-control" placeholder="Volume">
+    </div>
+    <div class="mb-2">
+        <input type="number" name="number" class="form-control" placeholder="Number">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="pages" class="form-control" placeholder="Pages">
+    </div>
+</div>
+
+<!-- Conference Paper Fields -->
+<div id="ConferencePaperFields" class="type-fields" style="display:none;">
+    <div class="mb-2">
+        <input type="text" name="conferenceName" class="form-control" placeholder="Conference Name">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="conferencePages" class="form-control" placeholder="Pages">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="conferencePublisher" class="form-control" placeholder="Publisher">
+    </div>
+</div>
+
+<!-- Book Fields -->
+<div id="BookFields" class="type-fields" style="display:none;">
+    <div class="mb-2">
+        <input type="text" name="bookPublisher" class="form-control" placeholder="Publisher">
+    </div>
+    <div class="mb-2">
+        <input type="number" name="bookVolume" class="form-control" placeholder="Volume">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="series" class="form-control" placeholder="Series">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="edition" class="form-control" placeholder="Edition">
+    </div>
+    <div class="mb-2">
+        <input type="text" name="isbn" class="form-control" placeholder="ISBN">
+    </div>
+</div>
+
+<!-- Thesis Fields -->
+<div id="ThesisFields" class="type-fields" style="display:none;">
+    <div class="mb-2">
+        <input type="text" name="school" class="form-control" placeholder="School">
+    </div>
+</div>
+
+<button type="submit" class="btn btn-success">Submit Publication</button>
 																											</form>
 																										</div>
 																									</main>
@@ -206,9 +229,9 @@ function createAuthorEntry(index) {
 																														<label class="form-check-label" for="manualAuthorCheck">
 																															<span id="entryModeLabel">Manual entry</span>
 																														</div>
-																														<div class="col-md-1 text-center" ">
+																														<div class="col-md-1 text-center">
 																														<button type="button" class="btn btn-sm btn-danger remove-author">
-																															<i class="bi bi-trash"/> Remove</button>
+																															<i class="bi bi-trash"> Remove </i></button>
 																													</div>
 																												</div>
     `;

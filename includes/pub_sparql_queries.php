@@ -1015,18 +1015,18 @@ function getPendingClaims($offset = 0, $limit = 15) {
 
     foreach ($bindings as $b) {
         $claims[] = [
-            'uri'     => $b['claim']['value'],
-            'claimDate'   => $b['claimDate']['value'],
-            'reason'     => $b['reason']['value'],
-            'publication' => $b['publication']['value'],
-            'pubTitle' => $b['pubTitle']['value'],
-            'user' => $b['user']['value'],
-            'userFirstName' => $b['userFirstName']['value'],
-            'userLastName' => $b['userLastName']['value'],
-            'author' => $b['author']['value'],
-            'authorFirstname' => $b['firstname']['value'],
-            'authorLastname' => $b['lastname']['value'],
-            'pubDate' => $b['publication']['value'],
+            'uri'     => $b['claim']['value'] ?? '',
+            'claimDate'   => $b['claimDate']['value'] ?? '',
+            'reason'     => $b['reason']['value'] ?? '',
+            'publication' => $b['publication']['value'] ?? '',
+            'pubTitle' => $b['pubTitle']['value'] ?? '',
+            'user' => $b['user']['value'] ?? '',
+            'userFirstName' => $b['userFirstName']['value'] ?? '',
+            'userLastName' => $b['userLastName']['value'] ?? '',
+            'author' => $b['author']['value'] ?? '',
+            'authorFirstname' => $b['firstname']['value'] ?? '',
+            'authorLastname' => $b['lastname']['value'] ?? '',
+            'pubDate' => $b['publication']['value'] ?? '',
         ];
     }
 

@@ -23,7 +23,7 @@
             echo "<div class='alert alert-success'>" . htmlspecialchars($_GET['success']) . "</div>";
         }
         ?>
-							<div id="message"/>
+							<div id="message"></div>
 							<form id="registerForm" method="POST" action="../backend/register_backend.php">
 								<div class="mb-3">
 									<label>Username</label>
@@ -49,11 +49,11 @@
 									<label>Lastname</label>
 									<input type="text" name="lastname" class="form-control" required>
 								</div>
-								<button type="submit" class="btn btn-primary w-100">Εγγραφή</button>
+								<button type="submit" class="btn btn-primary w-100">Register</button>
 							</form>
 							<p class="mt-3 text-center">Already have an account?<a href="login.php">Log In</a>
 							</br>
-        Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a>
+        					Connect with <a href="<?php echo BASE_URL ;?>pages/login_orcid.php">ORCID</a>
 						</p>
 					</div>
 				</div>
