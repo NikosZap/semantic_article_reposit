@@ -78,14 +78,21 @@ if ($q !== '') {
 										<li class="list-group-item">
 											<strong>Keywords:</strong>
 											<br>
-                            <?php if (!empty($keywords)): ?>
-                                <?php foreach ($keywords as $kw): ?>
-												<span class="badge bg-secondary me-1 mb-1"><?= htmlspecialchars($kw) ?>
-												</span>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-												<span>-</span>
-                            <?php endif; ?>
+							<div class="d-flex flex-wrap align-items-center gap-2">
+                                        <?php if (!empty($keywords) && is_array($keywords)): ?>    
+                                          <?php foreach ($keywords as $index => $keyword): ?>
+                                          <span class="badge bg-secondary me-1">
+                                            <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
+                                              class="text-white text-decoration-none">
+                                              <?= htmlspecialchars($keyword) ?>
+                                            </a>
+                                          </span>  
+                                          <?php endforeach; ?>
+                                        <?php else: ?>
+                                              -
+                                        <?php endif; ?>
+                                        
+                                    </div>
 											</li>
 										</ul>
 									</div>

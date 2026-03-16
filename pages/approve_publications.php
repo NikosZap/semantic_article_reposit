@@ -20,27 +20,30 @@ if ($_SESSION['user']['role'] !== 'Admin') {
 
     <main>
         <div class="container mt-5">
-            <h2 class="display-6">Unapproved publications</h2>
+            <h2 class="display-6">Pending Publications</h2>
 
             <div id="message"></div>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>DOI</th>
-                        <th>Date Uploaded</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="unapprovedPubTableBody"></tbody>
-            </table>
-
-            <div id="pagination" class="mt-3"></div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>DOI</th>
+                            <th>Category</th>
+                            <th>Upload User</th>
+                            <th>Upload Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="unapprovedPubTableBody"></tbody>
+                </table>
+            </div>
+            
         </div>
     </main>
 
-    <div class="container">
+    <div class="container mt-5">
+        <div id="pagination" class="mt-3"></div>
         <?php include(BASE_PATH . 'includes/footer.php'); ?>
     </div>
 
@@ -67,14 +70,10 @@ if ($_SESSION['user']['role'] !== 'Admin') {
                                 <tr>
                                     <td>${pub.title ?? ''}</td>
                                     <td>${pub.doi ?? ''}</td>
+                                    <td>${pub.type ?? ''}</td>
+                                    <td>${pub.uploaderName }</td>
                                     <td>${pub.pubDate ?? ''}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm" onclick="approve('${pub.uri}')">
-                                            <i class="bi bi-check-circle"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
                                         <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
                                             <i class="bi bi-eye"></i>
                                         </button>
@@ -116,50 +115,6 @@ if ($_SESSION['user']['role'] !== 'Admin') {
                 currentPage = newPage;
                 loadPendingPublications(currentPage);
             }
-        }
-
-        $(document).on("click", ".delete-user", function() {
-            let userID = $(this).data("userid");
-
-            if (!confirm("Are you sure you want to delete this user?")) {
-                return;
-            }
-        });
-
-        function approve(uri) {
-            $.post(
-                "../backend/approve_publications_backend.php",
-                { action: "approve", uri: uri },
-                function(res) {
-                    if (res.status === "success") {
-                        $("#message").html('<div class="alert alert-success">' + res.message + '</div>');
-                        loadPendingPublications(currentPage);
-                    } else {
-                        $("#message").html('<div class="alert alert-danger">Error approving publication.</div>');
-                    }
-                },
-                "json"
-            );
-        }
-
-        function reject(uri) {
-            if (!confirm("Are you sure you want to reject this publication?")) {
-                return;
-            }
-
-            $.post(
-                "../backend/approve_publications_backend.php",
-                { action: "reject", uri: uri },
-                function(res) {
-                    if (res.status === "success") {
-                        $("#message").html('<div class="alert alert-success">' + res.message + '</div>');
-                        loadPendingPublications(currentPage);
-                    } else {
-                        $("#message").html('<div class="alert alert-danger">Error rejecting publication.</div>');
-                    }
-                },
-                "json"
-            );
         }
 
         function reviewPublication(uri) {

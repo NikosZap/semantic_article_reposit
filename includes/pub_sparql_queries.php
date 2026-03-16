@@ -105,12 +105,21 @@ function getPendingPublications($offset = 0, $limit = 15) {
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT ?uri ?title ?doi ?pubDate WHERE {
+        SELECT ?uri ?title ?doi ?pubDate
+            (STRAFTER(STR(?type), \"#\") AS ?publicationType)
+            (CONCAT(?firstname, \" \", ?lastname) AS ?uploaderName)
+         WHERE {
             ?uri a ?type ;
                  app:title ?title ;
                  app:doi ?doi ;
                  app:publicationDate ?pubDate ;
                  app:isApproved \"false\"^^xsd:boolean .
+                
+                 OPTIONAL {
+                     ?uri app:hasUploaded ?user .
+                    ?user app:firstname ?firstname ;
+                    app:lastname ?lastname .
+            }
         }
         OFFSET {$offset} LIMIT {$limit}
     ";
@@ -122,10 +131,12 @@ function getPendingPublications($offset = 0, $limit = 15) {
 
     foreach ($bindings as $b) {
         $publications[] = [
-            'uri'     => $b['uri']['value'],
-            'title'   => $b['title']['value'],
-            'doi'     => $b['doi']['value'],
-            'pubDate' => $b['pubDate']['value']
+            'uri'     => $b['uri']['value'] ?? '',
+            'title'   => $b['title']['value'] ?? '',
+            'doi'     => $b['doi']['value'] ?? '',
+            'type'     => $b['publicationType']['value'] ?? '',
+            'pubDate' => $b['pubDate']['value'] ?? '',
+            'uploaderName' => $b['uploaderName']['value'] ?? ''
         ];
     }
 
@@ -515,7 +526,9 @@ function getPublications($filters, $offset = 0, $limit = 15) {
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT DISTINCT ?uri ?title ?doi ?publicationDate ?uploadedDate WHERE {
+        SELECT DISTINCT ?uri ?title ?doi ?publicationDate ?uploadedDate 
+             (STRAFTER(STR(?type), \"#\") AS ?publicationType)
+        WHERE {
             ?uri a ?type  ;
                  app:title ?title ;
                  app:doi ?doi ;
@@ -576,6 +589,7 @@ function getPublications($filters, $offset = 0, $limit = 15) {
     foreach ($bindings as $b) {
         $publications[] = [
             'uri'     => $b['uri']['value'],
+            'type'     => $b['publicationType']['value'],  
             'title'   => $b['title']['value'],
             'doi'     => $b['doi']['value'],
             'pubDate' => $b['publicationDate']['value'],
@@ -1262,3 +1276,106 @@ function changePublicationAuthor($publicationUri, $oldAuthorUri, $newAuthorUri)
     return executeSparqlUpdate($sparql);
 }
 
+function getPublicationsByKeyword($keyword)
+{
+    if (empty($keyword)) {
+        return [];
+    }
+
+    $keyword = addslashes(trim($keyword));
+
+    $sparql = "
+    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+    SELECT
+        ?pub
+        ?title
+        ?abstract
+        ?publicationDate
+        ?authorFirstName
+        ?authorLastName
+        ?allKeywordText
+    WHERE {
+        ?matchedKeyword a app:Keyword ;
+                        app:keywordText ?matchedKeywordText .
+
+        FILTER(LCASE(STR(?matchedKeywordText)) = LCASE(\"$keyword\"))
+
+        ?pub app:hasKeyword ?matchedKeyword ;
+             app:isApproved true .
+
+
+        OPTIONAL { ?pub app:title ?title . }
+        OPTIONAL { ?pub app:abstract ?abstract . }
+        OPTIONAL { ?pub app:publicationDate ?publicationDate . }
+
+        OPTIONAL {
+            ?pub app:hasAuthor ?author .
+            ?author app:firstname ?authorFirstName .
+            ?author app:lastname ?authorLastName .
+        }
+
+        OPTIONAL {
+            ?pub app:hasKeyword ?allKeyword .
+            ?allKeyword app:keywordText ?allKeywordText .
+        }
+    }
+    ORDER BY DESC(?publicationDate)
+    ";
+
+    $response = executeSPARQLQuery($sparql);
+    $bindings = $response['results']['bindings'] ?? [];
+
+    $publications = [];
+
+    foreach ($bindings as $row) {
+        $uri = $row['pub']['value'] ?? '';
+
+        if ($uri === '') {
+            continue;
+        }
+
+        if (!isset($publications[$uri])) {
+            $publications[$uri] = [
+                'uri' => $uri,
+                'title' => $row['title']['value'] ?? 'Unknown title',
+                'abstract' => $row['abstract']['value'] ?? '',
+                'publicationDate' => $row['publicationDate']['value'] ?? '',
+                'authors' => [],
+                'keywords' => []
+            ];
+        }
+
+        $firstName = $row['authorFirstName']['value'] ?? '';
+        $lastName  = $row['authorLastName']['value'] ?? '';
+
+        if ($firstName !== '' || $lastName !== '') {
+            $authorExists = false;
+
+            foreach ($publications[$uri]['authors'] as $author) {
+                if (
+                    $author['firstname'] === $firstName &&
+                    $author['lastname'] === $lastName
+                ) {
+                    $authorExists = true;
+                    break;
+                }
+            }
+
+            if (!$authorExists) {
+                $publications[$uri]['authors'][] = [
+                    'firstname' => $firstName,
+                    'lastname' => $lastName
+                ];
+            }
+        }
+
+        $kw = $row['allKeywordText']['value'] ?? '';
+
+        if ($kw !== '' && !in_array($kw, $publications[$uri]['keywords'], true)) {
+            $publications[$uri]['keywords'][] = $kw;
+        }
+    }
+
+    return array_values($publications);
+}

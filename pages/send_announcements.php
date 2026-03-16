@@ -107,14 +107,15 @@ Send Email
 
 </div>
 
-<div id="pagination" class="mt-3"></div>
+
 
 </div>
 
 </main>
 
 <div class="container">
-<?php include BASE_PATH . 'includes/footer.php'; ?>
+    <div id="pagination" class="mt-3"></div>
+    <?php include BASE_PATH . 'includes/footer.php'; ?>
 </div>
 
 <script>

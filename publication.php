@@ -3,22 +3,22 @@ require_once dirname(__DIR__) . '/my_project2/config.php';
 require_once BASE_PATH . 'includes/pub_sparql_queries.php';
 
 if (!isset($_GET['uri'])) {
-    echo "<p>Error: Publication URI is missing.</p>";
-    exit;
+	echo '<p>Error: Publication URI is missing.</p>';
+	exit;
 }
 
 $pubURI = urldecode($_GET['uri']);
 $publication = getPublicationByURI($pubURI);
 
 if (!$publication) {
-    echo "<p>No data found for the given publication.</p>";
-    exit;
+	echo '<p>No data found for the given publication.</p>';
+	exit;
 }
 
 $authors = getAuthorsByPublication($pubURI);
 if (!$authors) {
-    echo "<p>Error: Authors not found.</p>";
-    exit;
+	echo '<p>Error: Authors not found.</p>';
+	exit;
 }
 
 $keywords = getKeywordsByPublication($pubURI);
@@ -27,57 +27,48 @@ $keywords = getKeywordsByPublication($pubURI);
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-<?php include(BASE_PATH . 'includes/header.php'); ?>
-<title><?= htmlspecialchars($publication['title']) ?></title>
-</head>
+	<head>
+		<?php include (BASE_PATH . 'includes/header.php'); ?>
+		<title><?= htmlspecialchars($publication['title']) ?></title>
+	</head>
 
-<body>
+	<body>
 
-<?php include(BASE_PATH . 'includes/navbar.php'); ?>
+	<?php include (BASE_PATH . 'includes/navbar.php'); ?>
 
-<main>
+		<main>
 
-<div class="container mt-5 mb-5">
+			<div class="container mt-5 mb-5">
 
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
+				<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
 
-<h2 class="display-6">
-<?= htmlspecialchars($publication['title']) ?>
-</h2>
+					<h2 class="display-6"><?= htmlspecialchars($publication['title']) ?></h2>
 
-<?php if (!empty($publication['filePath'])): ?>
+					<?php if (!empty($publication['filePath'])): ?>
 
-<a
-href="<?= BASE_URL . 'pending/' . htmlspecialchars($publication['filePath']) ?>"
-class="btn btn-outline-primary"
-target="_blank"
->
-View PDF <i class="bi bi-file-earmark-pdf"></i>
-</a>
+					<a href="<?= BASE_URL . 'pending/' . htmlspecialchars($publication['filePath']) ?>" class="btn btn-outline-primary" target="_blank">
+						View PDF <i class="bi bi-file-earmark-pdf"></i>
+					</a>
 
-<?php endif; ?>
+					<?php endif; ?>
 
-</div>
+				</div>
 
-<div class="card shadow rounded-4">
+				<div class="card shadow rounded-4">
 
-<div class="card-body">
+					<div class="card-body">
 
-<div class="row">
+						<div class="row">
 
-<div class="col-md-7">
+							<div class="col-md-7">
 
-<h5>Abstract</h5>
+								<h5>Abstract</h5>
 
-<div
-class="bg-light p-3 rounded shadow-sm text-justify"
-style="max-height: 300px; overflow-y: auto;"
->
-<?= nl2br(htmlspecialchars($publication['abstract'] ?? 'No abstract available.')) ?>
-</div>
+								<div class="bg-light p-3 rounded shadow-sm text-justify" style="max-height: 300px; overflow-y: auto;">
+									<?= nl2br(htmlspecialchars($publication['abstract'] ?? 'No abstract available.')) ?>
+								</div>
 
-</div>
+							</div>
 
 <div class="col-md-5">
 
@@ -90,19 +81,15 @@ style="max-height: 300px; overflow-y: auto;"
 <?php foreach ($authors as $index => $author): ?>
 
 <?php
-$fullName = htmlspecialchars($author['firstname'] . ' ' . $author['lastname']);
+	$fullName = htmlspecialchars($author['firstname'] . ' ' . $author['lastname']);
 
-if (!empty($author['orcid'])) {
+	if (!empty($author['orcid'])) {
+		$orcidID = urlencode($author['orcid']);
 
-$orcidID = urlencode($author['orcid']);
-
-echo "<a href='author.php?orcid=$orcidID'>$fullName</a>";
-
-} else {
-
-echo "$fullName<br>";
-
-}
+		echo "<a href='author.php?orcid=$orcidID'>$fullName</a>";
+	} else {
+		echo "$fullName<br>";
+	}
 ?>
 
 <?php endforeach; ?>
@@ -113,13 +100,21 @@ echo "$fullName<br>";
 
 <strong>Keywords:</strong>
 
-<?php foreach ($keywords as $kw): ?>
-
-<span class="badge bg-secondary me-1">
-<?= htmlspecialchars($kw) ?>
-</span>
-
-<?php endforeach; ?>
+<div class="d-flex flex-wrap align-items-center gap-2">
+                                        <?php if (!empty($keywords) && is_array($keywords)): ?>    
+                                          <?php foreach ($keywords as $index => $keyword): ?>
+                                          <span class="badge bg-secondary me-1">
+                                            <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
+                                              class="text-white text-decoration-none">
+                                              <?= htmlspecialchars($keyword) ?>
+                                            </a>
+                                          </span>  
+                                          <?php endforeach; ?>
+                                        <?php else: ?>
+                                              -
+                                        <?php endif; ?>
+                                        
+                                    </div>
 
 </li>
 
@@ -166,7 +161,7 @@ echo "$fullName<br>";
 </main>
 
 <div class="container">
-<?php include(BASE_PATH . 'includes/footer.php'); ?>
+<?php include (BASE_PATH . 'includes/footer.php'); ?>
 </div>
 
 </body>
@@ -177,13 +172,13 @@ echo "$fullName<br>";
 
 function extractSuffix($uri)
 {
-    if (strpos($uri, '#') !== false) {
-        return substr(strrchr($uri, '#'), 1);
-    } elseif (strpos($uri, '/') !== false) {
-        return substr(strrchr($uri, '/'), 1);
-    }
+	if (strpos($uri, '#') !== false) {
+		return substr(strrchr($uri, '#'), 1);
+	} elseif (strpos($uri, '/') !== false) {
+		return substr(strrchr($uri, '/'), 1);
+	}
 
-    return $uri;
+	return $uri;
 }
 
 ?>

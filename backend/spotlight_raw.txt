@@ -1,0 +1,175 @@
+org.dbpedia.spotlight.exceptions.InputException: No input was specified in the &text nor the &url parameter.No input was specified in the &text nor the &url parameter.org.dbpedia.spotlight.web.rest.ServerUtils.getTextToProcess(ServerUtils.java:77)
+org.dbpedia.spotlight.web.rest.SpotlightInterface.getJSON(SpotlightInterface.java:330)
+org.dbpedia.spotlight.web.rest.resources.Annotate.getJSON(Annotate.java:176)
+sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:302)
+com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1542)
+com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1473)
+com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1419)
+com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1409)
+com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:409)
+com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:558)
+com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:733)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+com.sun.grizzly.http.servlet.ServletAdapter$FilterChainImpl.doFilter(ServletAdapter.java:1059)
+com.sun.grizzly.http.servlet.ServletAdapter$FilterChainImpl.invokeFilterChain(ServletAdapter.java:999)
+com.sun.grizzly.http.servlet.ServletAdapter.doService(ServletAdapter.java:434)
+com.sun.grizzly.http.servlet.ServletAdapter.service(ServletAdapter.java:379)
+com.sun.grizzly.tcp.http11.GrizzlyAdapter.service(GrizzlyAdapter.java:179)
+com.sun.grizzly.http.ProcessorTask.invokeAdapter(ProcessorTask.java:849)
+com.sun.grizzly.http.ProcessorTask.doProcess(ProcessorTask.java:746)
+com.sun.grizzly.http.ProcessorTask.process(ProcessorTask.java:1045)
+com.sun.grizzly.http.DefaultProtocolFilter.execute(DefaultProtocolFilter.java:228)
+com.sun.grizzly.DefaultProtocolChain.executeProtocolFilter(DefaultProtocolChain.java:137)
+com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:104)
+com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:90)
+com.sun.grizzly.http.HttpProtocolChain.execute(HttpProtocolChain.java:79)
+com.sun.grizzly.ProtocolChainContextTask.doCall(ProtocolChainContextTask.java:54)
+com.sun.grizzly.SelectionKeyContextTask.call(SelectionKeyContextTask.java:59)
+com.sun.grizzly.ContextTask.run(ContextTask.java:71)
+com.sun.grizzly.util.AbstractThreadPool$Worker.doWork(AbstractThreadPool.java:532)
+com.sun.grizzly.util.AbstractThreadPool$Worker.run(AbstractThreadPool.java:513)
+java.lang.Thread.run(Thread.java:748)
+
+
+org.dbpedia.spotlight.exceptions.InputException: No input was specified in the &text nor the &url parameter.No input was specified in the &text nor the &url parameter.org.dbpedia.spotlight.web.rest.ServerUtils.getTextToProcess(ServerUtils.java:77)
+org.dbpedia.spotlight.web.rest.SpotlightInterface.getJSON(SpotlightInterface.java:330)
+org.dbpedia.spotlight.web.rest.resources.Annotate.getJSON(Annotate.java:176)
+sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+com.sun.jersey.spi.container.JavaMethodInvokerFactory$1.invoke(JavaMethodInvokerFactory.java:60)
+com.sun.jersey.server.impl.model.method.dispatch.AbstractResourceMethodDispatchProvider$ResponseOutInvoker._dispatch(AbstractResourceMethodDispatchProvider.java:205)
+com.sun.jersey.server.impl.model.method.dispatch.ResourceJavaMethodDispatcher.dispatch(ResourceJavaMethodDispatcher.java:75)
+com.sun.jersey.server.impl.uri.rules.HttpMethodRule.accept(HttpMethodRule.java:302)
+com.sun.jersey.server.impl.uri.rules.ResourceClassRule.accept(ResourceClassRule.java:108)
+com.sun.jersey.server.impl.uri.rules.RightHandPathRule.accept(RightHandPathRule.java:147)
+com.sun.jersey.server.impl.uri.rules.RootResourceClassesRule.accept(RootResourceClassesRule.java:84)
+com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1542)
+com.sun.jersey.server.impl.application.WebApplicationImpl._handleRequest(WebApplicationImpl.java:1473)
+com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1419)
+com.sun.jersey.server.impl.application.WebApplicationImpl.handleRequest(WebApplicationImpl.java:1409)
+com.sun.jersey.spi.container.servlet.WebComponent.service(WebComponent.java:409)
+com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:558)
+com.sun.jersey.spi.container.servlet.ServletContainer.service(ServletContainer.java:733)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+com.sun.grizzly.http.servlet.ServletAdapter$FilterChainImpl.doFilter(ServletAdapter.java:1059)
+com.sun.grizzly.http.servlet.ServletAdapter$FilterChainImpl.invokeFilterChain(ServletAdapter.java:999)
+com.sun.grizzly.http.servlet.ServletAdapter.doService(ServletAdapter.java:434)
+com.sun.grizzly.http.servlet.ServletAdapter.service(ServletAdapter.java:379)
+com.sun.grizzly.tcp.http11.GrizzlyAdapter.service(GrizzlyAdapter.java:179)
+com.sun.grizzly.http.ProcessorTask.invokeAdapter(ProcessorTask.java:849)
+com.sun.grizzly.http.ProcessorTask.doProcess(ProcessorTask.java:746)
+com.sun.grizzly.http.ProcessorTask.process(ProcessorTask.java:1045)
+com.sun.grizzly.http.DefaultProtocolFilter.execute(DefaultProtocolFilter.java:228)
+com.sun.grizzly.DefaultProtocolChain.executeProtocolFilter(DefaultProtocolChain.java:137)
+com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:104)
+com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:90)
+com.sun.grizzly.http.HttpProtocolChain.execute(HttpProtocolChain.java:79)
+com.sun.grizzly.ProtocolChainContextTask.doCall(ProtocolChainContextTask.java:54)
+com.sun.grizzly.SelectionKeyContextTask.call(SelectionKeyContextTask.java:59)
+com.sun.grizzly.ContextTask.run(ContextTask.java:71)
+com.sun.grizzly.util.AbstractThreadPool$Worker.doWork(AbstractThreadPool.java:532)
+com.sun.grizzly.util.AbstractThreadPool$Worker.run(AbstractThreadPool.java:513)
+java.lang.Thread.run(Thread.java:748)
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+

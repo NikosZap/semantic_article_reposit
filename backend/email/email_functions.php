@@ -132,6 +132,20 @@ function sendPublicationRejectionEmail($toEmail, $toName, $title, $reason) {
     }
 }
 
+function sendPublicationDeletionEmail($toEmail, $toName, $title) {
+    $mail = new PHPMailer(true);
+    try {
+        setupMailer($mail, $toEmail, $toName);
+        $mail->Subject = 'Your publication has been deleted';
+        $mail->Body = "Dear $toName,<br><br>Your publication titled <strong>\"$title\"</strong> has been deleted.<br><br>";
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        error_log("Deletion Email Error: " . $mail->ErrorInfo);
+        return false;
+    }
+}
+
 function setupMailer($mail, $toEmail, $toName) {
     $mail->isSMTP();
     $mail->Host = EMAIL_HOST;

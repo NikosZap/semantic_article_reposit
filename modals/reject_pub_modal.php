@@ -10,7 +10,7 @@
             <textarea id="rejectReason" class="form-control" placeholder="Explain why the publication is rejected..." rows="4" required></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" id="confirmReject">Confirm Rejection</button>
+            <button type="button" class="btn btn-danger" id="confirmRejectBtn">Confirm Rejection</button>
         </div>
     </div>
   </div>

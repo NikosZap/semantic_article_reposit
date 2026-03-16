@@ -40,7 +40,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                 </div>
 
                 <div class="mb-3">
-                    <label for="type">Type</label>
+                    <label for="type">Category</label>
                     <select id="type" name="type" class="form-select">
                         <option value="">All</option>
                         <option value="Article">Article</option>
@@ -88,6 +88,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                     <tr>
                         <th>Title</th>
                         <th>DOI</th>
+                        <th>Category</th>
                         <th>Publication Date</th>
                         <th>Upload Date</th>
                         <th>Actions</th>
@@ -98,13 +99,11 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 
             </table>
         </div>
-
-        <div id="pagination" class="mt-3"></div>
-
     </div>
 </main>
 
 <div class="container">
+    <div id="pagination" class="mt-3"></div>
     <?php include(BASE_PATH . 'includes/footer.php'); ?>
 </div>
 
@@ -143,21 +142,17 @@ function loadPublications(page = 1, callback = null) {
                 response.publications.forEach(pub => {
 
                     const row = `
-<tr>
-<td>${pub.title}</td>
-<td>${pub.doi}</td>
-<td>${pub.pubDate}</td>
-<td>${pub.uploadDate}</td>
-<td>
-<button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
-<i class="bi bi-eye"></i>
-</button>
-<button class="btn btn-danger btn-sm" onclick="reject('${pub.uri}')">
-<i class="bi bi-trash"></i>
-</button>
-</td>
-</tr>
-`;
+                                <tr>
+                                    <td>${pub.title}</td>
+                                    <td>${pub.doi}</td>
+                                    <td>${pub.type}</td>
+                                    <td>${pub.pubDate}</td>
+                                    <td>${pub.uploadDate}</td>
+                                    <td>
+                                        <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-eye"></i></button>
+                                    </td>
+                                </tr>`;
 
                     tbody.append(row);
 
@@ -204,30 +199,7 @@ $("#filterForm").on("submit", function(e) {
     loadPublications();
 });
 
-function reject(uri) {
 
-    if (!confirm("Are you sure you want to reject this publication?")) return;
-
-    $.post(
-        "../backend/approve_publications_backend.php",
-        { action: "reject", uri },
-
-        function(res) {
-
-            if (res.status === "success") {
-
-                $("#message").html('<div class="alert alert-success">' + res.message + '</div>');
-                loadPublications(currentPage);
-
-            } else {
-
-                $("#message").html('<div class="alert alert-danger">Error rejecting publication.</div>');
-            }
-
-        },
-        "json"
-    );
-}
 
 function reviewPublication(uri) {
     window.location.href = `review_publication.php?uri=${encodeURIComponent(uri)}`;

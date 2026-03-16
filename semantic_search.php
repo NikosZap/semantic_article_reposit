@@ -109,10 +109,20 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
                                         </small>
                                     </div>
 
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span>
-                                            <?= !empty($pub['keywords']) && is_array($pub['keywords']) ? implode(', ', $pub['keywords']) : '-' ?>
-                                        </span>
+                                    <div class="d-flex flex-wrap align-items-center gap-2">
+                                        <?php if (!empty($pub['keywords']) && is_array($pub['keywords'])): ?>    
+                                          <?php foreach ($pub['keywords'] as $index => $keyword): ?>
+                                          <span class="badge bg-secondary me-1">
+                                            <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
+                                              class="text-white text-decoration-none">
+                                              <?= htmlspecialchars($keyword) ?>
+                                            </a>
+                                          </span>  
+                                          <?php endforeach; ?>
+                                        <?php else: ?>
+                                              -
+                                        <?php endif; ?>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -50,11 +50,12 @@ unset($_SESSION['flash_message']);
                 <tbody id="claimPubTableBody"></tbody>
             </table>
 
-            <div id="pagination" class="mt-3"></div>
+            
         </div>
     </main>
 
     <div class="container">
+        <div id="pagination" class="mt-3"></div>
         <?php include(BASE_PATH . 'includes/footer.php'); ?>
     </div>
 

@@ -30,14 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $fullText = storeFullTextFromPDF($uri, $filePath);
 
-            //echo 'Fulltext2: '. $fullText .'\n';
             if($fullText){
                 //insert SOLR 
                 createSolrDocumentFromPublication($uri, $title, $fullText, $abstract);
 
                 //insert Spotlight
                 $semanticText = trim($title . ' ' . $abstract . ' ' . $fullText);
-                $entities = getDBpediaEntities($text);
+                $entities = getDBpediaEntities($semanticText);
                 $entityURIs = array_column($entities, 'uri');
                 $resultSpotlight = addMentionsToPublication($uri, $entityURIs);
 

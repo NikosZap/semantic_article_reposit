@@ -275,7 +275,64 @@ $userMeta = [
     ?>
 
     <script>
+      
+        document.addEventListener('DOMContentLoaded', function () {
+    const rejectBtn = document.getElementById('confirmRejectBtn');
+    const rejectReason = document.getElementById('rejectReason');
+
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', function () {
+            const reason = (rejectReason?.value || '').trim();
+
+            if (!reason) {
+                document.getElementById('message').innerHTML =
+                    '<div class="alert alert-danger">Rejection reason is required.</div>';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            document.getElementById('message').innerHTML = `
+                <div class="alert alert-info d-flex align-items-center">
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                    Processing rejection...
+                </div>`;
+
+            fetch('../backend/review_publication_backend.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    action: 'reject',
+                    uri: "<?= $uri ?>",
+                    reason: reason,
+                    title: "<?= addslashes($title) ?>"
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = 'approve_publications.php?message=' + encodeURIComponent(data.message);
+                } else {
+                    document.getElementById('message').innerHTML =
+                        '<div class="alert alert-danger">' + data.message + '</div>';
+                }
+            })
+            .catch(() => {
+                document.getElementById('message').innerHTML =
+                    '<div class="alert alert-danger">Request failed.</div>';
+            });
+        });
+    }
+});
+
         function handleAction(action) {
+            
+            window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+            });
+                  
             const USER_META = <?= json_encode($userMeta, JSON_UNESCAPED_UNICODE); ?>;
 
             if (action === 'reject') {
@@ -285,12 +342,18 @@ $userMeta = [
                 return;
             }
 
-            if (action === 'reject' || action === 'approve') {
-                if (action === 'reject' && !confirm("Are you sure you want to reject this publication?")) {
-                    return;
+            if (action === 'approve') {
+               if (action === 'approve') {
+                  setLoadingState('approveBtn', 'Approving...');
                 }
 
-                fetch('../backend/approve_publications_backend.php', {
+                document.getElementById('message').innerHTML = `
+                  <div class="alert alert-info d-flex align-items-center">
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                    Processing publication approval. This may take a few seconds...
+                  </div>`;
+
+                fetch('../backend/review_publication_backend.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
@@ -317,7 +380,7 @@ $userMeta = [
 
                 return;
             } else if (action === 'delete') {
-                fetch('../backend/manage_publications_backend.php', {
+                fetch('../backend/review_publication_backend.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
@@ -386,6 +449,15 @@ $userMeta = [
 
                 return;
             }
+        }
+
+        function setLoadingState(buttonId, text) {
+          const btn = document.getElementById(buttonId);
+          if (!btn) return;
+
+          btn.disabled = true;
+          btn.dataset.originalText = btn.innerHTML;
+          btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${text}`;
         }
 
         function openPdfModal(pdfUrl) {
