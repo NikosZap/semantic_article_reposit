@@ -13,8 +13,7 @@
 			<div class="container text-center mt-5">
 				<h1 class="display-4">Semantic Article Repository System</h1>
 				<p class="lead">
-                Search scientific publications in the repository using full-text search powered by Apache Solr, 
-                with additional semantic exploration features.
+                Search scientific publications in the repository using full-text search powered by Apache Solr.
             </p>
 			</div>
 			<div class="container text-center mt-5">

@@ -72,7 +72,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
                                     <td>${pub.doi ?? ''}</td>
                                     <td>${pub.type ?? ''}</td>
                                     <td>${pub.uploaderName }</td>
-                                    <td>${pub.pubDate ?? ''}</td>
+                                    <td>${pub.uploadedDate ?? ''}</td>
                                     <td>
                                         <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
                                             <i class="bi bi-eye"></i>

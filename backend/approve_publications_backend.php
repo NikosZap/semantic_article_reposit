@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 //insert SOLR 
                 createSolrDocumentFromPublication($uri, $title, $fullText, $abstract);
 
-                //insert Spotlight
                 $semanticText = trim($title . ' ' . $abstract . ' ' . $fullText);
                 $entities = getDBpediaEntities($semanticText);
                 $entityURIs = array_column($entities, 'uri');

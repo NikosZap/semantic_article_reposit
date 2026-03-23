@@ -173,3 +173,16 @@ limit for this server.<br />
 </body></html>
 
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>414 Request-URI Too Long</title>
+</head><body>
+<h1>Request-URI Too Long</h1>
+<p>The requested URL's length exceeds the capacity
+limit for this server.<br />
+</p>
+<hr>
+<address>Apache/2.4.66 (Debian) Server at demo.dbpedia-spotlight.org Port 443</address>
+</body></html>
+
+

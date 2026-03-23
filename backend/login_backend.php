@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                  'lastname' => $user['lastname'],
                                  'email' => $user['email'],
                                  'is_logged_in' => true,
-                                 'orcid' => $user['orcid']];           
+                                 'orcid' => $user['orcid'],
+                                 'createdAt' => $user['createdAt']];           
                                 
             echo json_encode(["status" => "success", "redirect" => BASE_URL . "index.php"]);
             exit;

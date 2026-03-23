@@ -105,24 +105,26 @@ function getPendingPublications($offset = 0, $limit = 15) {
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT ?uri ?title ?doi ?pubDate
+
+        SELECT ?uri ?title ?doi ?uploadedDate
             (STRAFTER(STR(?type), \"#\") AS ?publicationType)
             (CONCAT(?firstname, \" \", ?lastname) AS ?uploaderName)
-         WHERE {
+        WHERE {
             ?uri a ?type ;
-                 app:title ?title ;
-                 app:doi ?doi ;
-                 app:publicationDate ?pubDate ;
-                 app:isApproved \"false\"^^xsd:boolean .
-                
-                 OPTIONAL {
-                     ?uri app:hasUploaded ?user .
-                    ?user app:firstname ?firstname ;
-                    app:lastname ?lastname .
+            app:title ?title ;
+            app:doi ?doi ;
+            app:uploadedDate ?uploadedDate ;
+            app:isApproved \"false\"^^xsd:boolean .
+
+        OPTIONAL {
+            ?uri app:hasUploaded ?user .
+            ?user app:firstname ?firstname ;
+              app:lastname ?lastname .
             }
         }
-        OFFSET {$offset} LIMIT {$limit}
-    ";
+        ORDER BY DESC(?uploadedDate)
+        OFFSET {$offset}
+        LIMIT {$limit}";
 
     $results = executeSparqlQuery($sparql);
     $bindings = $results["results"]["bindings"] ?? [];
@@ -135,7 +137,7 @@ function getPendingPublications($offset = 0, $limit = 15) {
             'title'   => $b['title']['value'] ?? '',
             'doi'     => $b['doi']['value'] ?? '',
             'type'     => $b['publicationType']['value'] ?? '',
-            'pubDate' => $b['pubDate']['value'] ?? '',
+            'uploadedDate' => $b['uploadedDate']['value'] ?? '',
             'uploaderName' => $b['uploaderName']['value'] ?? ''
         ];
     }
@@ -188,13 +190,19 @@ function approvePublication($uri) {
 }
 
 function deletePublication($uri) {
-     $sparql = "
+    $uri = trim($uri);
+
+    $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-        DELETE WHERE {
-            { <{$uri}> ?p ?o }
+        DELETE {
+            <{$uri}> ?p ?o .
+            ?s ?p2 <{$uri}> .
+        }
+        WHERE {
+            { <{$uri}> ?p ?o . }
             UNION
-            { ?s ?p <{$uri}> }
+            { ?s ?p2 <{$uri}> . }
         }
     ";
 
@@ -238,6 +246,141 @@ function getPublicationByURI($uri) {
     }
 
     return $results;
+}
+
+function normalizeTitleForComparison($title) {
+    $title = trim($title);
+    $title = mb_strtolower($title, 'UTF-8');
+    $title = preg_replace('/\s+/', ' ', $title);
+    return $title;
+}
+
+function extractYear($date) {
+    if (empty($date)) {
+        return '';
+    }
+    return substr($date, 0, 4);
+}
+
+function publicationExistsByDOI($doi) {
+    $doi = trim($doi);
+
+    if ($doi === '') {
+        return false;
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        ASK {
+            ?pub app:doi " . sparqlLiteral($doi) . " .
+        }
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return $result['boolean'] ?? false;
+}
+
+function publicationExistsByISBN($isbn) {
+    $isbn = trim($isbn);
+
+    if ($isbn === '') {
+        return false;
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        ASK {
+            ?pub app:bookISBN " . sparqlLiteral($isbn) . " .
+        }
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return $result['boolean'] ?? false;
+}
+
+function publicationExistsByTitleAndDate($title, $pubDate) {
+    $title = normalizeTitleForComparison($title);
+    $year = extractYear($pubDate);
+
+    if ($title === '' || $year === '') {
+        return false;
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        ASK {
+            ?pub app:title ?existingTitle ;
+                 app:publicationDate ?existingDate .
+
+            FILTER(LCASE(STR(?existingTitle)) = " . sparqlLiteral($title) . ")
+            FILTER(SUBSTR(STR(?existingDate), 1, 4) = " . sparqlLiteral($year) . ")
+        }
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return $result['boolean'] ?? false;
+}
+
+function publicationExistsByTitleAndPublisher($title, $publisher, $pubDate) {
+    $title = normalizeTitleForComparison($title);
+    $publisher = trim($publisher);
+    $year = extractYear($pubDate);
+
+    if ($title === '' || $publisher === '' || $year === '') {
+        return false;
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        ASK {
+            ?pub app:title ?existingTitle ;
+                 app:bookPublisher ?existingPublisher ;
+                 app:publicationDate ?existingDate .
+
+            FILTER(LCASE(STR(?existingTitle)) = " . sparqlLiteral($title) . ")
+            FILTER(LCASE(STR(?existingPublisher)) = " . sparqlLiteral(mb_strtolower($publisher, 'UTF-8')) . ")
+            FILTER(SUBSTR(STR(?existingDate), 1, 4) = " . sparqlLiteral($year) . ")
+        }
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return $result['boolean'] ?? false;
+}
+
+function publicationExistsByTitleAndSchool($title, $school, $pubDate) {
+    $title = normalizeTitleForComparison($title);
+    $school = trim($school);
+    $year = extractYear($pubDate);
+
+    if ($title === '' || $school === '' || $year === '') {
+        return false;
+    }
+
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        ASK {
+            ?pub app:title ?existingTitle ;
+                 app:school ?existingSchool ;
+                 app:publicationDate ?existingDate .
+
+            FILTER(LCASE(STR(?existingTitle)) = " . sparqlLiteral($title) . ")
+            FILTER(LCASE(STR(?existingSchool)) = " . sparqlLiteral(mb_strtolower($school, 'UTF-8')) . ")
+            FILTER(SUBSTR(STR(?existingDate), 1, 4) = " . sparqlLiteral($year) . ")
+        }
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    return $result['boolean'] ?? false;
+}
+
+function sparqlLiteral($value) {
+    $value = str_replace(["\\", "\"", "\n", "\r"], ["\\\\", "\\\"", " ", " "], $value);
+    return '"' . $value . '"';
 }
 
 function getAuthorsByPublication($uri) {
@@ -694,7 +837,7 @@ function addMentionsToPublication($pubURI, $entityURIs) {
     return executeSparqlUpdate($query);
 }
 
-function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris = []) {
+function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris = [], $mode = 'or') {
     if (empty($uris) || !is_array($uris)) {
         return [];
     }
@@ -710,12 +853,28 @@ function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris =
         $values .= "<{$uri}> ";
     }
 
+    $havingClause = '';
+
+    if ($mode === 'and' && !empty($selectedUris)) {
+        $selectedCount = count(array_unique($selectedUris));
+        $selectedValues = '';
+
+        foreach ($selectedUris as $uri) {
+            $selectedValues .= "<{$uri}> ";
+        }
+
+        $havingClause = "
+            HAVING (
+                COUNT(DISTINCT IF(?mention IN ($selectedValues), ?mention, UNDEF)) = $selectedCount
+            )
+        ";
+    }
+
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
         SELECT ?pub ?title ?abstract (COUNT(DISTINCT ?mention) AS ?matchCount)
         WHERE {
-
             VALUES ?mention { $values }
 
             ?pub app:mentions ?mention .
@@ -724,9 +883,9 @@ function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris =
             OPTIONAL {
                 ?pub app:abstract ?abstract .
             }
-
         }
         GROUP BY ?pub ?title ?abstract
+        $havingClause
         ORDER BY DESC(?matchCount)
     ";
 
@@ -739,35 +898,42 @@ function getPublicationsByMentions($uris, $selectedUris = [], $relatedOnlyUris =
     $results = [];
 
     if (isset($data['results']['bindings'])) {
-    foreach ($data['results']['bindings'] as $row) {
-        $pubUri = $row['pub']['value'];
+        foreach ($data['results']['bindings'] as $row) {
+            $pubUri = $row['pub']['value'];
 
-        $pubMentions = getMentionUrisByPublication($pubUri);
+            $pubMentions = getMentionUrisByPublication($pubUri);
 
-        $exactMatches = array_intersect($pubMentions, $selectedUris);
-        $relatedMatches = array_intersect($pubMentions, $relatedOnlyUris);
+            $exactMatches = array_intersect($pubMentions, $selectedUris);
+            $relatedMatches = array_intersect($pubMentions, $relatedOnlyUris);
 
-        $exactMatchCount = count($exactMatches);
-        $relatedMatchCount = count($relatedMatches);
-        $semanticScore = $exactMatchCount + ($relatedMatchCount * 0.5);
+            $exactMatchCount = count($exactMatches);
+            $relatedMatchCount = count($relatedMatches);
+            $semanticScore = $exactMatchCount + ($relatedMatchCount * 0.5);
 
-        $results[] = [ 
-            'uri' => $pubUri,
-            'title' => $row['title']['value'] ?? 'Unknown title',
-            'abstract' => $row['abstract']['value'] ?? '',
-            'matchCount' => isset($row['matchCount']['value']) ? (int)$row['matchCount']['value'] : 0,
-            'exactMatchCount' => $exactMatchCount,
-            'relatedMatchCount' => $relatedMatchCount,
-            'exactConcepts' => array_map('dbpediaUriToLabel', array_values($exactMatches)),
-            'relatedConcepts' => array_map('dbpediaUriToLabel', array_values($relatedMatches)),
-            'semanticScore' => $semanticScore,
-            'authors' => getAuthorsByPublication($pubUri),
-            'keywords' => getKeywordsByPublication($pubUri)];
+            $results[] = [
+                'uri' => $pubUri,
+                'title' => $row['title']['value'] ?? 'Unknown title',
+                'abstract' => $row['abstract']['value'] ?? '',
+                'matchCount' => isset($row['matchCount']['value']) ? (int)$row['matchCount']['value'] : 0,
+                'exactMatchCount' => $exactMatchCount,
+                'relatedMatchCount' => $relatedMatchCount,
+                'exactConcepts' => array_map('dbpediaUriToLabel', array_values($exactMatches)),
+                'relatedConcepts' => array_map('dbpediaUriToLabel', array_values($relatedMatches)),
+                'semanticScore' => $semanticScore,
+                'authors' => getAuthorsByPublication($pubUri),
+                'keywords' => getKeywordsByPublication($pubUri)
+            ];
         }
-    }    
+    }
 
-    usort($results, function ($a, $b) {
-    return $b['semanticScore'] <=> $a['semanticScore'];
+    usort($results, function ($a, $b) use ($mode) {
+        if ($mode === 'and') {
+            if ($b['exactMatchCount'] !== $a['exactMatchCount']) {
+                return $b['exactMatchCount'] <=> $a['exactMatchCount'];
+            }
+        }
+
+        return $b['semanticScore'] <=> $a['semanticScore'];
     });
 
     return $results;
@@ -1378,4 +1544,69 @@ function getPublicationsByKeyword($keyword)
     }
 
     return array_values($publications);
+}
+
+function getUploadedPublicationsByUser($userUri) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT ?pub ?title ?publicationDate ?uploadedDate ?isApproved
+        WHERE {
+            ?pub app:hasUploaded <$userUri> ;
+                 app:title ?title .
+
+            OPTIONAL { ?pub app:publicationDate ?publicationDate . }
+            OPTIONAL { ?pub app:uploadedDate ?uploadedDate . }
+            OPTIONAL { ?pub app:isApproved ?isApproved . }
+        }
+        ORDER BY DESC(?uploadedDate) DESC(?publicationDate)
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    $rows = $result['results']['bindings'] ?? [];
+
+    $data = [];
+
+    foreach ($rows as $row) {
+        $data[] = [
+            'uri' => $row['pub']['value'] ?? '',
+            'title' => $row['title']['value'] ?? 'Unknown title',
+            'publicationDate' => $row['publicationDate']['value'] ?? '',
+            'uploadedDate' => $row['uploadedDate']['value'] ?? '',
+            'isApproved' => $row['isApproved']['value'] ?? ''
+        ];
+    }
+
+    return $data;
+}
+
+function getPublicationsByOrcid($orcid) {
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        SELECT DISTINCT ?pub ?title ?publicationDate
+        WHERE {
+            ?author app:orcid \"$orcid\" .
+            ?pub app:hasAuthor ?author ;
+                 app:title ?title .
+
+            OPTIONAL { ?pub app:publicationDate ?publicationDate . }
+        }
+        ORDER BY DESC(?publicationDate)
+    ";
+
+    $result = executeSparqlQuery($sparql);
+    $rows = $result['results']['bindings'] ?? [];
+
+    $data = [];
+
+    foreach ($rows as $row) {
+        $data[] = [
+            'uri' => $row['pub']['value'] ?? '',
+            'title' => $row['title']['value'] ?? 'Unknown title',
+            'publicationDate' => $row['publicationDate']['value'] ?? ''
+        ];
+    }
+
+    return $data;
 }

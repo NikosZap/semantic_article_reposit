@@ -35,7 +35,7 @@ if ($q !== '') {
 				</form>
 				<h4>Results</h4>
     <?php if (count($results) === 0): ?>
-				<p>No results found</p>
+				<div class="alert alert-warning">No results found.</div>
     <?php endif; ?>
 
 <?php foreach ($results as $doc): ?>

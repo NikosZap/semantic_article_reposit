@@ -1,7 +1,7 @@
 <?php
 
 define("BASE_PATH", __DIR__ . "/"); // project root
-define("BASE_URL", "https://93e6-109-242-44-170.ngrok-free.app/my_project2/");
+define("BASE_URL", "https://9697-2a03-f003-142-c300-6516-812b-ecf3-8e78.ngrok-free.app/my_project2/");
 
 // Fuseki SPARQL Endpoint 
 define('SPARQL_ENDPOINT', 'http://localhost:3030/semanticApp/sparql');

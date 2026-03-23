@@ -307,12 +307,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
                 </div>
             </div>
         </div>
-
-
-
-
-
-</div>
+    </div>
 
 </div>
 </main>

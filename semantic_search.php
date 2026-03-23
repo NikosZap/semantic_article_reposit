@@ -6,12 +6,16 @@ require_once BASE_PATH . 'includes/pub_sparql_queries.php';
 $results = [];
 $selectedUris = [];
 
+$mode = $_GET['mode'] ?? 'or';
+
+$showResultsContainer = false;
 if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
     $selectedUris = array_values(array_unique(array_filter($_GET['uri'])));
     $expandedUris = expandConceptUris($selectedUris, 5);
     $relatedOnlyUris = array_values(array_diff($expandedUris, $selectedUris));
-    $results = getPublicationsByMentions($expandedUris, $selectedUris, $relatedOnlyUris);
-}
+    $results = getPublicationsByMentions($expandedUris, $selectedUris, $relatedOnlyUris, $mode);
+    $showResultsContainer = true;
+    }
 
 ?>
 <!DOCTYPE html>
@@ -45,9 +49,9 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
             </div>
 
             <div id="resultsContainer" class="mt-4" style="display: <?= $showResultsContainer ? 'block' : 'none' ?>;">
-                <h5>Concepts Found:</h5>
+                
                 <div id="results"></div>
-
+            <?php if ($showResultsContainer): ?>
                 <?php if (!empty($results)): ?>
                     <div class="mt-5">
                         <h4>Publications mentioning the selected concept:</h4>
@@ -128,7 +132,12 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
                             </div>
                         <?php endforeach; ?>
                     </div>
+                <?php else: ?>
+                    <div class="alert alert-warning">
+                        No publications matched the selected concepts.
+                    </div>
                 <?php endif; ?>
+            <?php endif; ?>    
             </div>
         </div>
     </main>
@@ -176,30 +185,95 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
 
                     let html = '<form method="get" action="semantic_search.php" id="conceptForm">';
                     html += '<div class="list-group">';
+                    html += '<h5>Concepts Found:</h5>';
+                    if (entities.length > 1) {
+                        html += `
+                            <div class="list-group-item  bg-light">
+                                <div class="fw-bold mb-2">Search Mode</div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input search-mode" type="radio" name="mode" id="modeAnd" value="and" checked>
+                                    <label class="form-check-label" for="modeAnd">
+                                        Match ALL detected concepts (AND)
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input search-mode" type="radio" name="mode" id="modeOr" value="or">
+                                    <label class="form-check-label" for="modeOr">
+                                        Match ANY selected concept (OR)
+                                    </label>
+                                </div>
+                            </div>
+                        `;
+                    }
 
                     entities.forEach(ent => {
                         html += `
                             <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" name="uri[]" value="${ent.uri}">
-                                ${ent.label} <small class="text-muted">(${ent.uri})</small>
+                                <input class="form-check-input me-1 concept-checkbox" type="checkbox" name="uri[]" value="${ent.uri}">
+                                <span class="fw-semibold">
+                                    ${ent.label}
+                                </span> 
+                                <small class="text-muted d-block d-md-inline">
+                                    (${ent.uri})
+                                </small>
                             </label>
                         `;
                     });
 
                     html += '</div>';
-                    html += '<button class="btn btn-success mt-3" type="submit">Search by Concept</button>';
+
+                    html += `
+                        <div class="mt-3">
+                            <button class="btn btn-primary" type="submit">
+                                Search Concepts
+                            </button>
+                        </div>
+                    `;
+
                     html += '</form>';
 
                     container.innerHTML = html;
 
                     const conceptForm = document.getElementById('conceptForm');
+                    const modeAnd = document.getElementById('modeAnd');
+                    const modeOr = document.getElementById('modeOr');
+
+                    if (modeAnd && modeOr) {                        
+                        function updateConceptSelectionMode() {
+                            const conceptCheckboxes = conceptForm.querySelectorAll('.concept-checkbox');
+
+                            if (modeAnd.checked) {
+                                conceptCheckboxes.forEach(cb => {
+                                    cb.checked = true;
+                                    cb.disabled = true;
+                                });
+                            } else {
+                                conceptCheckboxes.forEach(cb => {
+                                    cb.disabled = false;
+                                });
+                            }
+                        }
+                                                
+                        modeAnd.addEventListener('change', updateConceptSelectionMode);
+                        modeOr.addEventListener('change', updateConceptSelectionMode);
+
+                        updateConceptSelectionMode();
+
+                    }
+
                     conceptForm.addEventListener('submit', function (e) {
                         const checked = conceptForm.querySelectorAll('input[name="uri[]"]:checked');
 
                         if (!checked.length) {
                             e.preventDefault();
                             alert('Please select at least one concept.');
+                            return;
                         }
+
+                        const disabledCheckboxes = conceptForm.querySelectorAll('.concept-checkbox:disabled');
+                        disabledCheckboxes.forEach(cb => cb.disabled = false);
                     });
                 })
                 .catch(err => {

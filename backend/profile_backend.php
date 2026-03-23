@@ -17,6 +17,10 @@ if ($action === "saveEditedAccount") {
     $firstname = $_POST['firstname'] ?? '';
     $lastname = $_POST['lastname'] ?? '';
 
+    $scientificArea = $_POST['scientificArea'] ?? '';
+    $affiliation = $_POST['affiliation'] ?? '';
+    $nationality = $_POST['nationality'] ?? '';
+
     if (!$email || !$firstname || !$lastname) {
         echo json_encode(["status" => "error", "message" => "Please fill all fields"]);
         exit;
@@ -27,17 +31,35 @@ if ($action === "saveEditedAccount") {
         exit;
     }
 
-    $result = updateUserProfile($userUri, $email, $firstname, $lastname);
-
-    if ($result) {
-        $_SESSION['user']['email'] = $email;
-        $_SESSION['user']['firstname'] = $firstname;
-        $_SESSION['user']['lastname'] = $lastname;
-        echo json_encode(["status" => "success", "message" => "Profile updated successfully"]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Update failed"]);
+    $userUpdated = updateUserProfile($userUri, $email, $firstname, $lastname);
+    if (!$userUpdated) {
+        echo json_encode(["status" => "error", "message" => "User profile update failed"]);
+        exit;
     }
+     $authorUpdated = true;
+
+    if (!empty($_SESSION['user']['orcid'])) {
+        $authorUpdated = updateAuthorProfileFieldsByUserUri( $userUri, $nationality, $affiliation, $scientificArea );
+    }
+
+    if (!$authorUpdated) {
+        echo json_encode(["status" => "error", "message" => "Author profile update failed"]);
+        exit;
+    }
+
+    $_SESSION['user']['email'] = $email;
+    $_SESSION['user']['firstname'] = $firstname;
+    $_SESSION['user']['lastname'] = $lastname;
+
+    if (!empty($_SESSION['user']['orcid'])) {
+        $_SESSION['user']['nationality'] = $nationality;
+        $_SESSION['user']['affiliation'] = $affiliation;
+        $_SESSION['user']['scientificArea'] = $scientificArea;
+    }
+
+    echo json_encode(["status" => "success", "message" => "Profile updated successfully"]);
     exit;
+
 }
 
 if ($action === "deleteAccount") {

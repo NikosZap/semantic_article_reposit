@@ -4,7 +4,7 @@ function getUserByUsername($username) {
 
     $sparql = "PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-                SELECT ?user ?userID ?username ?password ?role ?firstname ?lastname ?email ?isSuspended ?orcid
+                SELECT ?user ?userID ?username ?password ?role ?firstname ?lastname ?email ?createdAt ?isSuspended ?orcid
                 WHERE { 
                     ?user a app:User ;
                     app:userID ?userID ;
@@ -14,6 +14,7 @@ function getUserByUsername($username) {
                     app:firstname ?firstname ;
                     app:lastname ?lastname ;
                     app:email ?email.
+                    OPTIONAL { ?user app:createdAt ?createdAt }
                     OPTIONAL { ?user app:isSuspended ?isSuspended }
 
                     OPTIONAL { ?author a app:Author ;
@@ -41,6 +42,7 @@ function getUserByUsername($username) {
             'lastname'  => $userData['lastname']['value'],
             'email'     => $userData['email']['value'],
             'orcid'     => $userData['orcid']['value'] ?? null,
+            'createdAt' => $userData['createdAt']['value'] ?? 'N/A',
             'isSuspended' => isset($userData['isSuspended']) ? $userData['isSuspended']['value'] : "0"];
 
 }
@@ -206,19 +208,38 @@ function updateUserProfile($userURI, $email, $firstname, $lastname) {
         }
     ";
 
-    $url = SPARQL_UPDATE_ENDPOINT;
-    $headers = ['Content-Type: application/x-www-form-urlencoded'];
-    $data = http_build_query(['update' => $sparql]);
+    return executeSparqlUpdate($sparql);
+}
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    $response = curl_exec($ch);
-    curl_close($ch);
+function updateAuthorProfileFieldsByUserUri($userUri, $nationality, $affiliation, $scientificArea) {
+    $nationality = addslashes(trim($nationality));
+    $affiliation = addslashes(trim($affiliation));
+    $scientificArea = addslashes(trim($scientificArea));
 
-    return $response !== false;
+    $sparql = "
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        DELETE {
+            ?author app:nationality ?oldNationality .
+            ?author app:affiliation ?oldAffiliation .
+            ?author app:scientificArea ?oldScientificArea .
+        }
+        INSERT {
+            " . ($nationality !== '' ? "?author app:nationality \"$nationality\" ." : "") . "
+            " . ($affiliation !== '' ? "?author app:affiliation \"$affiliation\" ." : "") . "
+            " . ($scientificArea !== '' ? "?author app:scientificArea \"$scientificArea\" ." : "") . "
+        }
+        WHERE {
+            ?author a app:Author ;
+                    app:correspondTo <$userUri> .
+
+            OPTIONAL { ?author app:nationality ?oldNationality }
+            OPTIONAL { ?author app:affiliation ?oldAffiliation }
+            OPTIONAL { ?author app:scientificArea ?oldScientificArea }
+        }
+    ";
+
+    return executeSparqlUpdate($sparql);
 }
 
 function getUserUriByEmail($email) {
@@ -506,22 +527,28 @@ function getUserByOrcidId($orcid_id) {
     $query = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-    SELECT ?user ?userID ?username ?email ?firstname ?lastname ?role ?orcid
-    WHERE {
-        ?author a app:Author ;
-                app:orcid \"$orcid_id\" ;
-                app:correspondTo ?user  ;
-                app:orcid ?orcid .
+        SELECT ?user ?userID ?username ?email ?firstname ?lastname ?role ?orcid ?createdAt ?nationality ?affiliation ?scientificArea
+        WHERE {
+            ?author a app:Author ;
+                    app:orcid ?orcid ;
+                    app:correspondTo ?user .
 
-        ?user a app:User ;
-              app:userID ?userID ;
-              app:username ?username ;
-              app:email ?email ;
-              app:firstname ?firstname ;
-              app:lastname ?lastname ;
-              app:role ?role .
-    }
-    LIMIT 1
+            ?user a app:User ;
+                  app:userID ?userID ;
+                  app:username ?username ;
+                  app:email ?email ;
+                  app:firstname ?firstname ;
+                  app:lastname ?lastname ;
+                  app:role ?role .
+
+            FILTER(?orcid = \"$orcid_id\")
+            
+            OPTIONAL { ?user app:createdAt ?createdAt }
+            OPTIONAL { ?author app:nationality ?nationality }
+            OPTIONAL { ?author app:affiliation ?affiliation }
+            OPTIONAL { ?author app:scientificArea ?scientificArea }
+        }
+        LIMIT 1
     ";
 
     $response = executeSparqlQuery($query); 
@@ -536,7 +563,11 @@ function getUserByOrcidId($orcid_id) {
             'firstname' => $b['firstname']['value'],
             'lastname' => $b['lastname']['value'],
             'role' => $b['role']['value'],
-            'orcid' => $b['orcid']['value'] 
+            'orcid' => $b['orcid']['value'],
+            'createdAt' => $b['createdAt']['value'] ?? 'N/A',
+            'nationality' => $b['nationality']['value'] ?? '',
+            'affiliation' => $b['affiliation']['value'] ?? '',
+            'scientificArea' => $b['scientificArea']['value'] ?? ''
         ];
     }
 

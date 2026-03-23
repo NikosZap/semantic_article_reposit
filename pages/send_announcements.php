@@ -19,104 +19,75 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Admin') {
 </head>
 
 <body>
+    <?php include(BASE_PATH . 'includes/navbar.php'); ?>
+    <main>
 
-<?php include(BASE_PATH . 'includes/navbar.php'); ?>
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2  class="display-6">Sending announcements to users</h2>
+                <button id="toggleFilters" class="btn btn-secondary btn-sm">
+                    Show Filters
+                </button>
+            </div>
+            <div id="message"></div>
+                <div id="filterSection" style="display: none;">
 
-<main>
+                    <form id="filterForm" class="mb-3">
 
-<div class="container mt-5">
+                        <input type="text" id="search" name="search" placeholder="Search user..." class="form-control mb-2" >
+                        <select id="role" name="role" class="form-select mb-2">
+                            <option value="">All Roles</option>
+                            <option value="researcher">Researcher</option>
+                            <option value="admin">Admin</option>
+                        </select>
 
-<div class="d-flex justify-content-between align-items-center mb-2">
-<h2>Sending announcements to users</h2>
-<button id="toggleFilters" class="btn btn-secondary btn-sm">
-Show Filters
-</button>
-</div>
+                        <select id="is_active" name="is_active" class="form-select mb-2">
+                            <option value="">All</option>
+                            <option value="1">Active</option>
+                            <option value="0">Not active</option>
+                        </select>
 
-<div id="message"></div>
+                        <div class="row">
 
-<div id="filterSection" style="display: none;">
+                            <div class="col-md-6">
+                                <label>From:</label>
+                                <input type="date" id="from_date" name="from_date" class="form-control mb-2">
+                            </div>
 
-<form id="filterForm" class="mb-3">
+                            <div class="col-md-6">
+                                <label>To:</label>
+                                <input type="date" id="to_date" name="to_date" class="form-control mb-2" >
+                            </div>
 
-<input
-type="text"
-id="search"
-name="search"
-placeholder="Search user..."
-class="form-control mb-2"
->
+                        </div>
 
-<select id="role" name="role" class="form-select mb-2">
-<option value="">All Roles</option>
-<option value="researcher">Researcher</option>
-<option value="admin">Admin</option>
-</select>
+                        <button type="submit" class="btn btn-primary">
+                            Apply Filtering
+                        </button>
 
-<select id="is_active" name="is_active" class="form-select mb-2">
-<option value="">All</option>
-<option value="1">Active</option>
-<option value="0">Not active</option>
-</select>
+                    </form>
+                </div>
+                
+                <textarea id="announcementMessage" class="form-control mb-2" placeholder="Announcement Content"></textarea>
+                <button id="sendEmails" class="btn btn-success">
+                    Send Email
+                </button>
 
-<div class="row">
+                <div class="table-responsive">
 
-<div class="col-md-6">
-<label>From:</label>
-<input
-type="date"
-id="from_date"
-name="from_date"
-class="form-control mb-2"
->
-</div>
-
-<div class="col-md-6">
-<label>To:</label>
-<input
-type="date"
-id="to_date"
-name="to_date"
-class="form-control mb-2"
->
-</div>
-
-</div>
-
-<button type="submit" class="btn btn-primary">
-Apply Filtering
-</button>
-
-</form>
-
-</div>
-
-<textarea
-id="announcementMessage"
-class="form-control mb-2"
-placeholder="Announcement Content"
-></textarea>
-
-<button id="sendEmails" class="btn btn-success">
-Send Email
-</button>
-
-<div class="table-responsive">
-
-<div id="usersTable" class="mt-3"></div>
-
-</div>
+                    <div id="usersTable" class="mt-3"></div>
+                </div>
 
 
 
-</div>
+            </div>
 
-</main>
+        </main>
 
-<div class="container">
-    <div id="pagination" class="mt-3"></div>
-    <?php include BASE_PATH . 'includes/footer.php'; ?>
-</div>
+        <div class="container">
+            <div id="pagination" class="mt-3"></div>
+            <?php include BASE_PATH . 'includes/footer.php'; ?>
+        </div>
 
 <script>
 

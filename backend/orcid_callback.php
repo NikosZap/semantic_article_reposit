@@ -67,7 +67,11 @@ if ($user) {
         'lastname' => $user['lastname'],
         'email' => $user['email'],
         'is_logged_in' => true,
-        'orcid' => $user['orcid']
+        'orcid' => $user['orcid'],
+        'createdAt' => $user['createdAt'],
+        'nationality' => $user['nationality'],
+        'affiliation' => $user['affiliation'],
+        'scientificArea' => $user['scientificArea'],
     ];
     header("Location: ". BASE_URL . "index.php"); 
     exit;

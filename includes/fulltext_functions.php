@@ -8,38 +8,43 @@ function storeFullTextFromPDF($publicationURI, $pdfFilePath) {
 
     try {
         $pdf = $parser->parseFile($pdfFilePath);
-        $text = $pdf->getText();
+        $rawText = trim($pdf->getText());
     } catch (Exception $e) {
         return null;
     }
 
-   
+    if ($rawText === '') {
+        return null;
+    }
+
     $fullTextID = uniqid("fulltext_");
     $fullTextURI = BASE_URI . $fullTextID;
 
-    $text = escapeForSPARQLLiteral($text);
-
-    $text = addslashes($text); 
+    $sparqlText = escapeForSPARQLLiteral($rawText);
+    $sparqlText = addslashes($sparqlText);
 
     $sparql = "
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
         INSERT DATA {
             <$publicationURI> app:hasFullText <$fullTextURI> .
             <$fullTextURI> a app:FullText ;
-                           app:textContent \"\"\"$text\"\"\" ;
+                           app:textContent \"\"\"$sparqlText\"\"\" ;
                            app:isFullTextOf <$publicationURI> .
         }
     ";
 
     $success = executeSparqlUpdate($sparql);
 
-    return $text;
+    if (!$success) {
+        return null;
+    }
+
+    return $rawText;
 }
+
 function escapeForSPARQLLiteral($text) {
     $text = str_replace('\\', '\\\\', $text);
-    $text = str_replace('"', '\"', $text);
-    $text = str_replace("\n", '\\n', $text);
-    $text = str_replace("\r", '\\r', $text);
+    $text = str_replace('"""', '\\"\\"\\"', $text);
     return $text;
 }
 
@@ -79,49 +84,104 @@ function createSolrDocumentFromPublication($pubURI, $title, $fulltext, $abstract
     return $httpCode === 200;
 }
 
-function getDBpediaEntities($text, $confidence = 0.5, $support = 20) {
+function getDBpediaEntities($text, $confidence = 0.35, $support = 5) {
     $endpoint = "https://api.dbpedia-spotlight.org/en/annotate";
 
-    $url = $endpoint . "?" . http_build_query([
-        "text" => $text,
-        "confidence" => $confidence,
-        "support" => $support
+    $postData = http_build_query([
+        'text' => $text,
+        'confidence' => $confidence,
+        'support' => $support
     ]);
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Accept: application/json"]);
+    $ch = curl_init($endpoint);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded'
+    ]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 
     $response = curl_exec($ch);
-    file_put_contents("spotlight_raw.txt", $response . "\n\n", FILE_APPEND);
-
-    if (curl_errno($ch)) {
-        echo "cURL Error: " . curl_error($ch) . "\n";
-    }
-
-    if (curl_errno($ch)) {
-        curl_close($ch);
-        return [];
-    }
-
+    $curlError = curl_error($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    
+
+    if ($response === false || !empty($curlError)) {
+        return [
+            'success' => false,
+            'error' => 'cURL error: ' . $curlError,
+            'http_code' => $httpCode,
+            'raw_response' => $response,
+            'entities' => []
+        ];
+    }
+
+    if ($httpCode !== 200) {
+        return [
+            'success' => false,
+            'error' => 'Unexpected HTTP code ' . $httpCode,
+            'http_code' => $httpCode,
+            'raw_response' => $response,
+            'entities' => []
+        ];
+    }
+
     $json = json_decode($response, true);
+
+    if (!is_array($json)) {
+        return [
+            'success' => false,
+            'error' => 'Invalid JSON response',
+            'http_code' => $httpCode,
+            'raw_response' => $response,
+            'entities' => []
+        ];
+    }
 
     $entities = [];
 
-    if (isset($json['Resources'])) {
+    if (isset($json['Resources']) && is_array($json['Resources'])) {
         foreach ($json['Resources'] as $res) {
             $entities[] = [
-                'uri' => $res['@URI'],
-                'label' => $res['@surfaceForm']
+                'uri' => $res['@URI'] ?? '',
+                'label' => $res['@surfaceForm'] ?? '',
+                'similarityScore' => $res['@similarityScore'] ?? null,
+                'support' => $res['@support'] ?? null
             ];
         }
     }
 
-    return $entities;
+    return [
+        'success' => true,
+        'error' => null,
+        'http_code' => $httpCode,
+        'raw_response' => $response,
+        'entities' => $entities
+    ];
+}
+
+function ensureSpotlightDebugDir($publicationURI) {
+    $safeId = preg_replace('/[^a-zA-Z0-9_-]/', '_', basename($publicationURI));
+    $dir = BASE_PATH . 'debug/spotlight/' . $safeId . '/';
+
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+
+    return $dir;
+}
+
+function writeSpotlightDebugFiles($publicationURI, $files) {
+    $dir = ensureSpotlightDebugDir($publicationURI);
+
+    foreach ($files as $filename => $content) {
+        if (is_array($content) || is_object($content)) {
+            $content = json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+        file_put_contents($dir . $filename, $content);
+    }
 }
 
 function deleteSolrDocumentByPublication($pubURI) {

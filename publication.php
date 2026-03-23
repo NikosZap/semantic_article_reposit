@@ -26,150 +26,144 @@ $keywords = getKeywordsByPublication($pubURI);
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+	<?php include(BASE_PATH . 'includes/header.php'); ?>
+	<title><?= htmlspecialchars($publication['title']) ?></title>
+</head>
 
-	<head>
-		<?php include (BASE_PATH . 'includes/header.php'); ?>
-		<title><?= htmlspecialchars($publication['title']) ?></title>
-	</head>
+<body>
 
-	<body>
+<?php include(BASE_PATH . 'includes/navbar.php'); ?>
 
-	<?php include (BASE_PATH . 'includes/navbar.php'); ?>
+<main>
+	<div class="container py-5">
 
-		<main>
+		<div class="row justify-content-center">
+			<div class="col-xl-10">
 
-			<div class="container mt-5 mb-5">
+				<div class="mb-4">
+					<div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+						<div>
+							<h1 class="display-5">
+								<?= htmlspecialchars($publication['title']) ?>
+							</h1>
+						</div>
 
-				<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
+						<?php if (!empty($publication['filePath'])): ?>
+							<a href="<?= BASE_URL . 'uploads/' . htmlspecialchars($publication['filePath']) ?>"
+							   class="btn btn-outline-primary"
+							   target="_blank">
+								<i class="bi bi-file-earmark-pdf me-2"></i>View PDF
+							</a>
+						<?php endif; ?>
+					</div>
+				</div>
 
-					<h2 class="display-6"><?= htmlspecialchars($publication['title']) ?></h2>
+				<div class="row g-4">
 
-					<?php if (!empty($publication['filePath'])): ?>
+					<div class="col-lg-8">
+						<div class="card border-0 shadow-sm h-100">
+							<div class="card-body p-4">
+								<h5 class="card-title mb-3">Abstract</h5>
 
-					<a href="<?= BASE_URL . 'pending/' . htmlspecialchars($publication['filePath']) ?>" class="btn btn-outline-primary" target="_blank">
-						View PDF <i class="bi bi-file-earmark-pdf"></i>
-					</a>
+								<div class="bg-light rounded p-3">
+									<p class="mb-0">
+										<?= nl2br(htmlspecialchars($publication['abstract'] ?? 'No abstract available.')) ?>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
-					<?php endif; ?>
+					<div class="col-lg-4">
+						<div class="card border-0 shadow-sm h-100">
+							<div class="card-body p-4">
+								<h5 class="card-title mb-3">Publication Info</h5>
+
+								<ul class="list-group list-group-flush">
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold mb-2">Authors</div>
+										<div class="d-flex flex-column gap-1">
+											<?php foreach ($authors as $author): ?>
+												<?php
+													$fullName = htmlspecialchars($author['firstname'] . ' ' . $author['lastname']);
+													if (!empty($author['orcid'])) {
+														$orcidID = urlencode($author['orcid']);
+														echo "<a href='author.php?orcid=$orcidID' class='text-decoration-none'>$fullName</a>";
+													} else {
+														echo "<span>$fullName</span>";
+													}
+												?>
+											<?php endforeach; ?>
+										</div>
+									</li>
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold mb-2">Keywords</div>
+										<div class="d-flex flex-wrap gap-2">
+											<?php if (!empty($keywords) && is_array($keywords)): ?>
+												<?php foreach ($keywords as $keyword): ?>
+													<a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
+													   class="badge bg-secondary text-decoration-none">
+														<?= htmlspecialchars($keyword) ?>
+													</a>
+												<?php endforeach; ?>
+											<?php else: ?>
+												<span class="text-muted">-</span>
+											<?php endif; ?>
+										</div>
+									</li>
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold">Type</div>
+										<div class="text-muted">
+											<?= htmlspecialchars(extractSuffix($publication['type'])) ?>
+										</div>
+									</li>
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold">DOI</div>
+										<div class="text-muted">
+											<?= htmlspecialchars($publication['doi'] ?? '-') ?>
+										</div>
+									</li>
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold">Journal</div>
+										<div class="text-muted">
+											<?= htmlspecialchars($publication['journal'] ?? '-') ?>
+										</div>
+									</li>
+
+									<li class="list-group-item px-0">
+										<div class="fw-semibold">Publication Date</div>
+										<div class="text-muted">
+											<?= htmlspecialchars($publication['publicationDate'] ?? '-') ?>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
 
 				</div>
 
-				<div class="card shadow rounded-4">
+			</div>
+		</div>
 
-					<div class="card-body">
-
-						<div class="row">
-
-							<div class="col-md-7">
-
-								<h5>Abstract</h5>
-
-								<div class="bg-light p-3 rounded shadow-sm text-justify" style="max-height: 300px; overflow-y: auto;">
-									<?= nl2br(htmlspecialchars($publication['abstract'] ?? 'No abstract available.')) ?>
-								</div>
-
-							</div>
-
-<div class="col-md-5">
-
-<ul class="list-group list-group-flush">
-
-<li class="list-group-item">
-
-<strong>Authors:</strong>
-
-<?php foreach ($authors as $index => $author): ?>
-
-<?php
-	$fullName = htmlspecialchars($author['firstname'] . ' ' . $author['lastname']);
-
-	if (!empty($author['orcid'])) {
-		$orcidID = urlencode($author['orcid']);
-
-		echo "<a href='author.php?orcid=$orcidID'>$fullName</a>";
-	} else {
-		echo "$fullName<br>";
-	}
-?>
-
-<?php endforeach; ?>
-
-</li>
-
-<li class="list-group-item">
-
-<strong>Keywords:</strong>
-
-<div class="d-flex flex-wrap align-items-center gap-2">
-                                        <?php if (!empty($keywords) && is_array($keywords)): ?>    
-                                          <?php foreach ($keywords as $index => $keyword): ?>
-                                          <span class="badge bg-secondary me-1">
-                                            <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
-                                              class="text-white text-decoration-none">
-                                              <?= htmlspecialchars($keyword) ?>
-                                            </a>
-                                          </span>  
-                                          <?php endforeach; ?>
-                                        <?php else: ?>
-                                              -
-                                        <?php endif; ?>
-                                        
-                                    </div>
-
-</li>
-
-<li class="list-group-item">
-
-<strong>Type:</strong>
-<?= htmlspecialchars(extractSuffix($publication['type'])) ?>
-
-</li>
-
-<li class="list-group-item">
-
-<strong>DOI:</strong>
-<?= htmlspecialchars($publication['doi']) ?>
-
-</li>
-
-<li class="list-group-item">
-
-<strong>Journal:</strong>
-<?= htmlspecialchars($publication['journal'] ?? '-') ?>
-
-</li>
-
-<li class="list-group-item">
-
-<strong>Publication Date:</strong>
-<?= htmlspecialchars($publication['publicationDate']) ?>
-
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+	</div>
 </main>
 
 <div class="container">
-<?php include (BASE_PATH . 'includes/footer.php'); ?>
+	<?php include(BASE_PATH . 'includes/footer.php'); ?>
 </div>
 
 </body>
-
 </html>
 
 <?php
-
 function extractSuffix($uri)
 {
 	if (strpos($uri, '#') !== false) {
@@ -180,5 +174,4 @@ function extractSuffix($uri)
 
 	return $uri;
 }
-
 ?>

@@ -1,0 +1,252 @@
+About Boeing X-32 The Boeing X-32 is a demonstration jet designed for the Joint Strike Fighter contest. He lost the Lockheed Martin X-35 demonstrator, which was further developed in the Lockheed Martin F-35 Lightning II. Boeing's competitive advantage has been to provide considerably lower costs of production and lifecycle by minimizing variations between different versions of the JSF. Therefore, the X-32 was designed around a delta wing of the carbon fiber composite. The wing had an opening of 9.15 meters, with a current of 55 degrees on the front edge and could have up to 20,000 kilograms of fuel. The purpose of the large inclination angle was to allow the use of a thick wings section while obtaining limited transonic aerodynamic resistances and a good angle for the corresponding antenna equipment installed in the wing. Wings would be a challenge to be done. The cost competition strategy also led Boeing to choose a direct traction vectoring system for the short-term STOVL landing requirement, as this would require the addition of a traction vectoring module around the main engine. However, this choice requires the engine to be mounted directly behind the cockpit and changing the center of gravity before being ordinarily positioned in the jets of the plane (behind the plane) to allow neutral movement of the attitude. Boeing proposed in the 1960s a supersonic fighter as a gravity motor with vector pushing nozzles, but never surpassed the images published in the aviation week. By comparison, Lockheed's entry showed, if not, a smaller version of the F-22 Raptor stealth fighter. The nickname of X-32, Boeing, was "Monica. " However, another direct lifting selection effect was the chrome-air intake, similar to the Vought F-8 Crusader and LTV A-7 Corsair II. This was necessary to provide sufficient air for the main engine (to provide the force of support) during the zero speed horizon when it could not exploit the ram air pressure. A blow to the effect of this large input was the direct potential visibility of the compressor blades to the radar. Among the possibilities of attenuation were the variable moments designed to lock the received radio waves without adversely affecting the air flow.  
+ 
+ © 2019 Relly Victoria V. Petrescu. This open access article is distributed under a Creative Commons Attribution 
+(CC-BY) 3.0 license.  
+ 
+Journal of Aircraft and Spacecraft Technology 
+ 
+ 
+Review Paper 
+About Boeing X-32 
+ 
+Relly Victoria Virgil Petrescu 
+ 
+ARoTMM-IFToMM, Bucharest Polytechnic University, Bucharest (CE), Romania 
+ 
+Article history 
+Received: 08-03-2019  
+Revised: 16-03-2019 
+Accepted: 01-04-2019 
+ 
+Email: rvvpetrescu@gmail. com 
+Abstract: The Boeing X-32 is a demonstration jet designed for the Joint 
+Strike Fighter contest. He lost the Lockheed Martin X-35 demonstrator, 
+which was further developed in the Lockheed Martin F-35 Lightning II. 
+Boeing's competitive advantage has been to provide considerably lower 
+costs of production and lifecycle by minimizing variations between 
+different versions of the JSF. Therefore, the X-32 was designed around a 
+delta wing of the carbon fiber composite. The wing had an opening of 9.15 
+meters, with a current of 55 degrees on the front edge and could have up to 
+20,000 kilograms of fuel. The purpose of the large inclination angle was to 
+allow the use of a thick wings section while obtaining limited transonic 
+aerodynamic resistances and a good angle for the corresponding antenna 
+equipment installed in the wing. Wings would be a challenge to be done. 
+The cost competition strategy also led Boeing to choose a direct traction 
+vectoring system for the short-term STOVL landing requirement, as this 
+would require the addition of a traction vectoring module around the main 
+engine. However, this choice requires the engine to be mounted directly 
+behind the cockpit and changing the center of gravity before being 
+ordinarily positioned in the jets of the plane (behind the plane) to allow 
+neutral movement of the attitude. Boeing proposed in the 1960s a 
+supersonic fighter as a gravity motor with vector pushing nozzles, but never 
+surpassed the images published in the aviation week. By comparison, 
+Lockheed's entry showed, if not, a smaller version of the F-22 Raptor 
+stealth fighter. The nickname of X-32, Boeing, was "Monica. " However, 
+another direct lifting selection effect was the chrome-air intake, similar to 
+the Vought F-8 Crusader and LTV A-7 Corsair II. This was necessary to 
+provide sufficient air for the main engine (to provide the force of support) 
+during the zero speed horizon when it could not exploit the ram air 
+pressure. A blow to the effect of this large input was the direct potential 
+visibility of the compressor blades to the radar. Among the possibilities of 
+attenuation were the variable moments designed to lock the received radio 
+waves without adversely affecting the air flow.  
+ 
+Keywords: Boeing, Boeing X-32, Boeing Airpower Teaming System, 
+British Airways, STOVL, Joint Strike Fighter 
+ 
+Introduction 
+The Boeing X-32 is a demonstration jet designed for 
+the Joint Strike Fighter contest. He lost the Lockheed 
+Martin X-35 demonstrator, which was further developed 
+in the Lockheed Martin F-35 Lightning II.  
+Boeing's competitive advantage has been to provide 
+considerably lower costs of production and lifecycle by 
+minimizing variations between different versions of the 
+JSF. Therefore, the X-32 was designed around a delta 
+wing of the carbon fiber composite.  
+The wing had an opening of 9.15 meters, with a 
+current of 55 degrees on the front edge and could have 
+up to 20,000 kilograms of fuel.  
+The purpose of the large inclination angle was to 
+allow the use of a thick wings section while obtaining 
+limited transonic aerodynamic resistances and a good 
+angle for the corresponding antenna equipment installed 
+in the wing. Wings would be a challenge to be done.  
+The cost competition strategy also led Boeing to 
+choose a direct traction vectoring system for the short-
+term STOVL landing requirement, as this would require 
+Electronic copy available at: https://ssrn.com/abstract=3417339
+
+Relly Victoria V. Petrescu / Journal of Aircraft and Spacecraft Technology 2019, 3 (1): 38.54 
+DOI: 10.3844/jastsp.2019.38.54 
+ 
+39 
+the addition of a traction vectoring module around the 
+main engine.  
+However, this choice requires the engine to be 
+mounted directly behind the cockpit and changing the 
+center of gravity before being ordinarily positioned in 
+the jets of the plane (behind the plane) to allow neutral 
+movement of the attitude. Boeing proposed in the 1960s 
+a supersonic fighter as a gravity motor with vector 
+pushing nozzles, but never surpassed the images 
+published in the aviation week. 
+By comparison, Lockheed's entry showed, if not, a 
+smaller version of the F-22 Raptor stealth fighter. The 
+nickname of X-32, Boeing, was "Monica. " However, 
+another direct lifting selection effect was the chrome-air 
+intake, similar to the Vought F-8 Crusader and LTV A-7 
+Corsair II. This was necessary to provide sufficient air 
+for the main engine (to provide the force of support) 
+during the zero speed horizon when it could not 
+exploit the ram air pressure. A blow to the effect of 
+this large input was the direct potential visibility of 
+the compressor blades to the radar. Among the 
+possibilities of attenuation were the variable moments 
+designed to lock the received radio waves without 
+adversely affecting the air flow.  
+In 1996, the United States Department of Defense 
+awarded Boeing a four-year contract for the Joint Strike 
+Fighter (JSF) demonstration phase. The goal was to 
+develop tactical for US Air Force, Marina and Marina, 
+Royal Navy and Royal Air Force.  
+Boeing had to build conceptual demonstration 
+aircraft to provide a community in operating, designing 
+and manufacturing variants; with direct propulsion for 
+short and vertical landing (STOVL), which crosses and 
+crosses vertical and conventional flight; and the ability to 
+approach a carrier at low speeds. Boeing has assembled 
+two conception plans, X-32A and X-32B, at the plant in 
+Palmdale, California.  
+On September 18, 2000, the X-32A made the first 
+flight from Palmdale to the airbase at Edwards, 
+California. The X-32A demonstrated the conventional 
+take-off and landing characteristics for the Air Force, 
+making 66 flights over four months of testing. The 
+flights validated the aircraft handling qualities for fuel 
+refueling, weapons operations and supersonic flight.  
+The X-32B made the first flight on March 29, 2001. 
+It carried out 78 four-month test flights, including a 
+transcontinental flight from Edwards to Patuxent River 
+Naval, Md. The aircraft successfully passed from and 
+from STOVL Flight Mode using a straight line to 
+redirect the direction from the nozzle cruise nozzle to the 
+nozzles. The X-32B has demonstrated its ability to move 
+and make vertical landings.  
+Flight trials concluded in July 2001, demonstrated 
+that actual flight performance was accompanied by 
+computer predictions, based on simulation years, an 
+achievement that has not been achieved so far.  
+Although not selected for full JSF development, 
+Boeing considered its involvement in the competition as 
+a strategic investment. The program has produced many 
+advances in stealth technology and in designing and 
+manufacturing methods. These achievements have been 
+applied to other Boeing programs, including the F/A-
+18E/F Super Hornet and the XCA-45A Unmanned 
+Unmanned Vehicle or UCAV (Rulkov et  al., 2016; 
+Agarwala, 2016; Babayemi, 2016; Gusti and Semin, 
+2016; Mohamed et  al., 2016; Wessels and Raad, 2016; 
+Rajput et al., 2016; Rea and Ottaviano, 2016; Zurfi and 
+Zhang, 2016a-b; Zheng and Li, 2016; Buonomano et al., 
+2016 a-b; Faizal et  al., 2016; Ascione et  al., 2016; 
+Elmeddahi et al., 2016; Calise et al., 2016; Morse et al., 
+2016; Abouobaida, 2016; Rohit and Dixit, 2016; 
+Kazakov et  al., 2016; Alwetaishi, 2016; Riccio et  al., 
+2016a-b; Iqbal, 2016; Hasan and El-Naas, 2016; Al-
+Hasan and Al-Ghamdi, 2016; Jiang et  al., 2016; 
+Sepúlveda, 2016; Martins et  al., 2016; Pisello et  al., 
+2016; Jarahi, 2016; Mondal et al., 2016; Mansour, 2016; 
+Qadi et al., 2016b; Campo et al., 2016; Samantaray et al., 
+2016; Malomar et  al., 2016; Rich and Badar, 2016; 
+Hirun, 2016; Bucinell, 2016; Nabilou, 2016b; Barone et al., 
+2016; Chisari and Bedon, 2016; Bedon and Louter, 
+2016; Santos and Bedon, 2016; Minghini et  al., 2016; 
+Bedon, 2016; Jafari et  al., 2016; Chiozzi et  al., 2016; 
+Orlando and Benvenuti, 2016; Wang and Yagi, 2016; 
+Obaiys et al., 2016; Ahmed et al., 2016; Jauhari et al., 
+2016; Syahrullah and Sinaga, 2016; Shanmugam, 2016; 
+Jaber and Bicker, 2016; Wang et  al., 2016; Moubarek 
+and Gharsallah, 2016; Amani, 2016; Shruti, 2016;    
+León et  al., 2016; Mohseni and Tsavdaridis, 2016;    
+Abu-Lebdeh et  al., 2016; Serebrennikov et  al., 2016; 
+Budak et  al., 2016; Augustine et  al., 2016; Jarahi and 
+Seifilaleh, 2016; Nabilou, 2016a; You et  al., 2016;   
+Qadi et  al., 2016a; Rama et  al., 2016; Sallami et  al., 
+2016; Huang et al., 2016; Ali et al., 2016; Kamble and 
+Kumar, 2016; Saikia and Karak, 2016; Zeferino et  al., 
+2016; Pravettoni et al., 2016; Bedon and Amadio, 2016; 
+Chen and Xu, 2016; Mavukkandy et  al., 2016;     
+Yeargin et  al., 2016; Madani and Dababneh, 2016; 
+Alhasanat et al., 2016; Elliott et al., 2016; Suarez et al., 
+2016; Kuli et  al., 2016; Waters et  al., 2016;  
+Montgomery et al., 2016; Lamarre et al., 2016; Petrescu, 
+2012b; Aversa et  al., 2017 a-b, 2016 a-o; Petrescu and 
+Petrescu, 2016, 2015 a-e, 2014 a-i, 2013 a-g, 2012, 2011, 
+2005 a-d, 2003, 2002 a-b, 2000 a-b, 1997 a-c, 1995 a-b; 
+Petrescu, 2018, 2015 a-b, 2012; Petrescu et  al., 2016, 
+2017 a-d, 2018 a-d; Petrescu and Calautit, 2016 a-b; 
+Daud et  al., 2008; Taher et  al., 2008; Zulkifli et  al., 
+2008; Pourmahmoud, 2008; Pannirselvam et  al., 2008; 
+Ng et al., 2008; El-Tous, 2008; Akhesmeh et al., 2008; 
+Nachiengtai et  al., 2008; Moezi et  al., 2008; Boucetta, 
+2008; Darabi et  al., 2008; Semin and Bakar, 2008; Al-
+Electronic copy available at: https://ssrn.com/abstract=3417339
+
+Relly Victoria V. Petrescu / Journal of Aircraft and Spacecraft Technology 2019, 3 (1): 38.54 
+DOI: 10.3844/jastsp.2019.38.54 
+ 
+40 
+Abbas, 2009; Abdullah et  al., 2009; Abu-Ein, 2009; 
+Opafunso et al., 2009; Semin et al., 2009a-c; Zulkifli et al., 
+2009; Ab-Rahman et  al., 2009; Abdullah and Halim, 
+2009; Zotos and Costopoulos, 2009; Feraga et al., 2009; 
+Bakar et al., 2009; Cardu et al., 2009; Bolonkin, 2009a-b; 
+Nandhakumar et al., 2009; Odeh et al., 2009; Lubis et al., 
+2009; Fathallah and Bakar, 2009; Marghany and 
+Hashim, 2009; Kwon et  al., 2010; Aly and Abuelnasr, 
+2010; Farahani et  al., 2010; Ahmed et  al., 2010; 
+Kunanoppadon, 2010; Helmy and El-Taweel, 2010; 
+Qutbodin, 2010; Pattanasethanon, 2010; Fen et al., 2011; 
+Thongwan et  al., 2011; Theansuwan and 
+Triratanasirichai, 2011; Smadi, 2011; Tourab et  al., 
+2011; Raptis et al., 2011; Momani et al., 2011; Ismail et al., 
+2011; Anizan et al., 2011; Tsolakis and Raptis, 2011; 
+Abdullah et al., 2011; Kechiche et al., 2011; Ho et al., 
+2011; Rajbhandari et  al., 2011; Aleksic and Lovric, 
+2011; Kaewnai and Wongwises, 2011; Idarwazeh, 
+2011; Ebrahim et  al., 2012; Abdelkrim et  al., 2012; 
+Mohan et al., 2012; Abam et al., 2012; Hassan et al., 
+2012; Jalil and Sampe, 2013; Jaoude and El-Tawil, 
+2013; Ali and Shumaker, 2013; Zhao, 2013; El-
+Labban et  al., 2013; Djalel et  al., 2013; Nahas and 
+Kozaitis, 2014).  
+Materials and Methods 
+The Boeing X-32 (Fig. 1) is a demonstration jet 
+designed for the Joint Strike Fighter contest.  
+He lost the Lockheed Martin X-35 demonstrator, 
+which was further developed in the Lockheed Martin F-
+35 Lightning II.  
+Boeing's competitive advantage has been to provide 
+considerably lower costs of production and lifecycle by 
+minimizing variations between different versions of the 
+JSF. Therefore, the X-32 was designed around a delta 
+wing of the carbon fiber composite.  
+The wing had an opening of 9.15 m, with a current of 
+55 degrees on the front edge and could have up to 20,000 
+kilograms of fuel.  
+The purpose of the large inclination angle was to 
+allow the use of a thick wings section while obtaining 
+limited transonic aerodynamic resistances and a good 
+angle for the corresponding antenna equipment installed 
+in the wing. Wings would be a challenge to be done.  
+The cost competition strategy also led Boeing to 
+choose a direct traction vectoring system for the short-
+term STOVL landing requirement, as this would 
+require the addition of a traction vectoring module 
+around the main engine.  
+However, this choice requires the engine to be 
+mounted directly behind the cockpit and changing the 
+center of gravity before being ordinarily positioned in 
+the jets of the plane (behind the plane) to allow neutral 
+movement of the attitude. Boeing proposed in the 1960s 

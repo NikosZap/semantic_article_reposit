@@ -21,7 +21,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
     <main>
         <div class="container mt-5">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h2>User Management</h2>
+                <h2 class="display-6">User Management</h2>
                 <button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
             </div>
 

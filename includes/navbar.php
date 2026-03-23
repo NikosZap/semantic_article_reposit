@@ -29,7 +29,6 @@
                     
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/insert_manual_publication.php">Insert New Publication Manually</a></li>
-                            <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/new_auto_publication.php">New Publication Automatically</a></li>
                             <?php if( $_SESSION['user']['role'] === 'Admin'){ ?>
                             <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/manage_publications.php">Manage Publications</a></li>                   
                             <li><a class="dropdown-item" href="<?php echo BASE_URL;?>pages/approve_publications.php">Approve Publications<?php  if(countPendingPublications() > 0): ?>

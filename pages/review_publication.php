@@ -39,6 +39,7 @@ $fieldLabels = [
     'isApproved' => 'Approval Status',
     'journal' => 'Journal',
     'volume' => 'Volume',
+    'number' => 'Number',
     'pages' => 'Pages',
     'publisher' => 'Publisher',
     'isbn' => 'ISBN',
@@ -58,7 +59,9 @@ $skipKeys = [
     'hasUploaded',
     'abstract',
     'hasAuthor',
-    'hasKeyword'
+    'hasKeyword',
+    'mentions',
+    'hasFullText'
 ];
 
 function extractSuffix($uri)
@@ -130,14 +133,14 @@ $userMeta = [
                             <th><?= $fieldLabels[$key] ?? htmlspecialchars($key) ?></th>
                             <td>
                                 <?php if ($key === 'filePath'): ?>
-                                    <?php $filePath = BASE_PATH . 'pending/' . $value; ?>
-                                    <a
-                                        class="btn btn-outline-primary"
-                                        onclick="openPdfModal('../pending/<?= htmlspecialchars($value) ?>')"
-                                    >
+                                    <?php 
+                                        $pdfFolder = (($publication['isApproved'] ?? 'false') === 'true') ? 'uploads/' : 'pending/';
+                                        $filePath = BASE_PATH . $pdfFolder . $value;
+                                        $pdfUrl = '../' . $pdfFolder . $value;   ?>
+                                    
+                                    <a class="btn btn-outline-primary" onclick="openPdfModal('<?= htmlspecialchars($pdfUrl) ?>')" >
                                         View PDF <i class="bi bi-file-earmark-pdf"></i>
                                     </a>
-
                                 <?php elseif ($key === 'type'): ?>
                                     <?= htmlspecialchars(extractSuffix($value)) ?>
 
@@ -234,7 +237,7 @@ $userMeta = [
 
             <div class="d-flex gap-2 mt-3 justify-content-between">
                 <?php if (($publication['isApproved'] ?? '') === 'false'): ?>
-                    <button onclick="handleAction('approve')" class="btn btn-success flex-fill">
+                    <button id="approveBtn" onclick="handleAction('approve')" class="btn btn-success flex-fill">
                         <i class="bi bi-check-circle"></i> Approve
                     </button>
 
@@ -242,8 +245,8 @@ $userMeta = [
                         onclick="handleAction('crossref')"
                         class="btn btn-primary flex-fill"
                         data-bs-toggle="modal"
-                        data-bs-target="#crossrefModal"
-                    >
+                        data-bs-target="#crossrefModal">
+
                         <i class="bi bi-journal-check"></i> CrossRef
                     </button>
 
@@ -251,8 +254,8 @@ $userMeta = [
                         onclick="handleAction('reject')"
                         class="btn btn-danger flex-fill"
                         data-bs-toggle="modal"
-                        data-bs-target="#rejectModal"
-                    >
+                        data-bs-target="#rejectModal">
+
                         <i class="bi bi-trash"></i> Reject
                     </button>
                 <?php elseif (($publication['isApproved'] ?? '') === 'true'): ?>
@@ -282,6 +285,7 @@ $userMeta = [
 
     if (rejectBtn) {
         rejectBtn.addEventListener('click', function () {
+            
             const reason = (rejectReason?.value || '').trim();
 
             if (!reason) {
@@ -306,6 +310,7 @@ $userMeta = [
                     action: 'reject',
                     uri: "<?= $uri ?>",
                     reason: reason,
+                    filePath: "<?= addslashes($filePath) ?>",
                     title: "<?= addslashes($title) ?>"
                 })
             })
@@ -328,6 +333,8 @@ $userMeta = [
 
         function handleAction(action) {
             
+            console.log("handleAction called with:", action);
+            
             window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -341,11 +348,10 @@ $userMeta = [
                 modal.show();
                 return;
             }
-
             if (action === 'approve') {
-               if (action === 'approve') {
+               
                   setLoadingState('approveBtn', 'Approving...');
-                }
+                
 
                 document.getElementById('message').innerHTML = `
                   <div class="alert alert-info d-flex align-items-center">
@@ -358,10 +364,10 @@ $userMeta = [
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
                         action,
-                        uri: "<?= $uri ?>",
-                        title: "<?= addslashes($title) ?>",
-                        filePath: "<?= addslashes($filePath) ?>",
-                        abstract: "<?= addslashes($abstract) ?>"
+                        uri: <?= json_encode($uri, JSON_UNESCAPED_UNICODE) ?>,
+                        title: <?= json_encode($title, JSON_UNESCAPED_UNICODE) ?>,
+                        filePath: <?= json_encode($filePath, JSON_UNESCAPED_UNICODE) ?>,
+                        abstract: <?= json_encode($abstract, JSON_UNESCAPED_UNICODE) ?>
                     })
                 })
                     .then(res => res.json())
@@ -385,6 +391,8 @@ $userMeta = [
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
                         action,
+                        filePath: "<?= addslashes($filePath) ?>",
+                        title: "<?= addslashes($title) ?>",
                         uri: "<?= $uri ?>"
                     })
                 })

@@ -1,0 +1,286 @@
+The Boeing  737 MAX  Saga: Lessons  for Software  Organizations In March 2019, Boeing 737 MAX 8 and MAX 9 aircraft were grounded in more than 41 countries, including the United States, Canada, and China, after an Ethiopian Airlines crash resulted in the deaths of everyone on board. This was the second deadly crash involving a Boeing 737 MAX. A Lion Air (Indonesia) Boeing 737 MAX 8 crashed in 
+October 2018, also killing everyone on board. As a result of these two incidents, Boeing paused delivery of these planes, although production continues. The Boeing 737 MAX story provides an alarming case study on the interrelationships between software and systems engineering, human factors, corporate behavior, and customer service. Although both crashes are still under investigation, and definitive answers are forthcoming, this article examines the events from the perspectives of safety and software quality and 
+proposes five lessons practitioners can apply to their own projects to mitigate risk. 4 SQP VOL. 21, NO. 3/© 2019, ASQ
+SAFETY AND AUTOMATION
+The Boeing 
+737 MAX 
+Saga: Lessons 
+for Software 
+Organizations
+PHILLIP JOHNSTON AND ROZI HARRIS
+INTRODUCTION
+The Boeing 737 is the best-selling aircraft in the world, with more 
+than 15,000 planes sold. After Airbus announced an upgrade 
+to the A320 that provided 14 percent better fuel economy per 
+seat, Boeing responded with the 737 MAX. It was marketed as an 
+upgrade to the famed 737 design, using larger engines to match 
+the improved fuel efficiency from Airbus. Boeing claimed the 
+737 MAX was so similar to the original 737 that pilots already 
+licensed for this aircraft would not need additional training and 
+simulator time for the 737 MAX.
+Because Boeing increased the engine size to improve fuel 
+efficiency, the engines had to be positioned higher on the wings 
+and slightly forward of the old position. Higher nose landing gear 
+was also added to provide the same ground clearance. The larger 
+engines and new positions destabilized the aircraft, but not under 
+all conditions. The engine housings are designed so they do not 
+generate lift in normal flight. However, if the airplane is in a steep 
+pitch (for example, takeoff or a hard turn), the engine housings 
+generate more lift than on previous 737 models. Depending on 
+the angle, the airplane's inertia can cause the plane to over-swing 
+into a stall.
+To address increased stall risk, Boeing developed a software 
+solution called the maneuvering characteristics augmentation 
+system (MCAS), which is part of the flight management computer 
+software. No other commercial plane uses software like it, though 
+Boeing uses a similar system on the KC-46 Pegasus military 
+aircraft. The MCAS takes readings from the angle of attack (AoA) 
+sensor to determine how the plane’s nose is pointed relative to 
+In March 2019, Boeing 737 MAX 8 and 
+MAX 9 aircraft were grounded in more 
+than 41 countries, including the United 
+States, Canada, and China, after an Ethiopian 
+Airlines crash resulted in the deaths of every
+-
+one on board. This was the second deadly 
+crash involving a Boeing 737 MAX. A Lion 
+Air (Indonesia) Boeing 737 MAX 8 crashed in 
+October 2018, also killing everyone on board. 
+As a result of these two incidents, Boeing 
+paused delivery of these planes, although 
+production continues. The Boeing 737 MAX 
+story provides an alarming case study on the 
+interrelationships between software and sys
+-
+tems engineering, human factors, corporate 
+behavior, and customer service. Although 
+both crashes are still under investigation, 
+and definitive answers are forthcoming, this 
+article examines the events from the per
+-
+spectives of safety and software quality and 
+proposes five lessons practitioners can apply 
+to their own projects to mitigate risk.
+KEY WORDS 
+complex systems, risk, risk mitigation, safety, 
+software quality, systems thinking
+
+www.asq.org  5
+The Boeing 737 MAX Saga: Lessons for Software Organizations 
+the oncoming air. MCAS monitors airspeed, altitude, 
+and AoA. When the software determines the angle of 
+attack is too great, it automatically performs two actions 
+to prevent a stall:
+1. 	Command the aircraft’s trim system to 
+adjust the rear stabilizer and lower the nose.
+2. 	Push the pilot’s yoke in the down direction.
+The movement of the rear stabilizer varies with the 
+speed of the plane; it moves more at slower speeds and 
+less at higher speeds. By default, the MCAS is active when 
+autopilot is off and AoA is high or when the flaps are up. 
+The MCAS will deactivate once the AoA measurement 
+is below the target threshold, or the pilot overrides the 
+system with a manual trim setting, or the pilot engages 
+the CUTOUT switch (which disables automatic control 
+of the stabilizer trim). If the pilot overrides the MCAS 
+with trim controls, it will activate again within five 
+seconds after the trim switches are released if the sensors 
+still detect an AoA over the threshold. The only way to 
+completely disable the system is to use the CUTOUT 
+switch and take manual trim control.
+Boeing designed the MCAS so it would not turn off 
+in response to a pilot manually pulling the yoke. This 
+would defeat the original purpose of the MCAS, which 
+is to prevent the pilot from inadvertently entering a 
+stall angle. This is significant because a pilot’s natural 
+reaction to a plane that is pitching downward is to pull 
+on the yoke and apply a counter-force to correct for 
+the unexpected motion. For normal autopilot trim or 
+runaway manual trim, pulling on the yoke does what is 
+expected and triggers trim hold sensors.
+People are under the impression that the column, 
+yoke, steering wheel, gas pedal, and brakes fully control 
+the response of the mechanical system. This is an 
+illusion. Modern aircraft, like most modern cars, are 
+“fly-by-wire.” Gone are the days of direct mechanical 
+connections involving cables and hydraulic lines. Instead, 
+most of the connections are electrical and mediated by 
+a computer. In many ways, users are being continually 
+“guarded” by the computers that mediate these con-
+nections. It can be a terrible shock when the machine 
+fights against the user.
+THE SUSPECTED PROBLEM
+The MCAS is suspected to have played a significant role 
+in both crashes. During Lion Air flight JT610, MCAS 
+repeatedly forced the plane’s nose down, even when the 
+plane was not stalling. The pilots tried to correct it by 
+pointing the nose higher, but the system kept pushing 
+it down. This up-and-down oscillation happened 21 
+times before the crash occurred. The Ethiopian Airlines 
+crash showed a similar pattern. The company’s CEO 
+believes the MCAS was active during the Ethiopian 
+Airlines crash.
+If the plane was not actually stalling, or even close 
+to a stall angle, why was MCAS engaged? AoA sensors 
+can be unreliable, a factor suggested in the Lion Air 
+crash, where there was a 20-degree discrepancy in 
+the plane’s two AoA sensor readings. The MCAS only 
+reads the AoA sensor on its active corresponding side 
+of the plane and does not cross-check the other sensor 
+to confirm the reading. If a sensor malfunctions, the 
+MCAS has no way to know.
+If the MCAS was enabled erroneously, why did the 
+pilots not disable the system? This is where the situ-
+ation becomes muddled. The likeliest explanation for 
+the Lion Air pilots is that they had no idea the MCAS 
+existed, that it was active, or how they could disable it. 
+MCAS is a unique piece of software among commercial 
+airplanes; it only runs on the 737 MAX. Boeing sold 
+and certified the 737 MAX as a minor upgrade to the 
+737 body, which would not require pilots to re-certify 
+or spend time training in simulators. As a result, it 
+seems the existence of the MCAS was largely kept quiet.
+After the Lion Air crash, Boeing released a bulletin 
+providing details on how the MCAS system worked 
+and how to counteract it in case of malfunction. The 
+company also stated that emergency procedures that 
+applied to earlier models would have corrected the 
+problems observed in the Lion Air crash. The Lion 
+Air pilots, though, likely fought against an automated 
+system that was working against them. The system is 
+most likely to activate at low altitudes, such as during 
+takeoff, leaving the pilots little time to react. The 
+Ethiopian Airlines pilots had heard about MCAS thanks 
+to the bulletin, although one pilot commented, “We 
+know more about the MCAS system from the media than 
+from Boeing” (Fick and Neely 2019). Ethiopian Airlines 
+installed one of the first simulators for the 737 MAX, 
+but the pilot of the doomed flight had not yet received 
+training in the simulator. All the authors know at the 
+time of this writing is that the pilot reported “flight 
+control problems” and wanted to return to the airport, 
+and that the second crash resembled the first. They 
+must wait for the preliminary report for more details.
+
+6 SQP VOL. 21, NO. 3/© 2019, ASQ
+The Boeing 737 MAX Saga: Lessons for Software Organizations
+annunciations related to “poor training and even 
+poorer documentation.”
+“This is very poorly explained. I have no idea 
+what switch the preflight is talking about, nor do I 
+understand even now what this switch does. I think 
+this entire setup needs to be thoroughly explained 
+to pilots. How can a captain not know what switch 
+is meant during a preflight setup? Poor training 
+and even poorer documentation, that is how. It is 
+not reassuring when a light cannot be explained 
+or understood by the pilots, even after referencing 
+their flight manuals. It is especially concerning 
+when every other MAINT annunciation means 
+something bad.”
+ACN 1555013: 737 MAX First Officer reported 
+feeling unprepared for first flight in the MAX, citing 
+inadequate training.
+“I had my first flight on the MAX… My post 
+flight evaluation is that we lacked the knowledge 
+to operate the aircraft in all weather and aircraft 
+states safely. The instrumentation is completely 
+different - my scan was degraded, slow and labored…
+we were unable to navigate to systems pages and 
+lacked the knowledge of what systems information 
+was available to us in the different phases of flight. 
+Our weather radar competency was inadequate to 
+safely navigate significant weather on that dark and 
+stormy night. These are just a few issues that were 
+not addressed in our training.”
+Rushed Release
+Tight deadlines and rushed releases are not uncommon. 
+When presented with a contract deadline or other similar 
+requirement, the tendency can be to cut corners, make 
+concessions, and ignore or mask problems — all to release 
+a product by a specific date so the company does not lose 
+business. At times like this, problems can be downplayed, 
+and when they are observed by the customer, the work 
+is deferred to a patch. 
+Apparently, the 737 MAX project was subject to the same 
+treatment. Gates (2019) reported the 737 MAX was nine 
+months behind the new A320neo. Boeing managers had 
+prodded engineers to speed up the production process, and 
+if there wasn't time for FAA staff to complete a review, FAA 
+managers either signed off on the documents themselves or 
+delegated the review to Boeing. The FAA explained this by 
+noting a lack of funding and resources to carry out due diligence. 
+COMPOUNDING FACTORS
+The initial analyses suggest that the MCAS software 
+system was poorly designed and caused two plane 
+crashes. But this is a complex situation, involving many 
+people and organizations. In addition, other pilots had 
+successfully struggled against the MCAS system and 
+safely guided their passengers to their destination. 
+Four contributing factors, observed in the Boeing case, 
+have also been observed in other catastrophic software 
+failures. They are: poor documentation, rushed release, 
+delayed software updates, and humans out of the loop.
+Poor Documentation
+After the Lion Air crash, pilots complained that they 
+had not been told about the MCAS or trained in how to 
+respond when the system engages unexpectedly. This 
+lack of documentation and training is especially danger-
+ous when automated systems are involved and previous 
+training does not fully apply. Tragically, black box 
+recordings indicate Lion Air pilots frantically attempted 
+to find answers in the manuals before they crashed.
+Pilots take their documentation extremely seriously. 
+Following are three reports from the Aviation Safety 
+Reporting System (ASRS), which is run by NASA to 
+provide pilots and crews with a way to confidentially 
+report safety issues. Three reports highlighted next focus 
+on the insufficiency of Boeing 737 MAX documentation.
+ACN 1593017: 737 MAX Captain expressed concern 
+that some systems such as the MCAS are not fully 
+described in the aircraft flight manual. 
+“I think it is unconscionable that a manufac-
+turer, the FAA, and the airlines would have pilots 
+flying an airplane without adequately training, or 
+even providing available resources and sufficient 
+documentation to understand the highly complex 
+systems that differentiate this aircraft from prior 
+models. The fact that this airplane requires such 
+jury rigging to fly is a red flag. Now we know the 
+systems employed are error prone--even if the pilots 
+aren’t sure what those systems are, what redundan-
+cies are in place, and failure modes. I am left to 
+wonder: what else don’t I know? The flight manual 
+is inadequate and almost criminally insufficient. 
+All airlines that operate the MAX must insist that 
+Boeing incorporate ALL systems in their manuals.”
+ACN 1593021: 737 MAX Captain reported con-
+fusion regarding switch function and display
+
+www.asq.org  7
+The Boeing 737 MAX Saga: Lessons for Software Organizations
+and the initial NTSC report on the Lion Air crash (ASN 
+2018) reveals that a single faulty AoA sensor triggered 
+the MCAS. If a pilot or co-pilot noticed a strange AoA 
+reading (such as a 20-degree difference between the two 
+AoA sensors), he or she could perform a cross check by 
+glancing at the reading on the other side of the plane. 
+Additional sensors and gauges can be read to corroborate 
+or disprove a strange AoA reading, and visual corrobora-
+tion is also possible. What is even more troubling is that 
+the system's behavior was opaque to the pilots. According 
+to Boeing, the MCAS is (counterintuitively) only active 
+in manual flight mode and is disabled under autopilot. 
+MCAS controls the trim without notifying the pilots it 
+is doing so.
+Boeing did provide two optional features that would 
+provide more insight into the situation: 1) an AoA indica-
+tor, which displays the sensor readings; and 2) an AoA 
+disagree light, which lights up if the two AoA sensors 
+disagree. Because these were optional and carried an 
+additional cost, many carriers did not elect to buy them. 
+Computers can only perform pre-programmed 
+actions, and a computer cannot take in additional data 
+it was not programmed to read. Despite advances in 
+deep learning, humans remain superior to computers 
+in synthesizing complex info
