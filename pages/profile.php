@@ -253,7 +253,7 @@ if ($hasOrcid) {
                                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
                                         <div>
                                             <h5 class="mb-1">
-                                                <a href="<?php echo BASE_URL ;?>/publication.php?uri=<?= urlencode($pub['uri']) ?>" class="text-decoration-none publication-title-link">
+                                                <a href="<?php echo BASE_URL ;?>/publication.php?uri=<?= base64_encode($pub['uri']) ?>" class="text-decoration-none publication-title-link">
                                                     <?= htmlspecialchars($pub['title']) ?>
                                                 </a>
                                             </h5>
@@ -308,7 +308,7 @@ if ($hasOrcid) {
                                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
                                         <div>
                                             <h5 class="mb-1">
-                                                <a href="<?php echo BASE_URL ;?>/publication.php?uri=<?= urlencode($pub['uri']) ?>"
+                                                <a href="<?php echo BASE_URL ;?>/publication.php?uri=<?= base64_encode($pub['uri']) ?>"
                                                 class="text-decoration-none text-dark fw-semibold">
                                                     <?= htmlspecialchars($pub['title']) ?>
                                                 </a>

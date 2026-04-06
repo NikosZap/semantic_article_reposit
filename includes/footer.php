@@ -9,7 +9,6 @@
             </a>
 
             <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
                 <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="<?php echo BASE_URL;?>pages/about.php">About</a></li>
             </ul>
         </footer>

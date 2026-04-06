@@ -44,7 +44,10 @@ $additionalFields = [
     "edition" => $_POST['edition'] ?? '',
     "publisher" => $_POST['publisher'] ?? '',
     "isbn" => $_POST['isbn'] ?? '',
-    "school" => $_POST['school'] ?? ''
+    "school" => $_POST['school'] ?? '',
+    "issn" => $_POST['issn'] ?? '',
+    "department" => $_POST['department'] ?? '',
+    "thesisType" => $_POST['thesisType'] ?? '',
 ];
 
 if (isDuplicatePublication($type, $doi, $title, $pubDate, $authors, $additionalFields)) {
@@ -99,6 +102,11 @@ if (!$type || !$title || !$pubDate || !$pdfFilePath) {
     exit;
 }
 
+if (empty($authors)) {
+    echo json_encode(["status" => "error", 'message' => 'Missing Author!']);
+    exit;
+}
+
 
 $pubURI = insertManualPublication($type, $doi, $title, $pubDate, $pdfFilePath, $abstract, $additionalFields);
 
@@ -107,6 +115,14 @@ if ( $pubURI ) {
     $allSuccess = true;
 
     foreach ($authors as $author) {
+
+        $orcid = trim($author['orcid'] ?? '');
+        $firstname = trim($author['firstname'] ?? '');
+        $lastname = trim($author['lastname'] ?? '');
+
+        if (!$orcid && !$firstname && !$lastname) {
+            continue; 
+        }
 
         $authorURI = getOrCreateAuthorURI($author);
        
@@ -169,18 +185,10 @@ function isDuplicatePublication($type, $doi, $title, $pubDate, $authors, $additi
                 return true;
             }
 
-            return publicationExistsByTitleAndPublisher(
-                $title,
-                $additionalFields['bookPublisher'] ?? '',
-                $pubDate
-            );
+            return publicationExistsByTitleAndPublisher( $title,  $additionalFields['bookPublisher'] ?? '', $pubDate );
 
         case 'Thesis':
-            return publicationExistsByTitleAndSchool(
-                $title,
-                $additionalFields['school'] ?? '',
-                $pubDate
-            );
+            return publicationExistsByTitleAndSchool( $title,  $additionalFields['school'] ?? '', $pubDate );
 
         default:
             return false;

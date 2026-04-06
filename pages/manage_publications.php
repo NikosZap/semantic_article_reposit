@@ -2,7 +2,7 @@
 require_once dirname(__DIR__) . '/config.php';
 require_once BASE_PATH . 'includes/pub_sparql_queries.php';
 
-if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'Admin') {
+if ( empty($_SESSION['user']['is_logged_in']) || !in_array($_SESSION['user']['role'], ['Admin', 'Researcher'])) {
     $_SESSION['unauthorized'] = true;
     header("Location: ../pages/login.php");
     exit;
@@ -25,8 +25,9 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
 
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
             <h2 class="display-6">Publication Management</h2>
-            <button id="toggleFilters" class="btn btn-secondary btn-sm">Show Filters</button>
-        </div>
+            <button id="toggleFilters" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-funnel"></i> Show Filters
+            </button></div>
 
         <div id="message"></div>
 
@@ -74,6 +75,14 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                     </div>
                 </div>
 
+                <div class="mb-3" id="scopeFilter">
+                    <label for="onlyMine">Scope</label>
+                    <select id="onlyMine" name="onlyMine" class="form-select">
+                        <option value="false">All Publications</option>
+                        <option value="true">My Publications</option>
+                    </select>
+                </div>
+
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Apply Filters</button>
                 </div>
@@ -82,7 +91,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
 
                 <thead>
                     <tr>
@@ -91,6 +100,7 @@ if (empty($_SESSION['user']['is_logged_in']) || $_SESSION['user']['role'] !== 'A
                         <th>Category</th>
                         <th>Publication Date</th>
                         <th>Upload Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -119,12 +129,14 @@ function loadPublications(page = 1, callback = null) {
     let pubDateTo = $("#pubDateTo").val();
     let uploadDateFrom = $("#uploadDateFrom").val();
     let uploadDateTo = $("#uploadDateTo").val();
+    let onlyMine = $("#onlyMine").length ? $("#onlyMine").val() : "false";
 
     $.ajax({
-        url: "../backend/fetch_systems_publications.php",
+        url: "../backend/fetch_publications.php",
         method: "POST",
-        data: { page, search, type, pubDateFrom, pubDateTo, uploadDateFrom, uploadDateTo },
+        data: { page, search, type, pubDateFrom, pubDateTo, uploadDateFrom, uploadDateTo, onlyMine },
         dataType: "json",
+   
 
         success: function(response) {
 
@@ -141,22 +153,32 @@ function loadPublications(page = 1, callback = null) {
 
                 response.publications.forEach(pub => {
 
-                    const row = `
-                                <tr>
-                                    <td>${pub.title}</td>
-                                    <td>${pub.doi}</td>
-                                    <td>${pub.type}</td>
-                                    <td>${pub.pubDate}</td>
-                                    <td>${pub.uploadDate}</td>
-                                    <td>
-                                        <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
-                                        <i class="bi bi-eye"></i></button>
-                                    </td>
-                                </tr>`;
+                let statusBadge = `<span class="badge bg-secondary">Unknown</span>`;
 
-                    tbody.append(row);
+                if (pub.isApproved == 1 || pub.isApproved === "true") {
+                    statusBadge = `<span class="badge bg-success">Approved</span>`;
+                } else {
+                    statusBadge = `<span class="badge bg-warning text-dark">Pending</span>`;
+                }
 
-                });
+
+                const row = `
+                    <tr>
+                        <td>${pub.title}</td>
+                        <td>${pub.doi}</td>
+                        <td>${pub.type}</td>
+                        <td>${pub.pubDate}</td>
+                        <td>${pub.uploadDate}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <button onclick="reviewPublication('${pub.uri}')" class="btn btn-primary btn-sm">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+
+                tbody.append(row);
+            });
             }
 
             updatePagination(response.totalPages, response.currentPage);
@@ -174,14 +196,44 @@ function loadPublications(page = 1, callback = null) {
 
 function updatePagination(totalPages, currentPage) {
 
-    let paginationHtml = `
-<button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage == 1 ? "disabled" : ""}>Back</button>
-<span class="mx-3">Page ${currentPage} / ${totalPages}</span>
-<button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage == totalPages ? "disabled" : ""}>Next</button>
-`;
+    if (totalPages <= 1) {
+        $("#pagination").html("");
+        return;
+    }
 
-    $("#pagination").html(paginationHtml);
+    let html = `<nav><ul class="pagination justify-content-center mt-4">`;
 
+    html += `
+        <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+            <a class="page-link text-dark" href="#" onclick="changePage(${currentPage - 1}); return false;">
+                Back
+            </a>
+        </li>
+    `;
+
+    for (let i = 1; i <= totalPages; i++) {
+        html += `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link ${i === currentPage ? 'bg-dark text-white border-dark' : 'text-dark'}"
+                   href="#"
+                   onclick="changePage(${i}); return false;">
+                    ${i}
+                </a>
+            </li>
+        `;
+    }
+
+    html += `
+        <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+            <a class="page-link text-dark" href="#" onclick="changePage(${currentPage + 1}); return false;">
+                Next
+            </a>
+        </li>
+    `;
+
+    html += `</ul></nav>`;
+
+    $("#pagination").html(html);
 }
 
 function changePage(newPage) {
@@ -202,7 +254,7 @@ $("#filterForm").on("submit", function(e) {
 
 
 function reviewPublication(uri) {
-    window.location.href = `review_publication.php?uri=${encodeURIComponent(uri)}`;
+    window.location.href = `review_publication.php?uri=${btoa(uri)}`;
 }
 
 function showMessage(type, message) {
@@ -221,30 +273,38 @@ function showMessage(type, message) {
     }, 5000);
 }
 
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get("message");
+        const userRole = "<?= $_SESSION['user']['role'] ?>";
 
-    loadPublications(currentPage, () => {
-
-        if (msg) {
-            showMessage("success", decodeURIComponent(msg));
-            window.history.replaceState({}, document.title, window.location.pathname);
+        if (userRole !== "Admin") {
+            $("#scopeFilter").remove();
         }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get("message");
+
+        loadPublications(currentPage, () => {
+            if (msg) {
+                showMessage("success", decodeURIComponent(msg));
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
 
     });
 
-});
+    $("#toggleFilters").on("click", function() {
+        $("#filterSection").slideToggle(200);
 
-$("#toggleFilters").on("click", function () {
+        const current = $(this).text().trim();
 
-    $("#filterSection").slideToggle(200);
-
-    const current = $(this).text();
-    $(this).text(current === "Show Filters" ? "Hide Filters" : "Show Filters");
-
-});
+        $(this).html(
+            current.includes("Show")
+            ? '<i class="bi bi-x"></i> Hide Filters'
+            : '<i class="bi bi-funnel"></i> Show Filters'
+        );
+    });
+    
 
 </script>
 

@@ -6,9 +6,20 @@ require_once BASE_PATH . 'includes/sparql_queries.php';
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $results = [];
 
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$limit = 5;
+$start = ($page - 1) * $limit;
+$totalResults = 0;
+$totalPages = 0;
+$solrError = false;
+
 if ($q !== '') {
-    $url = 'http://localhost:8983/solr/sem_text_core/select?q=fulltext_content:' . urlencode($q) . '&wt=json';
-    $response = @file_get_contents($url);
+
+    $url = 'http://localhost:8983/solr/sem_text_core/select?q=fulltext_content:' 
+    . urlencode($q) 
+    . '&start=' . $start 
+    . '&rows=' . $limit 
+    . '&wt=json';$response = @file_get_contents($url);
 
     if ($response === false) {
         $solrError = true;
@@ -16,6 +27,9 @@ if ($q !== '') {
         $solrError = false;
         $data = json_decode($response, true);
         $results = $data['response']['docs'];
+
+		$totalResults = (int)($data['response']['numFound'] ?? 0);
+		$totalPages = (int)ceil($totalResults / $limit);
     }
 
 }
@@ -34,14 +48,27 @@ if ($q !== '') {
 					<input type="search" name="q" placeholder="Search..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" class="form-control" required>
 				</form>
 				<h4>Results</h4>
-    <?php if (count($results) === 0): ?>
-				<div class="alert alert-warning">No results found.</div>
-    <?php endif; ?>
+
+				<?php if ($q !== ''): ?>
+					<?php if ($solrError): ?>
+						<div class="alert alert-danger">Unable to connect to Solr.</div>
+					<?php elseif ($totalResults === 0): ?>
+						<div class="alert alert-warning">No results found.</div>
+					<?php else: ?>
+						<?php
+							$fromResult = $start + 1;
+							$toResult = min($start + $limit, $totalResults);
+						?>
+						<div class="text-muted mb-3">
+							Showing <?= $fromResult ?>-<?= $toResult ?> of <?= $totalResults ?> results
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
 
 <?php foreach ($results as $doc): ?>
     <?php
         $title = htmlspecialchars($doc['title'] ?? 'Unknown title');
-        $pubUri = urlencode($doc['publication_uri'] ?? '');
+        $pubUri = base64_encode($doc['publication_uri'] ?? '');
         $authors = isset($doc['authors']) && is_array($doc['authors'])
             ? implode(', ', $doc['authors'])
             : 'Unknown Authors';
@@ -81,9 +108,9 @@ if ($q !== '') {
 							<div class="d-flex flex-wrap align-items-center gap-2">
                                         <?php if (!empty($keywords) && is_array($keywords)): ?>    
                                           <?php foreach ($keywords as $index => $keyword): ?>
-                                          <span class="badge bg-secondary me-1">
+                                          <span class="badge bg-light text-dark border me-1 text-decoration-none">
                                             <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
-                                              class="text-white text-decoration-none">
+                                              class="text-dark  text-decoration-none">
                                               <?= htmlspecialchars($keyword) ?>
                                             </a>
                                           </span>  
@@ -100,6 +127,32 @@ if ($q !== '') {
 							</div>
 						</div>
 <?php endforeach; ?>
+
+<?php if (!$solrError && $totalPages > 1): ?>
+    <nav aria-label="Search results pages">
+        <ul class="pagination justify-content-center mt-4">
+
+            <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                <a class="page-link text-dark" href="?q=<?= urlencode($q) ?>&page=<?= $page - 1 ?>">Back</a>
+            </li>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+					<a class="page-link <?= $i == $page ? 'bg-dark text-white border-dark' : 'text-dark ' ?>" 
+					href="?q=<?= urlencode($q) ?>&page=<?= $i ?>">
+						<?= $i ?>
+					</a>
+				</li>
+            <?php endfor; ?>
+
+            <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                <a class="page-link text-dark" href="?q=<?= urlencode($q) ?>&page=<?= $page + 1 ?>">Next</a>
+            </li>
+
+        </ul>
+    </nav>
+<?php endif; ?>
+
 					</div>
 				</main>
 				<div class="container">

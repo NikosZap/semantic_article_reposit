@@ -37,7 +37,7 @@ if (!empty($keyword)) {
                                 <div class="card-body p-4">
                                     <h5>
                                         <strong>
-                                            <a href="publication.php?uri=<?= urlencode($pub['uri']) ?>">
+                                            <a href="publication.php?uri=<?= base64_encode($pub['uri']) ?>">
                                                 <?= htmlspecialchars($pub['title'] ?? 'Unknown title') ?>
                                             </a>
                                         </strong>
@@ -55,9 +55,9 @@ if (!empty($keyword)) {
                                     <div class="d-flex flex-wrap align-items-center gap-2">
                                         <?php if (!empty($pub['keywords']) && is_array($pub['keywords'])): ?>    
                                           <?php foreach ($pub['keywords'] as $index => $keyword): ?>
-                                          <span class="badge bg-secondary me-1">
+                                          <span class="badge bg-light text-dark border me-1 text-decoration-none">
                                             <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
-                                              class="text-white text-decoration-none">
+                                              class="text-dark text-decoration-none">
                                               <?= htmlspecialchars($keyword) ?>
                                             </a>
                                           </span>  

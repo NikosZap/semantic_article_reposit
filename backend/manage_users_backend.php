@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($action === 'delete_user') {
 
         $userURI = getUserUriById($userID);
+        $claimsUpdated = markUserPendingClaimsAsDeleted($userURI);
          
         if (!$userURI) {
             echo json_encode(["status" => "error", "message" => "User not found"], JSON_UNESCAPED_UNICODE);

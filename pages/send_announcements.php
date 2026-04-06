@@ -24,48 +24,52 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Admin') {
 
         <div class="container mt-5">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h2  class="display-6">Sending announcements to users</h2>
-                <button id="toggleFilters" class="btn btn-secondary btn-sm">
-                    Show Filters
+                <div>    
+                    <h2 class="display-6">Send Announcements to Users</h2>
+                    <small class="text-muted">Select users based on filters and send targeted announcements efficiently</small>
+                </div>
+                <button id="toggleFilters" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-funnel"></i> Show Filters
                 </button>
             </div>
             <div id="message"></div>
-                <div id="filterSection" style="display: none;">
+                <div id="filterSection" class="card shadow-sm border-0 mb-4" style="display: none;">
+                    <div class="card-body">    
+                        <form id="filterForm" class="mb-3">
 
-                    <form id="filterForm" class="mb-3">
+                            <input type="text" id="search" name="search" placeholder="Search user..." class="form-control mb-2" >
+                            <select id="role" name="role" class="form-select mb-2">
+                                <option value="">All Roles</option>
+                                <option value="researcher">Researcher</option>
+                                <option value="admin">Admin</option>
+                            </select>
 
-                        <input type="text" id="search" name="search" placeholder="Search user..." class="form-control mb-2" >
-                        <select id="role" name="role" class="form-select mb-2">
-                            <option value="">All Roles</option>
-                            <option value="researcher">Researcher</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                            <select id="is_active" name="is_active" class="form-select mb-2">
+                                <option value="">All</option>
+                                <option value="1">Active</option>
+                                <option value="0">Not active</option>
+                            </select>
 
-                        <select id="is_active" name="is_active" class="form-select mb-2">
-                            <option value="">All</option>
-                            <option value="1">Active</option>
-                            <option value="0">Not active</option>
-                        </select>
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-6">
+                                    <label>From:</label>
+                                    <input type="date" id="from_date" name="from_date" class="form-control mb-2">
+                                </div>
 
-                            <div class="col-md-6">
-                                <label>From:</label>
-                                <input type="date" id="from_date" name="from_date" class="form-control mb-2">
+                                <div class="col-md-6">
+                                    <label>To:</label>
+                                    <input type="date" id="to_date" name="to_date" class="form-control mb-2" >
+                                </div>
+
                             </div>
 
-                            <div class="col-md-6">
-                                <label>To:</label>
-                                <input type="date" id="to_date" name="to_date" class="form-control mb-2" >
-                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Apply Filtering
+                            </button>
 
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            Apply Filtering
-                        </button>
-
-                    </form>
+                        </form>
+                    </div>    
                 </div>
                 
                 <textarea id="announcementMessage" class="form-control mb-2" placeholder="Announcement Content"></textarea>
@@ -91,272 +95,269 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Admin') {
 
 <script>
 
-let currentPage = 1;
-
-function loadUsers(page = 1) {
-
-let search = $("#search").val();
-let role = $("#role").val();
-let is_active = $("#is_active").val();
-let from_date = $("#from_date").val();
-let to_date = $("#to_date").val();
-
-$.ajax({
-
-url: "../backend/fetch_users.php",
-method: "POST",
-
-data: {
-page,
-search,
-role,
-is_active,
-from_date,
-to_date
-},
-
-dataType: "json",
-
-success: function(response) {
-
-$("#usersTable").html("");
-
-if (response.users.length === 0) {
-
-$("#usersTable").html(
-'<div class="alert alert-warning">No users found.</div>'
-);
-
-} else {
-
-let table = `
-<table class="table table-striped table-bordered">
+    let currentPage = 1;
 
-<thead>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Email</th>
-<th>Role</th>
-<th>Reg. Date</th>
-<th>Activated</th>
-</tr>
-</thead>
+    function loadUsers(page = 1) {
 
-<tbody>
-`;
+        let search = $("#search").val();
+        let role = $("#role").val();
+        let is_active = $("#is_active").val();
+        let from_date = $("#from_date").val();
+        let to_date = $("#to_date").val();
 
-response.users.forEach(user => {
+        $.ajax({
 
-const formattedCreatedAt = user.createdAt
-? new Date(user.createdAt).toLocaleString("el-GR", {
-day: '2-digit',
-month: '2-digit',
-year: 'numeric',
-hour: '2-digit',
-minute: '2-digit'
-})
-: '';
+        url: "../backend/fetch_users.php",
+        method: "POST",
 
-table += `
-<tr>
-<td>${user.userID}</td>
-<td>${user.firstname} ${user.lastname}</td>
-<td>${user.email}</td>
-<td>${user.role}</td>
-<td>${formattedCreatedAt}</td>
-<td>
-${
-user.is_active == 1
-? "<span class='badge bg-success'>Yes</span>"
-: "<span class='badge bg-danger'>No</span>"
-}
-</td>
-</tr>
-`;
+        data: {
+            page,
+            search,
+            role,
+            is_active,
+            from_date,
+            to_date
+        },
+
+        dataType: "json",
+
+        success: function(response) {
+
+            $("#usersTable").html("");
+
+            if (response.users.length === 0) {
+
+                $("#usersTable").html( '<div class="alert alert-warning">No users found.</div>' );
+
+            } else {
+
+                let table = `
+                    <table class="table table-hover table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Reg. Date</th>
+                            <th>Activated</th>
+                        </tr>
+                    </thead>
 
-});
+                    <tbody>
+                `;
 
-table += `
-</tbody>
-</table>
-`;
+                response.users.forEach(user => {
 
-$("#usersTable").html(table);
+                    const formattedCreatedAt = user.createdAt
+                        ? new Date(user.createdAt).toLocaleString("en-US", {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false
+                        })
+                    : '';
 
-}
+                    table += `
+                        <tr>
+                            <td>${user.userID}</td>
+                            <td>${user.username}</td>
+                            <td>${user.firstname} ${user.lastname}</td>
+                            <td>${user.email}</td>
+                            <td>${user.role}</td>
+                            <td>${formattedCreatedAt}</td>
+                            <td> ${user.is_active == 1 ? "<span class='badge bg-success'>Yes</span>" : "<span class='badge bg-danger'>No</span>" }</td>
+                        </tr>
+                    `;
 
-updatePagination(
-response.totalPages,
-response.currentPage
-);
+                });
 
-}
+                table += `
+                        </tbody>    
+                    </table>
+                `;
 
-});
+                $("#usersTable").html(table);
 
-}
+            }
 
-function updatePagination(totalPages, currentPage) {
+            updatePagination(response.totalPages,response.currentPage);
 
-let paginationHtml = `
-<button
-class="btn btn-secondary"
-onclick="changePage(${currentPage - 1})"
-${currentPage == 1 ? "disabled" : ""}
->
-Back
-</button>
+        }
 
-<span class="mx-3">
-Page ${currentPage} / ${totalPages}
-</span>
+        });
 
-<button
-class="btn btn-secondary"
-onclick="changePage(${currentPage + 1})"
-${currentPage == totalPages ? "disabled" : ""}
->
-Next
-</button>
-`;
+    }
 
-$("#pagination").html(paginationHtml);
+    function updatePagination(totalPages, currentPage) {
 
-}
+        if (totalPages <= 1) {
+            $("#pagination").html("");
+            return;
+        }
 
-function changePage(newPage) {
+        let html = `<nav><ul class="pagination justify-content-center mt-4">`;
 
-if (newPage > 0) {
+        html += `
+            <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                <a class="page-link text-dark" href="#" onclick="changePage(${currentPage - 1}); return false;">
+                    Back
+                </a>
+            </li>
+        `;
 
-currentPage = newPage;
+        for (let i = 1; i <= totalPages; i++) {
+            html += `
+                <li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link ${i === currentPage ? 'bg-dark text-white border-dark' : 'text-dark'}"
+                    href="#"
+                    onclick="changePage(${i}); return false;">
+                        ${i}
+                    </a>
+                </li>
+            `;
+        }
 
-loadUsers(currentPage);
+        html += `
+            <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                <a class="page-link text-dark" href="#" onclick="changePage(${currentPage + 1}); return false;">
+                    Next
+                </a>
+            </li>
+        `;
 
-}
+        html += `</ul></nav>`;
 
-}
+        $("#pagination").html(html);
+    }
 
-$("#filterForm").on("submit", function(e) {
+    function changePage(newPage) {
 
-e.preventDefault();
+        if (newPage > 0) {
 
-currentPage = 1;
+            currentPage = newPage;
 
-loadUsers();
+            loadUsers(currentPage);
 
-});
+        }
 
-$("#sendEmails").click(function() {
+    }
 
-let message = $("#announcementMessage").val();
+    $("#filterForm").on("submit", function(e) {
 
-let search = $("#search").val();
-let role = $("#role").val();
-let is_active = $("#is_active").val();
-let from_date = $("#from_date").val();
-let to_date = $("#to_date").val();
+        e.preventDefault();
 
-if (message.trim() === "") {
+        currentPage = 1;
 
-alert("Message cannot be empty!");
+        loadUsers();
 
-return;
+    });
 
-}
+    $("#sendEmails").click(function() {
 
-$.ajax({
+        let message = $("#announcementMessage").val();
 
-url: "../backend/send_announcement_backend.php",
+        let search = $("#search").val();
+        let role = $("#role").val();
+        let is_active = $("#is_active").val();
+        let from_date = $("#from_date").val();
+        let to_date = $("#to_date").val();
 
-method: "POST",
+        if (message.trim() === "") {
 
-data: {
-message,
-search,
-role,
-is_active,
-from_date,
-to_date
-},
+            alert("Message cannot be empty!");
 
-dataType: "json",
+            return;
 
-success: function(response) {
+        }
 
-if (response.status === "success") {
+        $.ajax({
 
-showMessage("success", response.message);
+            url: "../backend/send_announcement_backend.php",
 
-} else {
+            method: "POST",
 
-showMessage("error", response.message);
+            data: {
+                message,
+                search,
+                role,
+                is_active,
+                from_date,
+                to_date
+            },
 
-}
+            dataType: "json",
 
-},
+            success: function(response) {
 
-error: function() {
+                if (response.status === "success") {
 
-showMessage(
-"error",
-"Error connecting to the server!"
-);
+                    showMessage("success", response.message);
 
-}
+                } else {
 
-});
+                    showMessage("error", response.message);
 
-});
+                }
 
-function showMessage(type, message) {
+            },
 
-let alertClass =
-type === "success"
-? "alert-success"
-: "alert-danger";
+            error: function() {
 
-if ($("#message").length === 0) {
+                showMessage("error", "Error connecting to the server!");
 
-console.log("The #message component does not exist");
+            }
 
-return;
+        });
 
-}
+    });
 
-$("#message")
-.html(`<div class="alert ${alertClass}">
-${message}
-</div>`)
-.fadeIn();
+    function showMessage(type, message) {
 
-setTimeout(() => {
+        let alertClass =
+        type === "success"
+        ? "alert-success"
+        : "alert-danger";
 
-$("#message").fadeOut();
+        if ($("#message").length === 0) {
 
-}, 10000);
+            console.log("The #message component does not exist");
 
-}
+            return;
 
-$(document).ready(function() {
+        }
 
-loadUsers();
+        $("#message")
+        .html(`<div class="alert ${alertClass}">
+        ${message}
+        </div>`)
+        .fadeIn();
 
-});
+        setTimeout(() => { $("#message").fadeOut();  }, 10000);
 
-$("#toggleFilters").on("click", function () {
+    }
 
-$("#filterSection").slideToggle(200);
+    $(document).ready(function() {
 
-const current = $(this).text();
+        loadUsers();
 
-$(this).text(
-current === "Show Filters"
-? "Hide Filters"
-: "Show Filters"
-);
+    });
 
-});
+    $("#toggleFilters").on("click", function() {
+            $("#filterSection").slideToggle(200);
+
+            const current = $(this).text().trim();
+
+            $(this).html(
+                current.includes("Show")
+                    ? '<i class="bi bi-x"></i> Hide Filters'
+                    : '<i class="bi bi-funnel"></i> Show Filters'
+            );
+        });
 
 </script>
 

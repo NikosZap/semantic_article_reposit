@@ -63,6 +63,8 @@ if ($action === "saveEditedAccount") {
 }
 
 if ($action === "deleteAccount") {
+
+    $claimsUpdated = markUserPendingClaimsAsDeleted($userUri);
     $result = deleteUserByURI($userUri);
 
     if ($result) {

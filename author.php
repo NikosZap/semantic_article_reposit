@@ -45,7 +45,7 @@ $publications = getPublicationsByAuthor($authorORCID);
 				<ul class="list-group">
             <?php foreach ($publications as $pub): ?>
 					<li class="list-group-item">
-						<a href="publication.php?uri=<?= urlencode($pub['uri']) ?>">
+						<a href="publication.php?uri=<?= base64_encode($pub['uri']) ?>">
                         <?= htmlspecialchars($pub['title']) ?>
 						</a>
 						<br>

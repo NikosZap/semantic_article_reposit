@@ -24,7 +24,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
 
             <div id="message"></div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -52,7 +52,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
 
         function loadPendingPublications(page = 1, callback = null) {
             $.ajax({
-                url: "../backend/fetch_publications.php",
+                url: "../backend/fetch_pending_publications.php",
                 method: "POST",
                 data: { page: page },
                 dataType: "json",
@@ -97,17 +97,45 @@ if ($_SESSION['user']['role'] !== 'Admin') {
         }
 
         function updatePagination(totalPages, currentPage) {
-            let paginationHtml = `
-                <button class="btn btn-secondary" onclick="changePage(${currentPage - 1})" ${currentPage == 1 ? "disabled" : ""}>
-                    Back
-                </button>
-                <span class="mx-3">Page ${currentPage} / ${totalPages}</span>
-                <button class="btn btn-secondary" onclick="changePage(${currentPage + 1})" ${currentPage == totalPages ? "disabled" : ""}>
-                    Next
-                </button>
+
+            if (!totalPages || totalPages <= 1) {
+                $("#pagination").html("");
+                return;
+            }
+
+            let html = `<nav><ul class="pagination justify-content-center mt-4">`;
+
+            html += `
+                <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                    <a class="page-link text-dark" href="#" onclick="changePage(${currentPage - 1}); return false;">
+                        Back
+                    </a>
+                </li>
             `;
 
-            $("#pagination").html(paginationHtml);
+            for (let i = 1; i <= totalPages; i++) {
+                html += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link ${i === currentPage ? 'bg-dark text-white border-dark' : 'text-dark'}"
+                        href="#"
+                        onclick="changePage(${i}); return false;">
+                            ${i}
+                        </a>
+                    </li>
+                `;
+            }
+
+            html += `
+                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                    <a class="page-link text-dark" href="#" onclick="changePage(${currentPage + 1}); return false;">
+                        Next
+                    </a>
+                </li>
+            `;
+
+            html += `</ul></nav>`;
+
+            $("#pagination").html(html);
         }
 
         function changePage(newPage) {
@@ -118,7 +146,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
         }
 
         function reviewPublication(uri) {
-            window.location.href = `review_publication.php?uri=${encodeURIComponent(uri)}`;
+            window.location.href = `review_pending_publication.php?uri=${btoa(uri)}`;
         }
 
         function showMessage(type, message) {

@@ -37,7 +37,7 @@ if (!empty($searchTerm)) {
   <?php if ($flash): ?>
 				<div id="flashMessage" class="alert alert-<?= htmlspecialchars($flash['type']) ?> alert-dismissible fade show" role="alert">
     <?= htmlspecialchars($flash['text']) ?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert"/>
+					<button type="button" class="btn-close" data-bs-dismiss="alert">
 				</div>
 <?php endif; ?>
 				<form method="get" class="mb-4">

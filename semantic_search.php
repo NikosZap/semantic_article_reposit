@@ -9,11 +9,24 @@ $selectedUris = [];
 $mode = $_GET['mode'] ?? 'or';
 
 $showResultsContainer = false;
+
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$limit = 5;
+$offset = ($page - 1) * $limit;
+$totalResults = 0;
+$totalPages = 0;
+
 if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
     $selectedUris = array_values(array_unique(array_filter($_GET['uri'])));
-    $expandedUris = expandConceptUris($selectedUris, 5);
+    $expandedUris = expandConceptUris($selectedUris, 8);
     $relatedOnlyUris = array_values(array_diff($expandedUris, $selectedUris));
-    $results = getPublicationsByMentions($expandedUris, $selectedUris, $relatedOnlyUris, $mode);
+
+    $totalResults = countPublicationsByMentions($expandedUris, $selectedUris, $mode);
+    $totalPages = (int) ceil($totalResults / $limit);
+
+    $results = getPublicationsByMentions( $expandedUris, $selectedUris, $relatedOnlyUris, $mode, $offset, $limit );
+
+
     $showResultsContainer = true;
     }
 
@@ -37,7 +50,7 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
     <main>
         <div class="container mt-5">
             <h2 class="display-4">Semantic Search with DBpedia Spotlight</h2>
-
+            <br>
             <div class="mb-3">
                 <label for="searchText" class="form-label">Enter a phrase or term:</label>
                 <input
@@ -71,7 +84,7 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
                                 <div class="card-body p-4">
                                     <h5>
                                         <strong>
-                                            <a href="publication.php?uri=<?= urlencode($pub['uri']) ?>">
+                                            <a href="publication.php?uri=<?= base64_encode($pub['uri']) ?>">
                                                 <?= htmlspecialchars($pub['title'] ?? 'Unknown title') ?>
                                             </a>
                                         </strong>
@@ -116,9 +129,9 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
                                     <div class="d-flex flex-wrap align-items-center gap-2">
                                         <?php if (!empty($pub['keywords']) && is_array($pub['keywords'])): ?>    
                                           <?php foreach ($pub['keywords'] as $index => $keyword): ?>
-                                          <span class="badge bg-secondary me-1">
+                                          <span class="badge bg-light text-dark border me-1 text-decoration-none">
                                             <a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
-                                              class="text-white text-decoration-none">
+                                              class="text-dark text-decoration-none">
                                               <?= htmlspecialchars($keyword) ?>
                                             </a>
                                           </span>  
@@ -131,6 +144,36 @@ if (!empty($_GET['uri']) && is_array($_GET['uri'])) {
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <?php if ($totalPages > 1): 
+                            
+                                $queryParams = $_GET;
+                            ?>
+                            <nav aria-label="Semantic search pages">
+                                <ul class="pagination justify-content-center mt-4">
+
+                                    <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                                        <?php $queryParams['page'] = $page - 1; ?>
+                                        <a class="page-link text-dark" href="?<?= htmlspecialchars(http_build_query($queryParams)) ?>">Back</a>
+                                    </li>
+
+                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                        <?php $queryParams['page'] = $i; ?>
+                                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                            <a class="page-link <?= $i == $page ? 'bg-dark text-white border-dark' : 'text-dark' ?>"
+                                            href="?<?= htmlspecialchars(http_build_query($queryParams)) ?>">
+                                                <?= $i ?>
+                                            </a>
+                                        </li>
+                                    <?php endfor; ?>
+
+                                    <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                                        <?php $queryParams['page'] = $page + 1; ?>
+                                        <a class="page-link text-dark" href="?<?= htmlspecialchars(http_build_query($queryParams)) ?>">Next</a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        <?php endif; ?>
                     </div>
                 <?php else: ?>
                     <div class="alert alert-warning">

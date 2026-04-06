@@ -16,16 +16,22 @@
                     <div class="spinner-border"></div>
                     <p class="mt-2">Loading Crossref metadata...</p>
                 </div>
-
             </div>
 
             <div class="modal-footer d-flex justify-content-between align-items-center">
-  <div id="crossrefMatchScore" class="fw-semibold text-muted">
-    Match Score: —
-  </div>
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-</div>
+                <div id="crossrefMatchScore" class="fw-semibold text-muted">
+                    Match Score: —
+                </div>
+               <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-primary" id="openUpdateFromCrossrefBtn">
+                        <i class="bi bi-pencil-square"></i> Open Update Form
+                    </button>
 
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

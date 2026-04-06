@@ -124,14 +124,15 @@ function activateUser($userURI, $token) {
         PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
         DELETE {
-            <$userURI> app:activation_token \"$token\" .
+            <$userURI> app:activation_token ?oldToken .
             <$userURI> app:is_active ?status .
         }
         INSERT {
             <$userURI> app:is_active \"1\" .
         }
         WHERE {
-            <$userURI> app:activation_token \"$token\" .
+            <$userURI> app:activation_token ?oldToken .
+            FILTER(STR(?oldToken) = \"$token\")
             OPTIONAL { <$userURI> app:is_active ?status . }
         }
     ";
@@ -145,10 +146,24 @@ function activateUser($userURI, $token) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
     $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+
     curl_close($ch);
 
-    return $response !== false;
+    if ($response === false) {
+        error_log("cURL error in activateUser: " . $curlError);
+        return false;
+    }
+
+    if ($httpCode < 200 || $httpCode >= 300) {
+        error_log("SPARQL update failed in activateUser. HTTP $httpCode. Response: " . $response);
+        return false;
+    }
+
+    return true;
 }
 
 function getUserURIByUserID($userID) {
@@ -747,6 +762,32 @@ function getAuthorDetails($orcid) {
     }
 
     return null;
+}
+
+function markUserPendingClaimsAsDeleted($userUri) {
+    $userUri = trim($userUri);
+
+    if (empty($userUri)) {
+        return false;
+    }
+
+    $sparql = '
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+
+        DELETE {
+            ?claim app:claimStatus "Pending" .
+        }
+        INSERT {
+            ?claim app:claimStatus "Cancelled" .
+        }
+        WHERE {
+            ?claim a app:Claim ;
+                   app:claimStatus "Pending" ;
+                   app:claimedBy <' . $userUri . '> .
+        }
+    ';
+
+    return executeSparqlUpdate($sparql);
 }
 
 ?>

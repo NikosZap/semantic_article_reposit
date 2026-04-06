@@ -7,7 +7,7 @@ if (!isset($_GET['uri'])) {
 	exit;
 }
 
-$pubURI = urldecode($_GET['uri']);
+$pubURI = base64_decode($_GET['uri']);
 $publication = getPublicationByURI($pubURI);
 
 if (!$publication) {
@@ -105,7 +105,7 @@ $keywords = getKeywordsByPublication($pubURI);
 											<?php if (!empty($keywords) && is_array($keywords)): ?>
 												<?php foreach ($keywords as $keyword): ?>
 													<a href="keyword.php?keyword=<?= urlencode($keyword) ?>"
-													   class="badge bg-secondary text-decoration-none">
+													   class="badge bg-light text-dark border me-1 text-decoration-none">
 														<?= htmlspecialchars($keyword) ?>
 													</a>
 												<?php endforeach; ?>

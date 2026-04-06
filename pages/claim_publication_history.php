@@ -40,7 +40,7 @@ $pubTitle = getPublicationTitleByUri($publicationUri);
                 <?= htmlspecialchars($pubTitle ?? '') ?>
             </h5>
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
 
                 <thead>
                     <tr>
@@ -71,6 +71,8 @@ $pubTitle = getPublicationTitleByUri($publicationUri);
 
                             <?php elseif ($c['status'] === 'Rejected'): ?>
                                 <span class="badge bg-danger">Rejected</span>
+                            <?php elseif ($c['status'] === 'Cancelled'): ?>
+                                <span class="badge bg-secondary">Cancelled</span>    
                             <?php endif; ?>
                         </td>
 
