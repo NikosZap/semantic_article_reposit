@@ -54,6 +54,11 @@ if ($hasOrcid) {
         .country-select .flag-dropdown {
             left: 0;
         }
+
+        .nav-pills .nav-link.active {
+            background-color: #212529 !important;
+            color: #fff !important; 
+        }
     </style>
     <main>
         <div class="container mt-5 mb-5">
@@ -63,20 +68,20 @@ if ($hasOrcid) {
             <div class="col-md-4 col-lg-3 mb-4">
                 <div class="nav flex-column nav-pills" id="profileTabs" role="tablist" aria-orientation="vertical">
 
-                    <button class="nav-link active text-start mb-2" id="info-tab"
+                    <button class="nav-link active text-dark text-start mb-2" id="info-tab"
                             data-bs-toggle="pill" data-bs-target="#info-tab-pane"
                             type="button" role="tab">
                         Profile Info
                     </button>
 
-                    <button class="nav-link text-start mb-2" id="uploads-tab"
+                    <button class="nav-link text-dark text-start mb-2" id="uploads-tab"
                             data-bs-toggle="pill" data-bs-target="#uploads-tab-pane"
                             type="button" role="tab">
                         Uploaded Publications
                     </button>
                 
                 <?php if ($hasOrcid): ?>
-                    <button class="nav-link text-start" id="orcid-tab"
+                    <button class="nav-link text-dark text-start" id="orcid-tab"
                             data-bs-toggle="pill" data-bs-target="#orcid-tab-pane"
                             type="button" role="tab">
                         ORCID Publications
@@ -85,7 +90,7 @@ if ($hasOrcid) {
 
 
 
-                    <button class="nav-link text-start mb-2" id="stats-tab"
+                    <button class="nav-link text-dark text-start mb-2" id="stats-tab"
                             data-bs-toggle="pill" data-bs-target="#stats-tab-pane"
                             type="button" role="tab">
                         Statistics
