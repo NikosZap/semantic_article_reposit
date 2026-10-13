@@ -31,7 +31,7 @@ $filters = [
     "to_date" => $_POST["to_date"] ?? ''
 ];
 
-// Ανάκτηση χρηστών από τη Fuseki
+
 $users = getUsers($filters,0,countUsers($filters));
 
 if (empty($users)) {
@@ -47,22 +47,18 @@ if (empty($message)) {
     exit;
 }
 
-// Αποστολή email σε όλους τους επιλεγμένους χρήστες
 $successCount = 0;
 foreach ($users as $user) {
     $email = $user['email'];
     $fullName = $user['firstname'] . ' ' . $user['lastname'];
 
     $subject = "Announcement from the Administrator";
-    $body = "<p>Dear $fullName,</p><p>$message</p>
-         <p>With regards,<br>{$_SESSION['user']['firstname']} {$_SESSION['user']['lastname']}</p>";
+    $body = $message;
 
-    // Χρήση της συνάρτησης αποστολής email
     if (send_email($email, $fullName, $subject, $body)) {
         $successCount++;
     }
 }
-// Επιστροφή αποτελέσματος
 echo json_encode(["status" => "success", "message" => "The email was sent to $successCount users!"], JSON_UNESCAPED_UNICODE);
 exit;
 ?>

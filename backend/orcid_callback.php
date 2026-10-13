@@ -72,6 +72,7 @@ if ($user) {
         'nationality' => $user['nationality'],
         'affiliation' => $user['affiliation'],
         'scientificArea' => $user['scientificArea'],
+        'is_logged_in' => true,
     ];
     header("Location: ". BASE_URL . "index.php"); 
     exit;

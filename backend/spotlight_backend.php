@@ -16,7 +16,7 @@ if ($text === '') {
     exit;
 }
 
-$endpoint = 'https://api.dbpedia-spotlight.org/en/annotate';
+$endpoint = 'http://192.168.1.214:2222/rest/annotate';
 $confidence = 0.5;
 $support = 20;
 

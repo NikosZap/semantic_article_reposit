@@ -1,0 +1,1826 @@
+{
+    "success": true,
+    "error": null,
+    "http_code": 200,
+    "raw_response": "{\"@text\":\"Bio-aviation Fuel: A Comprehensive Review and Analysis of the Supply Chain Components The undeniable environmental ramifications of continued dependence on oil-derived jet fuel have spurred international efforts in the aviation sector toward alternative solutions. Due to the limited options for decarbonization, the successful implementation of bio-aviation fuel is crucial in contributing to the roster of greenhouse gas emissions mitigation strategies for the aviation sector. Since fleet replacement with low-carbon technologies may not be a feasible option, due to the long lifetime and significant capital cost of aircraft, “drop-in” alternatives, which can be used in the engines of existing aircraft in a seamless transition, may be required. This paper presents a detailed\\r\\nanalysis of the supply chain components of bio-aviation fuel provision: feedstocks, production pathways, storage, and transport. The economic and environmental performance of different potential bio-feedstocks and technologies are investigated and compared in order to make recommendations on short- and long-term strategies that could be employed internationally. Hydroprocessed esters and fatty acids production pathway, utilizing second-generation oil-seed crops and waste oils, could be an effective immediate solution with the potential for substantial greenhouse gas emissions savings. Microalgal oil could potentially offer far greater yields of bio-aviation fuel and\\r\\nreductions in greenhouse gas emissions, but the technology for large-scale algae cultivation is inadequately mature at present. Fischer-Tropsch production pathway using lignocellulosic biomass has the potential for the highest greenhouse gas emissions savings, which could potentially be the solution within the medium- to long-term plans of the aviation industry, but further research and optimization are required prior to its large-scale implementation due to its limited technological maturity and high capital costs. In practice, the “ideal” feedstocks and technologies of the supply chains are heavily dependent on spatial and temporal criteria. Moreover, many of the parameters\\r\\ninvestigated are interlinked to each other and the measures that are effective in greenhouse gases emissions reduction are largely associated with increased cost. Hence, policies must be streamlined across the supply chain components that could help in the cost-effective and sustainable deployment of bio-aviation fuel. REVIEW\\npublished: 10 July 2020\\ndoi: 10.3389/fenrg.2020.00110 \\nFrontiers in Energy Research | www.frontiersin.org\\t1\\tJuly 2020 | Volume 8 | Article 110\\nEdited by:\\nGurkan Sin,\\nTechnical University of\\nDenmark, Denmark\\nReviewed by:\\nEmre Gencer,\\nMassachusetts Institute of\\nTechnology, United States\\nIsuru Udugama,\\nTechnical University of\\nDenmark, Denmark\\n*Correspondence:\\nSheila Samsatli\\nS.M.C.Samsatli@bath.ac.uk\\nSpecialty section:\\nThis article was submitted to\\nProcess and Energy Systems\\nEngineering,\\na section of the journal\\nFrontiers in Energy Research\\nReceived:18 September 2019\\nAccepted:11 May 2020\\nPublished:10 July 2020\\nCitation:\\nDoliente SS, Narayan A, Tapia JFD,\\nSamsatli NJ, Zhao Y and Samsatli S\\n(2020) Bio-aviation Fuel: A\\nComprehensive Review and Analysis\\nof the Supply Chain Components.\\nFront. Energy Res. 8:110.\\ndoi: 10.3389/fenrg.2020.00110\\nBio-aviation Fuel: A Comprehensive\\nReview and Analysis of the Supply\\nChain Components\\nStephen S. Doliente\\n1,2\\n, Aravind Narayan\\n1\\n, John Frederick D. Tapia\\n1,3\\n, Nouri J. Samsatli\\n4,5\\n,\\nYingru Zhao\\n6\\nand Sheila Samsatli\\n1\\n*\\n1\\nDepartment of Chemical Engineering, University of Bath, Bath, United Kingdom,\\n2\\nDepartment of Chemical Engineering,\\nCollege of Engineering and Agro-Industrial Technology, University of the Philippines Los Baños, Los Baños, Philippines,\\n3\\nChemical Engineering Department, De La Salle University-Manila, Manila, Philippines,\\n4\\nProcess Systems Enterprise Ltd.,\\nLondon, United Kingdom,\\n5\\nSamsatli Solutions, Ventonlace, Flatwoods Crescent, Bath, United Kingdom,\\n6\\nCollege of Energy,\\nXiamen University, Xiamen, China\\nThe undeniable environmental ramiﬁcations of continued dependence on oil-derived\\njet fuel have spurred international efforts in the aviationsector toward alternative\\nsolutions. Due to the limited options for decarbonization,the successful implementation\\nof bio-aviation fuel is crucial in contributing to the roster of greenhouse gas emissions\\nmitigation strategies for the aviation sector. Since ﬂeet replacement with low-carbon\\ntechnologies may not be a feasible option, due to the long lifetime and signiﬁcant\\ncapital cost of aircraft, “drop-in” alternatives, which can be used in the engines of\\nexisting aircraft in a seamless transition, may be required. This paper presents a detailed\\nanalysis of the supply chain components of bio-aviation fuel provision: feedstocks,\\nproduction pathways, storage, and transport. The economicand environmental\\nperformance of different potential bio-feedstocks and technologies are investigated and\\ncompared in order to make recommendations on short- and long-term strategies that\\ncould be employed internationally. Hydroprocessed estersand fatty acids production\\npathway, utilizing second-generation oil-seed crops and waste oils, could be an\\neffective immediate solution with the potential for substantial greenhouse gas emissions\\nsavings. Microalgal oil could potentially offer far greater yields of bio-aviation fuel and\\nreductions in greenhouse gas emissions, but the technologyfor large-scale algae\\ncultivation is inadequately mature at present. Fischer-Tropsch production pathway using\\nlignocellulosic biomass has the potential for the highest greenhouse gas emissions\\nsavings, which could potentially be the solution within themedium- to long-term plans\\nof the aviation industry, but further research and optimization are required prior to its\\nlarge-scale implementation due to its limited technological maturity and high capital\\ncosts. In practice, the “ideal” feedstocks and technologies of the supply chains are\\nheavily dependent on spatial and temporal criteria. Moreover, many of the parameters\\ninvestigated are interlinked to each other and the measuresthat are effective in\\ngreenhouse gases emissions reduction are largely associated with increased cost.\\nHence, policies must be streamlined across the supply chaincomponents that could\\nhelp in the cost-effective and sustainable deployment of bio-aviation fuel.\\nKeywords: bio-aviation fuel, sustainable feedstocks, energy crops, waste biomass, microalgae, production\\npathways, storage and transport, supply chains\\n\\nDoliente et al.\\tSupply Chains for Bio-aviation Fuels\\nINTRODUCTION\\nThe aviation industry plays a major role in the global economy,\\nserving as a crucial backbone for nearly 57 million jobs and USD\\n2.2 trillion in global GDP. Businesses, especially those involving\\ninternational transactions, rely on its speed and eﬃciency.By\\n2035, the Air Transport Action Group (ATAG) expects 7.2 billion\\npassengers will be served by the airline industry through the\\nworld’s major airports as shown inFigure 1A, which is twice the\\nnumber of passengers in 2016 (ATAG, 2012). Consequently, this\\nsurge in aviation demand is projected to result in 3.1 billion tons\\nof GHG emissions by 2050, which is 4 times greater than the 2015\\nbaseline of 0.78 billion tons.\\nIt is a signiﬁcant challenge to ﬁnd a sustainable solution for\\nthe aviation industry’s GHG emissions reduction due to the\\nambitious target set at 50% less than the 2005 baseline (IATA,\\n2009). The International Air Transport Association (IATA)\\nand the International Civil Aviation Organisation (ICAO)\\ndeveloped the four pillars to achieve this goal: (1) technological\\nimprovements, (2) operational improvements, (3) measures\\nbased on the market, and (4) alternative jet fuel (AJF) (Gutiérrez-\\nAntonio et al., 2013).Figure 1Bdisplays the timeline of the\\nvarious trajectories based on the actions taken by the industry.\\nWithout actions taken, the emissions will be twice as much asthe\\n2005 level.\\nTo date, technological improvements have already begun\\ncontributing to the GHG emissions reduction target. Airframe\\nand engine manufacturers have made signiﬁcant technological\\nleaps including lighter and stronger composite materials than\\never before, new innovative aircraft designs with improved\\naerodynamics and incrementally more eﬃcient engines (Rye\\net al., 2010). For example, 15 billion liters of fuel, and 80 million\\ntons of CO2, were saved by retro-ﬁtting wing tip devices to the\\nwings of over 5,000 existing aircraft (ATAG, 2019). By also using\\nweight reduction measures on cargo containers, GHG emissions\\ndecreased by 10,000 t/year (ATAG, 2014). These improvements\\nallow greater eﬃciency in mileage and lower fuel consumption\\nduring travel. However, the slow incremental changes in already-\\nmature engine technology and the long lifetime (\\u003e25 years) of\\nexisting ﬂeets point toward AJF as a much faster and potentially\\nmore cost eﬀective option to reduce emissions (Bauen et al.,\\n2009). AJF can be easily utilized in existing ﬂeets, hence avoiding\\nlarge capital costs involved with buying newer models. Biofuel,\\nas an AJF, promises a tremendous cut in GHG emissions and\\npossible achievement of the ambitious target by 2040 as depicted\\ninFigure 1B. Thus, the bulk of the reduction can be attained by\\nreplacing conventional jet fuel (CJF) with this alternative.\\nCJF produced from crude oil is a blend of various kerosene\\nhydrocarbons. The hydrocarbon length of jet fuel is betweenthat\\nof gasoline and diesel. In a classical reﬁnery, shown inFigure S1,\\njet fuel (or kerosene) is the middle distillate making up to 10%\\nof the crude oil fraction while the majority are gasoline and\\ndiesel.Table S1shows the comparison of the physicochemical\\nproperties of gasoline, jet fuel and diesel. As fuel for aviation,\\njet fuel is preferred over gasoline as it is less volatile and denser;\\nwhile compared to diesel, jet fuel is lighter and less prone to\\nwax at low temperatures (Yang et al., 2019). An AJF should\\nhave physical and chemical properties similar to CJF. A suitable\\naviation fuel must have high cold stability, for temperatures−47\\nto 40\\n◦\\nC and elevations above 30,000 feet and have suﬃcient\\nenergy density to supply the high energy demand of long-haul\\nﬂights (\\tThe Engineering ToolBox, 2003; Wilbrand, 2018). The\\nindustry uses two major kerosene-based CJF: Jet A and Jet A-\\n1. With a lower melting point of−4\\no\\nC, Jet A-1 is the better\\nchoice for international ﬂights. The desirable composition of a jet\\nfuel should be 75–85 vol% consisting of paraﬃns, iso-paraﬃns,\\nand cycloparaﬃns and the remaining 15–25 vol% of oleﬁns\\nand aromatics. Other important characteristics include global\\navailability, acceptable costs, good combustion characteristics,\\nand good ﬂow behavior. Hence, AJF being a “drop-in” fuel can be\\neasily integrated into existing infrastructure allowing aseamless\\ntransition (Rye et al., 2010). An AJF must also have lower carbon\\nfootprints over their life cycle than CJF, which typically havea\\ncarbon footprint of roughly four tons per ton of fuel (de Jong\\net al., 2017a).\\nBio-aviation fuel (also known as bio-jet fuel, renewable jet fuel\\nor aviation biofuel in some literature) or BAF (for short in this\\npaper), a type of biofuel for the air transport sector, is recognized\\nas a short- to medium-term solution toward an overall reduction\\nof the sector’s GHG emissions.Table S2shows the standard\\nspeciﬁcations for both CJF and BAF, with which manufacturers\\nmust strictly comply (Wilbrand, 2018; Yang et al., 2019). Clearly,\\nthe resulting emissions proﬁles of an aircraft running on BAF\\nwould be very similar to one on Jet A-1 (Rye et al., 2010). But the\\nclosed carbon cycle established by sequestering atmosphericCO2\\nduring biomass growth and released at the end of its life cycle\\nas BAF, results in its signiﬁcantly lower overall carbon emissions\\ncompared to CJF (Bosch et al., 2017). While this makes BAF an\\nattractive AJF option, several issues arose in its implementation.\\nIt has not been receiving suﬃcient investments due to inadequate\\ngovernment support and industry commitment, unreliable\\nsupply of feedstocks, uncertain commerciality of the production\\npathways, and lack of supply chain certiﬁcation (Gegg et al.,\\n2014).\\nFigure 1Cpresents recent bibliometric trends for bio-aviation\\nfuel research. The data were obtained from Scopus using the\\nkeywords: bio-jet fuel, biojet fuel, bio-aviation fuel, aviation\\nbiofuel, or renewable jet fuel. In the last 10 years, there\\nis generally an increasing trend in research on BAF, which\\nreﬂects increasing recognition of the need to decarbonize the\\naviation sector through AJF options. Recent reviews of BAF\\nconsidered the progress and issues in the production pathways\\n(Gutiérrez-Antonio et al., 2017) and of fuel performance (Yang\\net al., 2019).Reimer and Zheng (2017)discussed possible\\nstrategies for enabling commercial BAF uptake, such as the\\nsimultaneous implementation of taxes on CJF and incentives\\nfor BAF utilization. The possibility of BAF production from\\ndiﬀerent feedstocks, such as microalgae (Bwapwa et al., 2018),\\nlignocellulosic biomass (Cheng and Brewer, 2017), urban and\\nagricultural wastes (Jiménez-Díaz et al., 2017), and vegetable oils\\n(Vásquez et al., 2017) have also been discussed in recent review\\npapers.Kandaramath Hari et al. (2015)presented production\\npathways utilizing second- and third-generation feedstocks with\\nqualitative discussion on the feedstock. These studies provided\\nFrontiers in Energy Research | www.frontiersin.org\\t2\\tJuly 2020 | Volume 8 | Article 110\\n\\nDoliente et al.\\tSupply Chains for Bio-aviation Fuels \\nFIGURE 1 |Recent trends for the the aviation industry:(A)Global Airport Distribution (Plotted using data from www.arcgis.com, 2019);(B)Potential global\\natmospheric CO2emissions released by the aviation sector under various development conditions (IATA, 2009); and(C)Publication history on bio-aviation fuel\\nresearch (Plotted using data from Scopus accessed on January 17, 2020).\\nFrontiers in Energy Research | www.frontiersin.org\\t3\\tJuly 2020 | Volume 8 | Article 110\\n\\nDoliente et al.\\tSupply Chains for Bio-aviation Fuels\\ninsights on the status and future direction of the bio-aviation\\nfuel industry. However, existing review papers are limited to\\nindividual components of the supply chain for BAF provision\\n(e.g., raw materials, pretreatment, and conversion technologies)\\nand there are currently no reviews discussing logistics strategies\\n(e.g., storage and transportation of resources) or the economic\\nand environmental analysis of the whole supply chain. Therefore,\\nthis review paper addresses this gap by being the ﬁrst to provide\\na critical review of bio-aviation fuel from a whole-system supply\\nchain perspective.\\nThe focus of this review paper is on bio-aviation fuel examined\\nholistically of its supply chain components: feedstock, production\\npathways, storage and transport. This review is organized into\\nsix sections. The next section gives an overview of bio\",\"@confidence\":\"0.35\",\"@support\":\"5\",\"@types\":\"\",\"@sparql\":\"\",\"@policy\":\"whitelist\",\"Resources\":[{\"@URI\":\"http://dbpedia.org/resource/Fuel\",\"@support\":\"6461\",\"@types\":\"\",\"@surfaceForm\":\"Fuel\",\"@offset\":\"13\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3691840568017079E-69\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"Supply Chain\",\"@offset\":\"62\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.708450251685145E-17\"},{\"@URI\":\"http://dbpedia.org/resource/ROH_Undeniable\",\"@support\":\"9\",\"@types\":\"Wikidata:Q1656682,DUL:Event,Schema:SportsEvent,Schema:Event,DBpedia:SportsEvent,DBpedia:SocietalEvent,DBpedia:Event,DBpedia:WrestlingEvent\",\"@surfaceForm\":\"undeniable\",\"@offset\":\"90\",\"@similarityScore\":\"0.9999999798210413\",\"@percentageOfSecondRank\":\"1.5563866140950263E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Ramifications_(Ligeti)\",\"@support\":\"11\",\"@types\":\"\",\"@surfaceForm\":\"ramifications\",\"@offset\":\"115\",\"@similarityScore\":\"0.9176265664961462\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Energy_independence\",\"@support\":\"102\",\"@types\":\"\",\"@surfaceForm\":\"dependence\",\"@offset\":\"142\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.5056334844038292E-13\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"168\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Low-carbon_economy\",\"@support\":\"415\",\"@types\":\"\",\"@surfaceForm\":\"decarbonization\",\"@offset\":\"296\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"359\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"408\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Climate_change_mitigation\",\"@support\":\"1878\",\"@types\":\"\",\"@surfaceForm\":\"mitigation\",\"@offset\":\"433\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"9.669808381537584E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Low-carbon_economy\",\"@support\":\"415\",\"@types\":\"\",\"@surfaceForm\":\"low-carbon\",\"@offset\":\"509\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"9.185194815946704E-33\"},{\"@URI\":\"http://dbpedia.org/resource/Capital_cost\",\"@support\":\"116\",\"@types\":\"\",\"@surfaceForm\":\"capital cost\",\"@offset\":\"604\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"620\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"699\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"799\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"839\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"transport\",\"@offset\":\"901\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0882364060304666E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Ester\",\"@support\":\"3738\",\"@types\":\"\",\"@surfaceForm\":\"esters\",\"@offset\":\"1163\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Fatty_acid\",\"@support\":\"3006\",\"@types\":\"\",\"@surfaceForm\":\"fatty acids\",\"@offset\":\"1174\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.7046646329677417E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Cooking_oil\",\"@support\":\"838\",\"@types\":\"\",\"@surfaceForm\":\"oil-seed\",\"@offset\":\"1234\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Waste\",\"@support\":\"4117\",\"@types\":\"\",\"@surfaceForm\":\"waste\",\"@offset\":\"1253\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.51773110176432E-16\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"1341\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Petroleum\",\"@support\":\"16220\",\"@types\":\"\",\"@surfaceForm\":\"oil\",\"@offset\":\"1386\",\"@similarityScore\":\"0.9999990680011956\",\"@percentageOfSecondRank\":\"9.31999388908381E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"1449\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"1473\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Technology\",\"@support\":\"12704\",\"@types\":\"\",\"@surfaceForm\":\"technology\",\"@offset\":\"1507\",\"@similarityScore\":\"0.9999999999381544\",\"@percentageOfSecondRank\":\"6.205963174210323E-11\"},{\"@URI\":\"http://dbpedia.org/resource/Microalgae\",\"@support\":\"496\",\"@types\":\"\",\"@surfaceForm\":\"algae\",\"@offset\":\"1534\",\"@similarityScore\":\"0.9999999974534148\",\"@percentageOfSecondRank\":\"2.5465308742227486E-9\"},{\"@URI\":\"http://dbpedia.org/resource/Fischer–Tropsch_process\",\"@support\":\"282\",\"@types\":\"\",\"@surfaceForm\":\"Fischer-Tropsch\",\"@offset\":\"1587\",\"@similarityScore\":\"0.9965106325622605\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Lignocellulosic_biomass\",\"@support\":\"107\",\"@types\":\"\",\"@surfaceForm\":\"lignocellulosic biomass\",\"@offset\":\"1628\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"1686\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Mathematical_optimization\",\"@support\":\"2800\",\"@types\":\"\",\"@surfaceForm\":\"optimization\",\"@offset\":\"1849\",\"@similarityScore\":\"0.9999999999736247\",\"@percentageOfSecondRank\":\"2.603704774211081E-11\"},{\"@URI\":\"http://dbpedia.org/resource/Mature_technology\",\"@support\":\"45\",\"@types\":\"\",\"@surfaceForm\":\"technological maturity\",\"@offset\":\"1934\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Financial_capital\",\"@support\":\"1434\",\"@types\":\"\",\"@surfaceForm\":\"capital\",\"@offset\":\"1966\",\"@similarityScore\":\"0.9999999999972715\",\"@percentageOfSecondRank\":\"2.4580932832064406E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Ideal_gas\",\"@support\":\"835\",\"@types\":\"\",\"@surfaceForm\":\"ideal\",\"@offset\":\"1999\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.37660336780989E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chains\",\"@offset\":\"2041\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.486664655593561E-17\"},{\"@URI\":\"http://dbpedia.org/resource/Time\",\"@support\":\"13812\",\"@types\":\"\",\"@surfaceForm\":\"temporal\",\"@offset\":\"2092\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.9100880083715542E-21\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas\",\"@support\":\"3736\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gases\",\"@offset\":\"2227\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.335835352440549E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"emissions\",\"@offset\":\"2244\",\"@similarityScore\":\"0.9999928885661599\",\"@percentageOfSecondRank\":\"7.11148456014202E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Aerodynamics\",\"@support\":\"2226\",\"@types\":\"\",\"@surfaceForm\":\"streamlined\",\"@offset\":\"2332\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.9951279675164264E-23\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"2355\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Sustainability\",\"@support\":\"7512\",\"@types\":\"\",\"@surfaceForm\":\"sustainable\",\"@offset\":\"2421\",\"@similarityScore\":\"0.9999999991459845\",\"@percentageOfSecondRank\":\"8.541496562177239E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"2460\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Digital_object_identifier\",\"@support\":\"2467\",\"@types\":\"\",\"@surfaceForm\":\"doi\",\"@offset\":\"2497\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Frontiers_Media\",\"@support\":\"137\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Company,DBpedia:Agent,DBpedia:Publisher\",\"@surfaceForm\":\"Frontiers\",\"@offset\":\"2528\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.182065375179581E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Sin\",\"@support\":\"3548\",\"@types\":\"\",\"@surfaceForm\":\"Sin\",\"@offset\":\"2634\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.5469149568654944E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Denmark\",\"@support\":\"67242\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Denmark\",\"@offset\":\"2663\",\"@similarityScore\":\"0.9999999995943654\",\"@percentageOfSecondRank\":\"4.05851927348303E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Denmark\",\"@support\":\"67242\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Denmark\",\"@offset\":\"2672\",\"@similarityScore\":\"0.9999999995943654\",\"@percentageOfSecondRank\":\"4.05851927348303E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Climate_of_Massachusetts\",\"@support\":\"293\",\"@types\":\"\",\"@surfaceForm\":\"Massachusetts\",\"@offset\":\"2706\",\"@similarityScore\":\"0.9999999344845513\",\"@percentageOfSecondRank\":\"6.551556444186653E-8\"},{\"@URI\":\"http://dbpedia.org/resource/United_States\",\"@support\":\"468823\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"United States\",\"@offset\":\"2745\",\"@similarityScore\":\"0.9959214828110123\",\"@percentageOfSecondRank\":\"0.004095219612495926\"},{\"@URI\":\"http://dbpedia.org/resource/Udugama\",\"@support\":\"21\",\"@types\":\"Wikidata:Q532,Wikidata:Q486972,Schema:Place,DBpedia:Settlement,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Village\",\"@surfaceForm\":\"Udugama\",\"@offset\":\"2765\",\"@similarityScore\":\"0.9999999997817213\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Denmark\",\"@support\":\"67242\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Denmark\",\"@offset\":\"2798\",\"@similarityScore\":\"0.9999999995943654\",\"@percentageOfSecondRank\":\"4.05851927348303E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Denmark\",\"@support\":\"67242\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Denmark\",\"@offset\":\"2807\",\"@similarityScore\":\"0.9999999995943654\",\"@percentageOfSecondRank\":\"4.05851927348303E-10\"},{\"@URI\":\"http://dbpedia.org/resource/List_of_South_Park_families\",\"@support\":\"69\",\"@types\":\"Wikidata:Q95074,Wikidata:Q24229398,DUL:Agent,DBpedia:Agent,DBpedia:FictionalCharacter\",\"@surfaceForm\":\"Sheila\",\"@offset\":\"2832\",\"@similarityScore\":\"0.8556540140440789\",\"@percentageOfSecondRank\":\"0.16869472003173144\"},{\"@URI\":\"http://dbpedia.org/resource/Morocco\",\"@support\":\"32722\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"article\",\"@offset\":\"2898\",\"@similarityScore\":\"0.5477407940153948\",\"@percentageOfSecondRank\":\"0.5093930764484409\"},{\"@URI\":\"http://dbpedia.org/resource/Engineering\",\"@support\":\"19852\",\"@types\":\"\",\"@surfaceForm\":\"Engineering\",\"@offset\":\"2950\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.9212839573114922E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Frontiers_Media\",\"@support\":\"137\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Company,DBpedia:Agent,DBpedia:Publisher\",\"@surfaceForm\":\"Frontiers\",\"@offset\":\"2988\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.182065375179581E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Steamship\",\"@support\":\"3723\",\"@types\":\"\",\"@surfaceForm\":\"SS\",\"@offset\":\"3107\",\"@similarityScore\":\"0.982509558737152\",\"@percentageOfSecondRank\":\"0.01778487692200981\"},{\"@URI\":\"http://dbpedia.org/resource/Narayana\",\"@support\":\"905\",\"@types\":\"\",\"@surfaceForm\":\"Narayan\",\"@offset\":\"3111\",\"@similarityScore\":\"0.9965155771762734\",\"@percentageOfSecondRank\":\"0.0034965931548019986\"},{\"@URI\":\"http://dbpedia.org/resource/New_Jersey\",\"@support\":\"120157\",\"@types\":\"Wikidata:Q3455524,Schema:Place,Schema:AdministrativeArea,DBpedia:Region,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:AdministrativeRegion\",\"@surfaceForm\":\"NJ\",\"@offset\":\"3142\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.313960922424123E-21\"},{\"@URI\":\"http://dbpedia.org/resource/Sima_Zhao\",\"@support\":\"514\",\"@types\":\"Http://xmlns.com/foaf/0.1/Person,Wikidata:Q729,Wikidata:Q5,Wikidata:Q215627,Wikidata:Q19088,DUL:NaturalPerson,Schema:Person,DBpedia:Species,DBpedia:Person,DBpedia:Eukaryote,DBpedia:Animal,DBpedia:Royalty\",\"@surfaceForm\":\"Zhao\",\"@offset\":\"3146\",\"@similarityScore\":\"0.8679598631000862\",\"@percentageOfSecondRank\":\"0.15211862693341394\"},{\"@URI\":\"http://dbpedia.org/resource/Fuel\",\"@support\":\"6461\",\"@types\":\"\",\"@surfaceForm\":\"Fuel\",\"@offset\":\"3188\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3691840568017079E-69\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"Supply Chain\",\"@offset\":\"3237\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.708450251685145E-17\"},{\"@URI\":\"http://dbpedia.org/resource/Digital_object_identifier\",\"@support\":\"2467\",\"@types\":\"\",\"@surfaceForm\":\"doi\",\"@offset\":\"3288\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Fuel\",\"@support\":\"6461\",\"@types\":\"\",\"@surfaceForm\":\"Fuel\",\"@offset\":\"3331\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3691840568017079E-69\"},{\"@URI\":\"http://dbpedia.org/resource/Narayana\",\"@support\":\"905\",\"@types\":\"\",\"@surfaceForm\":\"Narayan\",\"@offset\":\"3438\",\"@similarityScore\":\"0.9965155771762734\",\"@percentageOfSecondRank\":\"0.0034965931548019986\"},{\"@URI\":\"http://dbpedia.org/resource/John_Frederick_of_Holstein-Gottorp\",\"@support\":\"41\",\"@types\":\"\",\"@surfaceForm\":\"John Frederick\",\"@offset\":\"3450\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"8.617491054723607E-20\"},{\"@URI\":\"http://dbpedia.org/resource/Sima_Zhao\",\"@support\":\"514\",\"@types\":\"Http://xmlns.com/foaf/0.1/Person,Wikidata:Q729,Wikidata:Q5,Wikidata:Q215627,Wikidata:Q19088,DUL:NaturalPerson,Schema:Person,DBpedia:Species,DBpedia:Person,DBpedia:Eukaryote,DBpedia:Animal,DBpedia:Royalty\",\"@surfaceForm\":\"Zhao\",\"@offset\":\"3511\",\"@similarityScore\":\"0.8679598631000862\",\"@percentageOfSecondRank\":\"0.15211862693341394\"},{\"@URI\":\"http://dbpedia.org/resource/List_of_South_Park_families\",\"@support\":\"69\",\"@types\":\"Wikidata:Q95074,Wikidata:Q24229398,DUL:Agent,DBpedia:Agent,DBpedia:FictionalCharacter\",\"@surfaceForm\":\"Sheila\",\"@offset\":\"3522\",\"@similarityScore\":\"0.8556540140440789\",\"@percentageOfSecondRank\":\"0.16869472003173144\"},{\"@URI\":\"http://dbpedia.org/resource/Chemical_engineering\",\"@support\":\"2859\",\"@types\":\"\",\"@surfaceForm\":\"Chemical Engineering\",\"@offset\":\"3558\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6434054247615414E-52\"},{\"@URI\":\"http://dbpedia.org/resource/Bath_Rugby\",\"@support\":\"1676\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:SportsClub,DBpedia:Organisation,DBpedia:Agent,DBpedia:RugbyClub\",\"@surfaceForm\":\"Bath\",\"@offset\":\"3594\",\"@similarityScore\":\"0.766998938492331\",\"@percentageOfSecondRank\":\"0.303782769199278\"},{\"@URI\":\"http://dbpedia.org/resource/Bath_Rugby\",\"@support\":\"1676\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:SportsClub,DBpedia:Organisation,DBpedia:Agent,DBpedia:RugbyClub\",\"@surfaceForm\":\"Bath\",\"@offset\":\"3600\",\"@similarityScore\":\"0.766998938492331\",\"@percentageOfSecondRank\":\"0.303782769199278\"},{\"@URI\":\"http://dbpedia.org/resource/Government_of_the_United_Kingdom\",\"@support\":\"7682\",\"@types\":\"\",\"@surfaceForm\":\"United Kingdom\",\"@offset\":\"3606\",\"@similarityScore\":\"0.9969961009669099\",\"@percentageOfSecondRank\":\"0.00301294962956281\"},{\"@URI\":\"http://dbpedia.org/resource/Chemical_engineering\",\"@support\":\"2859\",\"@types\":\"\",\"@surfaceForm\":\"Chemical Engineering\",\"@offset\":\"3638\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6434054247615414E-52\"},{\"@URI\":\"http://dbpedia.org/resource/Engineering\",\"@support\":\"19852\",\"@types\":\"\",\"@surfaceForm\":\"Engineering\",\"@offset\":\"3671\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.9212839573114922E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Philippines\",\"@support\":\"99615\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Philippines\",\"@offset\":\"3733\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"7.156532965985363E-19\"},{\"@URI\":\"http://dbpedia.org/resource/IRRI_station\",\"@support\":\"12\",\"@types\":\"Wikidata:Q719456,DBpedia:Infrastructure,DBpedia:ArchitecturalStructure,DBpedia:Station\",\"@surfaceForm\":\"Los Baños\",\"@offset\":\"3745\",\"@similarityScore\":\"0.9528381208334044\",\"@percentageOfSecondRank\":\"0.049496213611636905\"},{\"@URI\":\"http://dbpedia.org/resource/IRRI_station\",\"@support\":\"12\",\"@types\":\"Wikidata:Q719456,DBpedia:Infrastructure,DBpedia:ArchitecturalStructure,DBpedia:Station\",\"@surfaceForm\":\"Los Baños\",\"@offset\":\"3756\",\"@similarityScore\":\"0.9528381208334044\",\"@percentageOfSecondRank\":\"0.049496213611636905\"},{\"@URI\":\"http://dbpedia.org/resource/Philippines\",\"@support\":\"99615\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Philippines\",\"@offset\":\"3767\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"7.156532965985363E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Chemical_engineering\",\"@support\":\"2859\",\"@types\":\"\",\"@surfaceForm\":\"Chemical Engineering\",\"@offset\":\"3782\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6434054247615414E-52\"},{\"@URI\":\"http://dbpedia.org/resource/De_La_Salle_University\",\"@support\":\"985\",\"@types\":\"Wikidata:Q43229,Wikidata:Q3918,Wikidata:Q24229398,Wikidata:Q2385804,DUL:SocialPerson,DUL:Agent,Schema:Organization,Schema:EducationalOrganization,Schema:CollegeOrUniversity,DBpedia:Organisation,DBpedia:EducationalInstitution,DBpedia:Agent,DBpedia:University\",\"@surfaceForm\":\"De La Salle University-Manila\",\"@offset\":\"3815\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"5.10518197945166E-17\"},{\"@URI\":\"http://dbpedia.org/resource/Metro_Manila\",\"@support\":\"5408\",\"@types\":\"Wikidata:Q3455524,Schema:Place,Schema:AdministrativeArea,DBpedia:Region,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:AdministrativeRegion\",\"@surfaceForm\":\"Manila\",\"@offset\":\"3846\",\"@similarityScore\":\"0.9999856436318703\",\"@percentageOfSecondRank\":\"1.4355664309566954E-5\"},{\"@URI\":\"http://dbpedia.org/resource/Philippines\",\"@support\":\"99615\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"Philippines\",\"@offset\":\"3854\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"7.156532965985363E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Space_Shuttle_Enterprise\",\"@support\":\"443\",\"@types\":\"Schema:Place,Schema:LandmarksOrHistoricalBuildings,DBpedia:Place,DBpedia:Location,DBpedia:HistoricPlace\",\"@surfaceForm\":\"Enterprise\",\"@offset\":\"3885\",\"@similarityScore\":\"0.9903078883226196\",\"@percentageOfSecondRank\":\"0.009786968065162185\"},{\"@URI\":\"http://dbpedia.org/resource/London\",\"@support\":\"253141\",\"@types\":\"Wikidata:Q515,Wikidata:Q486972,Schema:Place,Schema:City,DBpedia:Settlement,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:City\",\"@surfaceForm\":\"London\",\"@offset\":\"3902\",\"@similarityScore\":\"0.999716978334114\",\"@percentageOfSecondRank\":\"2.8309966389266955E-4\"},{\"@URI\":\"http://dbpedia.org/resource/Government_of_the_United_Kingdom\",\"@support\":\"7682\",\"@types\":\"\",\"@surfaceForm\":\"United Kingdom\",\"@offset\":\"3910\",\"@similarityScore\":\"0.9969961009669099\",\"@percentageOfSecondRank\":\"0.00301294962956281\"},{\"@URI\":\"http://dbpedia.org/resource/Flatwoods\",\"@support\":\"182\",\"@types\":\"\",\"@surfaceForm\":\"Flatwoods\",\"@offset\":\"3960\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.321404714543388E-33\"},{\"@URI\":\"http://dbpedia.org/resource/Bath_Rugby\",\"@support\":\"1676\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:SportsClub,DBpedia:Organisation,DBpedia:Agent,DBpedia:RugbyClub\",\"@surfaceForm\":\"Bath\",\"@offset\":\"3980\",\"@similarityScore\":\"0.766998938492331\",\"@percentageOfSecondRank\":\"0.303782769199278\"},{\"@URI\":\"http://dbpedia.org/resource/Government_of_the_United_Kingdom\",\"@support\":\"7682\",\"@types\":\"\",\"@surfaceForm\":\"United Kingdom\",\"@offset\":\"3986\",\"@similarityScore\":\"0.9969961009669099\",\"@percentageOfSecondRank\":\"0.00301294962956281\"},{\"@URI\":\"http://dbpedia.org/resource/Xiamen_University\",\"@support\":\"235\",\"@types\":\"Wikidata:Q43229,Wikidata:Q3918,Wikidata:Q24229398,Wikidata:Q2385804,DUL:SocialPerson,DUL:Agent,Schema:Organization,Schema:EducationalOrganization,Schema:CollegeOrUniversity,DBpedia:Organisation,DBpedia:EducationalInstitution,DBpedia:Agent,DBpedia:University\",\"@surfaceForm\":\"Xiamen University\",\"@offset\":\"4023\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Xiamen\",\"@support\":\"2391\",\"@types\":\"Wikidata:Q515,Wikidata:Q486972,Schema:Place,Schema:City,DBpedia:Settlement,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:City\",\"@surfaceForm\":\"Xiamen\",\"@offset\":\"4042\",\"@similarityScore\":\"0.994617826978493\",\"@percentageOfSecondRank\":\"0.005411297561137231\"},{\"@URI\":\"http://dbpedia.org/resource/China\",\"@support\":\"208345\",\"@types\":\"Wikidata:Q6256,Schema:Place,Schema:Country,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Country\",\"@surfaceForm\":\"China\",\"@offset\":\"4050\",\"@similarityScore\":\"0.9999999960218702\",\"@percentageOfSecondRank\":\"3.970178650955891E-9\"},{\"@URI\":\"http://dbpedia.org/resource/ROH_Undeniable\",\"@support\":\"9\",\"@types\":\"Wikidata:Q1656682,DUL:Event,Schema:SportsEvent,Schema:Event,DBpedia:SportsEvent,DBpedia:SocietalEvent,DBpedia:Event,DBpedia:WrestlingEvent\",\"@surfaceForm\":\"undeniable\",\"@offset\":\"4060\",\"@similarityScore\":\"0.9999999798210413\",\"@percentageOfSecondRank\":\"1.5563866140950263E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Energy_independence\",\"@support\":\"102\",\"@types\":\"\",\"@surfaceForm\":\"dependence\",\"@offset\":\"4111\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.5056334844038292E-13\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"4137\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Low-carbon_economy\",\"@support\":\"415\",\"@types\":\"\",\"@surfaceForm\":\"decarbonization\",\"@offset\":\"4264\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"4326\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"4375\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Climate_change_mitigation\",\"@support\":\"1878\",\"@types\":\"\",\"@surfaceForm\":\"mitigation\",\"@offset\":\"4400\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"9.669808381537584E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Low-carbon_economy\",\"@support\":\"415\",\"@types\":\"\",\"@surfaceForm\":\"low-carbon\",\"@offset\":\"4475\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"9.185194815946704E-33\"},{\"@URI\":\"http://dbpedia.org/resource/Capital_cost\",\"@support\":\"116\",\"@types\":\"\",\"@surfaceForm\":\"capital cost\",\"@offset\":\"4569\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"4585\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"4664\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"4763\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"4803\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"transport\",\"@offset\":\"4865\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0882364060304666E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Fatty_acid\",\"@support\":\"3006\",\"@types\":\"\",\"@surfaceForm\":\"fatty acids\",\"@offset\":\"5136\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.7046646329677417E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Cooking_oil\",\"@support\":\"838\",\"@types\":\"\",\"@surfaceForm\":\"oil-seed\",\"@offset\":\"5196\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Waste\",\"@support\":\"4117\",\"@types\":\"\",\"@surfaceForm\":\"waste\",\"@offset\":\"5215\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.51773110176432E-16\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"5303\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Petroleum\",\"@support\":\"16220\",\"@types\":\"\",\"@surfaceForm\":\"oil\",\"@offset\":\"5348\",\"@similarityScore\":\"0.9999990680011956\",\"@percentageOfSecondRank\":\"9.31999388908381E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"5411\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"5434\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Microalgae\",\"@support\":\"496\",\"@types\":\"\",\"@surfaceForm\":\"algae\",\"@offset\":\"5494\",\"@similarityScore\":\"0.9999999974534148\",\"@percentageOfSecondRank\":\"2.5465308742227486E-9\"},{\"@URI\":\"http://dbpedia.org/resource/Fischer–Tropsch_process\",\"@support\":\"282\",\"@types\":\"\",\"@surfaceForm\":\"Fischer-Tropsch\",\"@offset\":\"5547\",\"@similarityScore\":\"0.9965106325622605\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Lignocellulosic_biomass\",\"@support\":\"107\",\"@types\":\"\",\"@surfaceForm\":\"lignocellulosic biomass\",\"@offset\":\"5588\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gas emissions\",\"@offset\":\"5646\",\"@similarityScore\":\"0.999999890133046\",\"@percentageOfSecondRank\":\"1.0986653621422362E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Mathematical_optimization\",\"@support\":\"2800\",\"@types\":\"\",\"@surfaceForm\":\"optimization\",\"@offset\":\"5808\",\"@similarityScore\":\"0.9999999999736247\",\"@percentageOfSecondRank\":\"2.603704774211081E-11\"},{\"@URI\":\"http://dbpedia.org/resource/Mature_technology\",\"@support\":\"45\",\"@types\":\"\",\"@surfaceForm\":\"technological maturity\",\"@offset\":\"5893\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Financial_capital\",\"@support\":\"1434\",\"@types\":\"\",\"@surfaceForm\":\"capital\",\"@offset\":\"5925\",\"@similarityScore\":\"0.9999999999972715\",\"@percentageOfSecondRank\":\"2.4580932832064406E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Ideal_gas\",\"@support\":\"835\",\"@types\":\"\",\"@surfaceForm\":\"ideal\",\"@offset\":\"5958\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.37660336780989E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chains\",\"@offset\":\"6000\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.486664655593561E-17\"},{\"@URI\":\"http://dbpedia.org/resource/Time\",\"@support\":\"13812\",\"@types\":\"\",\"@surfaceForm\":\"temporal\",\"@offset\":\"6051\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.9100880083715542E-21\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas\",\"@support\":\"3736\",\"@types\":\"\",\"@surfaceForm\":\"greenhouse gases\",\"@offset\":\"6184\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.335835352440549E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"emissions\",\"@offset\":\"6201\",\"@similarityScore\":\"0.9999928885661599\",\"@percentageOfSecondRank\":\"7.11148456014202E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Aerodynamics\",\"@support\":\"2226\",\"@types\":\"\",\"@surfaceForm\":\"streamlined\",\"@offset\":\"6289\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.9951279675164264E-23\"},{\"@URI\":\"http://dbpedia.org/resource/Sustainability\",\"@support\":\"7512\",\"@types\":\"\",\"@surfaceForm\":\"sustainable\",\"@offset\":\"6377\",\"@similarityScore\":\"0.9999999991459845\",\"@percentageOfSecondRank\":\"8.541496562177239E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"6416\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"6445\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Sustainability\",\"@support\":\"7512\",\"@types\":\"\",\"@surfaceForm\":\"sustainable\",\"@offset\":\"6451\",\"@similarityScore\":\"0.9999999991459845\",\"@percentageOfSecondRank\":\"8.541496562177239E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Energy_crop\",\"@support\":\"148\",\"@types\":\"\",\"@surfaceForm\":\"energy crops\",\"@offset\":\"6475\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Waste\",\"@support\":\"4117\",\"@types\":\"\",\"@surfaceForm\":\"waste\",\"@offset\":\"6489\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.51773110176432E-16\"},{\"@URI\":\"http://dbpedia.org/resource/Biofuel\",\"@support\":\"2365\",\"@types\":\"\",\"@surfaceForm\":\"biomass\",\"@offset\":\"6495\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.8166875224747397E-22\"},{\"@URI\":\"http://dbpedia.org/resource/Microalgae\",\"@support\":\"496\",\"@types\":\"\",\"@surfaceForm\":\"microalgae\",\"@offset\":\"6504\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"7.319955739877501E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"transport\",\"@offset\":\"6549\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0882364060304666E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chains\",\"@offset\":\"6560\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.486664655593561E-17\"},{\"@URI\":\"http://dbpedia.org/resource/World_economy\",\"@support\":\"499\",\"@types\":\"\",\"@surfaceForm\":\"global economy\",\"@offset\":\"6689\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.9811367970884843E-15\"},{\"@URI\":\"http://dbpedia.org/resource/United_States_dollar\",\"@support\":\"17950\",\"@types\":\"DBpedia:Currency\",\"@surfaceForm\":\"USD\",\"@offset\":\"6766\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.8385280339197647E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Long_and_short_scale\",\"@support\":\"410\",\"@types\":\"\",\"@surfaceForm\":\"trillion\",\"@offset\":\"6774\",\"@similarityScore\":\"0.9978953818473174\",\"@percentageOfSecondRank\":\"0.0021090569123304237\"},{\"@URI\":\"http://dbpedia.org/resource/Economic_growth\",\"@support\":\"2836\",\"@types\":\"\",\"@surfaceForm\":\"GDP\",\"@offset\":\"6793\",\"@similarityScore\":\"0.8577530151034972\",\"@percentageOfSecondRank\":\"0.1658367646538744\"},{\"@URI\":\"http://dbpedia.org/resource/Chery\",\"@support\":\"699\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:Company\",\"@surfaceForm\":\"rely\",\"@offset\":\"6865\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.5429651111462317E-35\"},{\"@URI\":\"http://dbpedia.org/resource/Web_Accessibility_Initiative\",\"@support\":\"86\",\"@types\":\"\",\"@surfaceForm\":\"ATAG\",\"@offset\":\"6937\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Airline\",\"@support\":\"11478\",\"@types\":\"\",\"@surfaceForm\":\"airline industry\",\"@offset\":\"6996\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Web_Accessibility_Initiative\",\"@support\":\"86\",\"@types\":\"\",\"@surfaceForm\":\"ATAG\",\"@offset\":\"7119\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"GHG emissions\",\"@offset\":\"7222\",\"@similarityScore\":\"0.999999601225761\",\"@percentageOfSecondRank\":\"3.987748351477295E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Ironman_Heavymetalweight_Championship\",\"@support\":\"752\",\"@types\":\"\",\"@surfaceForm\":\"4 times\",\"@offset\":\"7254\",\"@similarityScore\":\"0.9973493221032015\",\"@percentageOfSecondRank\":\"0.0026538674184593456\"},{\"@URI\":\"http://dbpedia.org/resource/Economics_of_climate_change_mitigation\",\"@support\":\"48\",\"@types\":\"\",\"@surfaceForm\":\"baseline\",\"@offset\":\"7284\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.259679925299385E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Sustainability\",\"@support\":\"7512\",\"@types\":\"\",\"@surfaceForm\":\"sustainable\",\"@offset\":\"7353\",\"@similarityScore\":\"0.9999999991459845\",\"@percentageOfSecondRank\":\"8.541496562177239E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"GHG emissions\",\"@offset\":\"7402\",\"@similarityScore\":\"0.999999601225761\",\"@percentageOfSecondRank\":\"3.987748351477295E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Economics_of_climate_change_mitigation\",\"@support\":\"48\",\"@types\":\"\",\"@surfaceForm\":\"baseline\",\"@offset\":\"7484\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.259679925299385E-12\"},{\"@URI\":\"http://dbpedia.org/resource/International_Air_Transport_Association\",\"@support\":\"3064\",\"@types\":\"\",\"@surfaceForm\":\"IATA\",\"@offset\":\"7494\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.3407687667902642E-14\"},{\"@URI\":\"http://dbpedia.org/resource/International_Air_Transport_Association\",\"@support\":\"3064\",\"@types\":\"\",\"@surfaceForm\":\"International Air Transport Association (IATA)\",\"@offset\":\"7511\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/International_Civil_Aviation_Organization\",\"@support\":\"2902\",\"@types\":\"\",\"@surfaceForm\":\"International Civil Aviation Organisation (ICAO)\",\"@offset\":\"7566\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Marketing\",\"@support\":\"11326\",\"@types\":\"\",\"@surfaceForm\":\"market\",\"@offset\":\"7752\",\"@similarityScore\":\"0.9926490226523818\",\"@percentageOfSecondRank\":\"0.004785708761756119\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"7780\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Juan_Gutiérrez_(baseball)\",\"@support\":\"100\",\"@types\":\"Http://xmlns.com/foaf/0.1/Person,Wikidata:Q729,Wikidata:Q5,Wikidata:Q215627,Wikidata:Q19088,Wikidata:Q10871364,DUL:NaturalPerson,Schema:Person,DBpedia:Species,DBpedia:Person,DBpedia:Eukaryote,DBpedia:Athlete,DBpedia:Animal,DBpedia:BaseballPlayer\",\"@surfaceForm\":\"Gutiérrez\",\"@offset\":\"7796\",\"@similarityScore\":\"0.7112051860169338\",\"@percentageOfSecondRank\":\"0.2898591549295848\"},{\"@URI\":\"http://dbpedia.org/resource/Antonio_Lopez-Fitzgerald\",\"@support\":\"54\",\"@types\":\"Wikidata:Q95074,Wikidata:Q24229398,DUL:Agent,DBpedia:FictionalCharacter,DBpedia:Agent,DBpedia:SoapCharacter\",\"@surfaceForm\":\"Antonio\",\"@offset\":\"7807\",\"@similarityScore\":\"0.6571116029490003\",\"@percentageOfSecondRank\":\"0.4934526439398227\"},{\"@URI\":\"http://dbpedia.org/resource/Trajectory\",\"@support\":\"1045\",\"@types\":\"\",\"@surfaceForm\":\"trajectories\",\"@offset\":\"7875\",\"@similarityScore\":\"0.9871232483817686\",\"@percentageOfSecondRank\":\"0.013044721044837441\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"emissions\",\"@offset\":\"7959\",\"@similarityScore\":\"0.9999928885661599\",\"@percentageOfSecondRank\":\"7.11148456014202E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"GHG emissions\",\"@offset\":\"8084\",\"@similarityScore\":\"0.999999601225761\",\"@percentageOfSecondRank\":\"3.987748351477295E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Airframe\",\"@support\":\"811\",\"@types\":\"\",\"@surfaceForm\":\"Airframe\",\"@offset\":\"8116\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"5.994989578067833E-76\"},{\"@URI\":\"http://dbpedia.org/resource/Internal_combustion_engine\",\"@support\":\"6265\",\"@types\":\"\",\"@surfaceForm\":\"engine\",\"@offset\":\"8129\",\"@similarityScore\":\"0.9999996969445879\",\"@percentageOfSecondRank\":\"3.0088541431934664E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Composite_material\",\"@support\":\"2160\",\"@types\":\"\",\"@surfaceForm\":\"composite materials\",\"@offset\":\"8222\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.89937610678056E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft_Designs\",\"@support\":\"18\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:Company\",\"@surfaceForm\":\"aircraft designs\",\"@offset\":\"8275\",\"@similarityScore\":\"0.999999999994543\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Aerodynamics\",\"@support\":\"2226\",\"@types\":\"\",\"@surfaceForm\":\"aerodynamics\",\"@offset\":\"8306\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.664163670426974E-30\"},{\"@URI\":\"http://dbpedia.org/resource/Rye\",\"@support\":\"1825\",\"@types\":\"\",\"@surfaceForm\":\"Rye\",\"@offset\":\"8359\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.4212390998884253E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"8412\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"CO2\",\"@offset\":\"8441\",\"@similarityScore\":\"0.9999910276467356\",\"@percentageOfSecondRank\":\"8.972433790828853E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Wing\",\"@support\":\"3617\",\"@types\":\"\",\"@surfaceForm\":\"wing\",\"@offset\":\"8473\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.314576776133827E-31\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"8526\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Web_Accessibility_Initiative\",\"@support\":\"86\",\"@types\":\"\",\"@surfaceForm\":\"ATAG\",\"@offset\":\"8536\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Intermodal_container\",\"@support\":\"1206\",\"@types\":\"\",\"@surfaceForm\":\"cargo containers\",\"@offset\":\"8592\",\"@similarityScore\":\"0.989765814773967\",\"@percentageOfSecondRank\":\"0.010340006770851944\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"GHG emissions\",\"@offset\":\"8610\",\"@similarityScore\":\"0.999999601225761\",\"@percentageOfSecondRank\":\"3.987748351477295E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Web_Accessibility_Initiative\",\"@support\":\"86\",\"@types\":\"\",\"@surfaceForm\":\"ATAG\",\"@offset\":\"8652\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Fuel_efficiency\",\"@support\":\"1159\",\"@types\":\"\",\"@surfaceForm\":\"fuel consumption\",\"@offset\":\"8728\",\"@similarityScore\":\"0.999999976698746\",\"@percentageOfSecondRank\":\"2.3301460692794523E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Internal_combustion_engine\",\"@support\":\"6265\",\"@types\":\"\",\"@surfaceForm\":\"engine\",\"@offset\":\"8817\",\"@similarityScore\":\"0.9999996969445879\",\"@percentageOfSecondRank\":\"3.0088541431934664E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Technology\",\"@support\":\"12704\",\"@types\":\"\",\"@surfaceForm\":\"technology\",\"@offset\":\"8824\",\"@similarityScore\":\"0.9999999999381544\",\"@percentageOfSecondRank\":\"6.205963174210323E-11\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"emissions\",\"@offset\":\"8973\",\"@similarityScore\":\"0.9999928885661599\",\"@percentageOfSecondRank\":\"7.11148456014202E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Bauen\",\"@support\":\"22\",\"@types\":\"Wikidata:Q486972,Schema:Place,DBpedia:PopulatedPlace,DBpedia:Place,DBpedia:Location,DBpedia:Settlement\",\"@surfaceForm\":\"Bauen\",\"@offset\":\"8984\",\"@similarityScore\":\"0.9999999998954081\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Financial_capital\",\"@support\":\"1434\",\"@types\":\"\",\"@surfaceForm\":\"capital\",\"@offset\":\"9072\",\"@similarityScore\":\"0.9999999999972715\",\"@percentageOfSecondRank\":\"2.4580932832064406E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Biofuel\",\"@support\":\"2365\",\"@types\":\"\",\"@surfaceForm\":\"Biofuel\",\"@offset\":\"9121\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"GHG emissions\",\"@offset\":\"9170\",\"@similarityScore\":\"0.999999601225761\",\"@percentageOfSecondRank\":\"3.987748351477295E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"conventional jet fuel\",\"@offset\":\"9327\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Petroleum\",\"@support\":\"16220\",\"@types\":\"\",\"@surfaceForm\":\"crude oil\",\"@offset\":\"9396\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0374177227596888E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"kerosene\",\"@offset\":\"9428\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"6.962307772353447E-13\"},{\"@URI\":\"http://dbpedia.org/resource/Hydrocarbon\",\"@support\":\"3095\",\"@types\":\"\",\"@surfaceForm\":\"hydrocarbons\",\"@offset\":\"9437\",\"@similarityScore\":\"0.9999999998080966\",\"@percentageOfSecondRank\":\"1.9212551332612177E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Hydrocarbon\",\"@support\":\"3095\",\"@types\":\"\",\"@surfaceForm\":\"hydrocarbon\",\"@offset\":\"9455\",\"@similarityScore\":\"0.9999999998908606\",\"@percentageOfSecondRank\":\"1.0946581977192003E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"9477\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Gasoline\",\"@support\":\"6654\",\"@types\":\"\",\"@surfaceForm\":\"gasoline\",\"@offset\":\"9504\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.671416180409147E-28\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"diesel\",\"@offset\":\"9517\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.2755781520375362E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Classical_mechanics\",\"@support\":\"1558\",\"@types\":\"\",\"@surfaceForm\":\"classical\",\"@offset\":\"9530\",\"@similarityScore\":\"0.9998294980902882\",\"@percentageOfSecondRank\":\"1.7053098522526819E-4\"},{\"@URI\":\"http://dbpedia.org/resource/Circle\",\"@support\":\"5536\",\"@types\":\"\",\"@surfaceForm\":\"S1\",\"@offset\":\"9564\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.300100013474876E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"9568\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"kerosene\",\"@offset\":\"9581\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"6.962307772353447E-13\"},{\"@URI\":\"http://dbpedia.org/resource/Oil_refinery\",\"@support\":\"2545\",\"@types\":\"\",\"@surfaceForm\":\"middle distillate\",\"@offset\":\"9598\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Petroleum\",\"@support\":\"16220\",\"@types\":\"\",\"@surfaceForm\":\"crude oil\",\"@offset\":\"9640\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0374177227596888E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Gasoline\",\"@support\":\"6654\",\"@types\":\"\",\"@surfaceForm\":\"gasoline\",\"@offset\":\"9682\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.671416180409147E-28\"},{\"@URI\":\"http://dbpedia.org/resource/Physical_chemistry\",\"@support\":\"1484\",\"@types\":\"\",\"@surfaceForm\":\"physicochemical\",\"@offset\":\"9738\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Gasoline\",\"@support\":\"6654\",\"@types\":\"\",\"@surfaceForm\":\"gasoline\",\"@offset\":\"9768\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.671416180409147E-28\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"9778\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"diesel\",\"@offset\":\"9791\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.2755781520375362E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"9802\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"9821\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Gasoline\",\"@support\":\"6654\",\"@types\":\"\",\"@surfaceForm\":\"gasoline\",\"@offset\":\"9848\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"6.671416180409147E-28\"},{\"@URI\":\"http://dbpedia.org/resource/Volatile_organic_compound\",\"@support\":\"1025\",\"@types\":\"\",\"@surfaceForm\":\"volatile\",\"@offset\":\"9871\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.493679289595751E-25\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"diesel\",\"@offset\":\"9910\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.2755781520375362E-54\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"9918\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Wax\",\"@support\":\"1901\",\"@types\":\"\",\"@surfaceForm\":\"wax\",\"@offset\":\"9956\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.1583913355999224E-21\"},{\"@URI\":\"http://dbpedia.org/resource/Yangtze\",\"@support\":\"5580\",\"@types\":\"Wikidata:Q47521,Wikidata:Q4022,Schema:RiverBodyOfWater,Schema:Place,Schema:BodyOfWater,DBpedia:Stream,DBpedia:Place,DBpedia:NaturalPlace,DBpedia:Location,DBpedia:BodyOfWater,DBpedia:River\",\"@surfaceForm\":\"Yang\",\"@offset\":\"9981\",\"@similarityScore\":\"0.9270511916867579\",\"@percentageOfSecondRank\":\"0.07868901929671228\"},{\"@URI\":\"http://dbpedia.org/resource/Chemical_element\",\"@support\":\"3540\",\"@types\":\"\",\"@surfaceForm\":\"chemical properties\",\"@offset\":\"10033\",\"@similarityScore\":\"0.9995990586703991\",\"@percentageOfSecondRank\":\"4.0110214846339275E-4\"},{\"@URI\":\"http://dbpedia.org/resource/Aviation_fuel\",\"@support\":\"379\",\"@types\":\"\",\"@surfaceForm\":\"aviation fuel\",\"@offset\":\"10080\",\"@similarityScore\":\"0.9999998247558477\",\"@percentageOfSecondRank\":\"1.7524389799682662E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Cold_working\",\"@support\":\"149\",\"@types\":\"\",\"@surfaceForm\":\"cold\",\"@offset\":\"10109\",\"@similarityScore\":\"0.8799337599782977\",\"@percentageOfSecondRank\":\"0.1358971859924983\"},{\"@URI\":\"http://dbpedia.org/resource/Energy_density\",\"@support\":\"951\",\"@types\":\"\",\"@surfaceForm\":\"energy density\",\"@offset\":\"10206\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"5.9229089621431007E-36\"},{\"@URI\":\"http://dbpedia.org/resource/Energy_consumption\",\"@support\":\"595\",\"@types\":\"\",\"@surfaceForm\":\"energy demand\",\"@offset\":\"10240\",\"@similarityScore\":\"0.9999765046791131\",\"@percentageOfSecondRank\":\"2.3495873238731224E-5\"},{\"@URI\":\"http://dbpedia.org/resource/Flight_length\",\"@support\":\"239\",\"@types\":\"\",\"@surfaceForm\":\"long-haul\",\"@offset\":\"10257\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Engineering\",\"@support\":\"19852\",\"@types\":\"\",\"@surfaceForm\":\"Engineering\",\"@offset\":\"10280\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.9212839573114922E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"Jet A\",\"@offset\":\"10372\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"Jet A\",\"@offset\":\"10382\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Melting_point\",\"@support\":\"1328\",\"@types\":\"\",\"@surfaceForm\":\"melting point\",\"@offset\":\"10405\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"Jet A-1\",\"@offset\":\"10429\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"10519\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Aromaticity\",\"@support\":\"1926\",\"@types\":\"\",\"@surfaceForm\":\"aromatics\",\"@offset\":\"10641\",\"@similarityScore\":\"0.5817760130182538\",\"@percentageOfSecondRank\":\"0.7188745799474199\"},{\"@URI\":\"http://dbpedia.org/resource/Combustion\",\"@support\":\"3806\",\"@types\":\"\",\"@surfaceForm\":\"combustion\",\"@offset\":\"10736\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.0533413366400036E-17\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"10816\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"infrastructure\",\"@offset\":\"10860\",\"@similarityScore\":\"0.9962662061745247\",\"@percentageOfSecondRank\":\"0.003747787290958519\"},{\"@URI\":\"http://dbpedia.org/resource/Rye\",\"@support\":\"1825\",\"@types\":\"\",\"@surfaceForm\":\"Rye\",\"@offset\":\"10906\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.4212390998884253E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Global_warming_potential\",\"@support\":\"554\",\"@types\":\"\",\"@surfaceForm\":\"carbon\",\"@offset\":\"10953\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.2876515838558096E-15\"},{\"@URI\":\"http://dbpedia.org/resource/Digital_footprint\",\"@support\":\"72\",\"@types\":\"\",\"@surfaceForm\":\"footprints\",\"@offset\":\"10960\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0606671592192962E-15\"},{\"@URI\":\"http://dbpedia.org/resource/Life-cycle_assessment\",\"@support\":\"501\",\"@types\":\"\",\"@surfaceForm\":\"life cycle\",\"@offset\":\"10982\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"8.735090206535463E-36\"},{\"@URI\":\"http://dbpedia.org/resource/Carbon_footprint\",\"@support\":\"1057\",\"@types\":\"\",\"@surfaceForm\":\"carbon footprint\",\"@offset\":\"11025\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Tonne\",\"@support\":\"3573\",\"@types\":\"\",\"@surfaceForm\":\"ton\",\"@offset\":\"11067\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.453992820231002E-30\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"11074\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"11117\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"11145\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Renewable_energy\",\"@support\":\"7956\",\"@types\":\"\",\"@surfaceForm\":\"renewable\",\"@offset\":\"11151\",\"@similarityScore\":\"0.9999999660913096\",\"@percentageOfSecondRank\":\"3.390911399790236E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"11161\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Aviation_biofuel\",\"@support\":\"83\",\"@types\":\"\",\"@surfaceForm\":\"aviation biofuel\",\"@offset\":\"11173\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Literature\",\"@support\":\"10726\",\"@types\":\"\",\"@surfaceForm\":\"literature\",\"@offset\":\"11198\",\"@similarityScore\":\"0.9999999652900448\",\"@percentageOfSecondRank\":\"3.470821792264353E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"11213\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Biofuel\",\"@support\":\"2365\",\"@types\":\"\",\"@surfaceForm\":\"biofuel\",\"@offset\":\"11254\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"8.714900600091913E-51\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"transport\",\"@offset\":\"11274\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0882364060304666E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas\",\"@support\":\"3736\",\"@types\":\"\",\"@surfaceForm\":\"GHG\",\"@offset\":\"11386\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"5.862897308424462E-131\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"11458\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Yangtze\",\"@support\":\"5580\",\"@types\":\"Wikidata:Q47521,Wikidata:Q4022,Schema:RiverBodyOfWater,Schema:Place,Schema:BodyOfWater,DBpedia:Stream,DBpedia:Place,DBpedia:NaturalPlace,DBpedia:Location,DBpedia:BodyOfWater,DBpedia:River\",\"@surfaceForm\":\"Yang\",\"@offset\":\"11526\",\"@similarityScore\":\"0.9270511916867579\",\"@percentageOfSecondRank\":\"0.07868901929671228\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"emissions\",\"@offset\":\"11569\",\"@similarityScore\":\"0.9999928885661599\",\"@percentageOfSecondRank\":\"7.11148456014202E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Aircraft\",\"@support\":\"19434\",\"@types\":\"\",\"@surfaceForm\":\"aircraft\",\"@offset\":\"11593\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.3536663009058294E-24\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"11613\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"Jet A-1\",\"@offset\":\"11649\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Rye\",\"@support\":\"1825\",\"@types\":\"\",\"@surfaceForm\":\"Rye\",\"@offset\":\"11658\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.4212390998884253E-38\"},{\"@URI\":\"http://dbpedia.org/resource/Carbon_cycle\",\"@support\":\"1007\",\"@types\":\"\",\"@surfaceForm\":\"carbon cycle\",\"@offset\":\"11692\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Biofuel\",\"@support\":\"2365\",\"@types\":\"\",\"@surfaceForm\":\"biomass\",\"@offset\":\"11755\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.8166875224747397E-22\"},{\"@URI\":\"http://dbpedia.org/resource/Life-cycle_assessment\",\"@support\":\"501\",\"@types\":\"\",\"@surfaceForm\":\"life cycle\",\"@offset\":\"11801\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"8.735090206535463E-36\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"11815\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Greenhouse_gas_emissions\",\"@support\":\"3968\",\"@types\":\"\",\"@surfaceForm\":\"carbon emissions\",\"@offset\":\"11862\",\"@similarityScore\":\"0.9999995446379344\",\"@percentageOfSecondRank\":\"4.553622491506863E-7\"},{\"@URI\":\"http://dbpedia.org/resource/Robert_Bosch_GmbH\",\"@support\":\"1709\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:Company\",\"@surfaceForm\":\"Bosch\",\"@offset\":\"11896\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"9.75681308309702E-25\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"11934\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"12214\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Bibliometrics\",\"@support\":\"189\",\"@types\":\"\",\"@surfaceForm\":\"bibliometric\",\"@offset\":\"12286\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"12323\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Scopus\",\"@support\":\"2617\",\"@types\":\"\",\"@surfaceForm\":\"Scopus\",\"@offset\":\"12366\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Search_engine_optimization\",\"@support\":\"1113\",\"@types\":\"\",\"@surfaceForm\":\"keywords\",\"@offset\":\"12383\",\"@similarityScore\":\"0.9999999999599822\",\"@percentageOfSecondRank\":\"3.97781194310392E-11\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"12401\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Aviation_biofuel\",\"@support\":\"83\",\"@types\":\"\",\"@surfaceForm\":\"biojet\",\"@offset\":\"12407\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"12414\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"12433\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Biofuel\",\"@support\":\"2365\",\"@types\":\"\",\"@surfaceForm\":\"biofuel\",\"@offset\":\"12448\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"8.714900600091913E-51\"},{\"@URI\":\"http://dbpedia.org/resource/Renewable_energy\",\"@support\":\"7956\",\"@types\":\"\",\"@surfaceForm\":\"renewable\",\"@offset\":\"12460\",\"@similarityScore\":\"0.9999999660913096\",\"@percentageOfSecondRank\":\"3.390911399790236E-8\"},{\"@URI\":\"http://dbpedia.org/resource/Jet_fuel\",\"@support\":\"926\",\"@types\":\"Wikidata:Q11173,DUL:ChemicalObject,DBpedia:ChemicalSubstance,DBpedia:ChemicalCompound\",\"@surfaceForm\":\"jet fuel\",\"@offset\":\"12470\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"12556\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Low-carbon_economy\",\"@support\":\"415\",\"@types\":\"\",\"@surfaceForm\":\"decarbonize\",\"@offset\":\"12613\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"12684\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"12790\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Yangtze\",\"@support\":\"5580\",\"@types\":\"Wikidata:Q47521,Wikidata:Q4022,Schema:RiverBodyOfWater,Schema:Place,Schema:BodyOfWater,DBpedia:Stream,DBpedia:Place,DBpedia:NaturalPlace,DBpedia:Location,DBpedia:BodyOfWater,DBpedia:River\",\"@surfaceForm\":\"Yang\",\"@offset\":\"12808\",\"@similarityScore\":\"0.9270511916867579\",\"@percentageOfSecondRank\":\"0.07868901929671228\"},{\"@URI\":\"http://dbpedia.org/resource/James_Reimer\",\"@support\":\"245\",\"@types\":\"Http://xmlns.com/foaf/0.1/Person,Wikidata:Q729,Wikidata:Q5,Wikidata:Q215627,Wikidata:Q19088,Wikidata:Q11774891,DUL:NaturalPerson,Schema:Person,DBpedia:WinterSportPlayer,DBpedia:Species,DBpedia:Person,DBpedia:Eukaryote,DBpedia:Athlete,DBpedia:Animal,DBpedia:IceHockeyPlayer\",\"@surfaceForm\":\"Reimer\",\"@offset\":\"12827\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.6126866979572254E-13\"},{\"@URI\":\"http://dbpedia.org/resource/Qin_Shi_Huang\",\"@support\":\"1156\",\"@types\":\"Http://xmlns.com/foaf/0.1/Person,Wikidata:Q729,Wikidata:Q5,Wikidata:Q215627,Wikidata:Q19088,DUL:NaturalPerson,Schema:Person,DBpedia:Species,DBpedia:Person,DBpedia:Eukaryote,DBpedia:Animal,DBpedia:Royalty\",\"@surfaceForm\":\"Zheng\",\"@offset\":\"12838\",\"@similarityScore\":\"0.9999986207622403\",\"@percentageOfSecondRank\":\"1.1930178314624269E-6\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"12904\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"12991\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"13027\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Microalgae\",\"@support\":\"496\",\"@types\":\"\",\"@surfaceForm\":\"microalgae\",\"@offset\":\"13076\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"7.319955739877501E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Lignocellulosic_biomass\",\"@support\":\"107\",\"@types\":\"\",\"@surfaceForm\":\"lignocellulosic biomass\",\"@offset\":\"13110\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Urbanization\",\"@support\":\"2364\",\"@types\":\"\",\"@surfaceForm\":\"urban\",\"@offset\":\"13160\",\"@similarityScore\":\"0.9999999995116013\",\"@percentageOfSecondRank\":\"4.881797478268487E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Vegetable_oil\",\"@support\":\"1459\",\"@types\":\"\",\"@surfaceForm\":\"vegetable oils\",\"@offset\":\"13223\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.9002756051011846E-23\"},{\"@URI\":\"http://dbpedia.org/resource/D_Generation\",\"@support\":\"93\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q215380,DUL:SocialPerson,DUL:Agent,Schema:Organization,Schema:MusicGroup,DBpedia:Organisation,DBpedia:Group,DBpedia:Agent,DBpedia:Band\",\"@surfaceForm\":\"Vásquez\",\"@offset\":\"13239\",\"@similarityScore\":\"0.9999999997771738\",\"@percentageOfSecondRank\":\"2.175556443118689E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Vishnu\",\"@support\":\"11467\",\"@types\":\"Wikidata:Q24229398,Wikidata:Q178885,DUL:Agent,DBpedia:Agent,DBpedia:Deity\",\"@surfaceForm\":\"Hari\",\"@offset\":\"13322\",\"@similarityScore\":\"0.9973501059083789\",\"@percentageOfSecondRank\":\"0.0026569336132443886\"},{\"@URI\":\"http://dbpedia.org/resource/Analytical_chemistry\",\"@support\":\"990\",\"@types\":\"\",\"@surfaceForm\":\"qualitative\",\"@offset\":\"13425\",\"@similarityScore\":\"0.9892013701771141\",\"@percentageOfSecondRank\":\"0.006633634405118475\"},{\"@URI\":\"http://dbpedia.org/resource/Raw_material\",\"@support\":\"1031\",\"@types\":\"\",\"@surfaceForm\":\"feedstock\",\"@offset\":\"13455\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Frontiers_Media\",\"@support\":\"137\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Company,DBpedia:Agent,DBpedia:Publisher\",\"@surfaceForm\":\"Frontiers\",\"@offset\":\"13489\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.182065375179581E-12\"},{\"@URI\":\"http://dbpedia.org/resource/International_Air_Transport_Association\",\"@support\":\"3064\",\"@types\":\"\",\"@surfaceForm\":\"IATA\",\"@offset\":\"13879\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"2.3407687667902642E-14\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"13934\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Scopus\",\"@support\":\"2617\",\"@types\":\"\",\"@surfaceForm\":\"Scopus\",\"@offset\":\"13973\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/January_17\",\"@support\":\"850\",\"@types\":\"\",\"@surfaceForm\":\"January 17\",\"@offset\":\"13992\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"3.960079120922218E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Frontiers_Media\",\"@support\":\"137\",\"@types\":\"Wikidata:Q4830453,Wikidata:Q43229,Wikidata:Q24229398,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Company,DBpedia:Agent,DBpedia:Publisher\",\"@surfaceForm\":\"Frontiers\",\"@offset\":\"14011\",\"@similarityScore\":\"0.9999999999990905\",\"@percentageOfSecondRank\":\"1.182065375179581E-12\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"14217\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"14308\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Belgian_Air_Component\",\"@support\":\"742\",\"@types\":\"Wikidata:Q43229,Wikidata:Q24229398,Wikidata:Q176799,DUL:SocialPerson,DUL:Agent,Schema:Organization,DBpedia:Organisation,DBpedia:Agent,DBpedia:MilitaryUnit\",\"@surfaceForm\":\"BAF\",\"@offset\":\"14325\",\"@similarityScore\":\"0.9999999993979145\",\"@percentageOfSecondRank\":\"6.021348035517306E-10\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"logistics\",\"@offset\":\"14450\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0328893563729875E-19\"},{\"@URI\":\"http://dbpedia.org/resource/Environmental_analysis\",\"@support\":\"17\",\"@types\":\"\",\"@surfaceForm\":\"environmental analysis\",\"@offset\":\"14539\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"14575\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"14700\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Chain_drive\",\"@support\":\"374\",\"@types\":\"\",\"@surfaceForm\":\"chain\",\"@offset\":\"14732\",\"@similarityScore\":\"0.9998690450426657\",\"@percentageOfSecondRank\":\"7.425307273736764E-5\"},{\"@URI\":\"http://dbpedia.org/resource/Diesel_fuel\",\"@support\":\"3025\",\"@types\":\"\",\"@surfaceForm\":\"fuel\",\"@offset\":\"14801\",\"@similarityScore\":\"0.6938418516004063\",\"@percentageOfSecondRank\":\"0.44125062172256363\"},{\"@URI\":\"http://dbpedia.org/resource/Supply_chain\",\"@support\":\"2016\",\"@types\":\"\",\"@surfaceForm\":\"supply chain\",\"@offset\":\"14835\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"4.6342657240454126E-18\"},{\"@URI\":\"http://dbpedia.org/resource/Raw_material\",\"@support\":\"1031\",\"@types\":\"\",\"@surfaceForm\":\"feedstock\",\"@offset\":\"14860\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"0.0\"},{\"@URI\":\"http://dbpedia.org/resource/Transport\",\"@support\":\"6005\",\"@types\":\"\",\"@surfaceForm\":\"transport\",\"@offset\":\"14904\",\"@similarityScore\":\"1.0\",\"@percentageOfSecondRank\":\"1.0882364060304666E-38\"}]}",
+    "entities": [
+        {
+            "uri": "http://dbpedia.org/resource/Fuel",
+            "label": "Fuel",
+            "similarityScore": "1.0",
+            "support": "6461"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "Supply Chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/ROH_Undeniable",
+            "label": "undeniable",
+            "similarityScore": "0.9999999798210413",
+            "support": "9"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Ramifications_(Ligeti)",
+            "label": "ramifications",
+            "similarityScore": "0.9176265664961462",
+            "support": "11"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Energy_independence",
+            "label": "dependence",
+            "similarityScore": "1.0",
+            "support": "102"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Low-carbon_economy",
+            "label": "decarbonization",
+            "similarityScore": "1.0",
+            "support": "415"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Climate_change_mitigation",
+            "label": "mitigation",
+            "similarityScore": "1.0",
+            "support": "1878"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Low-carbon_economy",
+            "label": "low-carbon",
+            "similarityScore": "1.0",
+            "support": "415"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Capital_cost",
+            "label": "capital cost",
+            "similarityScore": "1.0",
+            "support": "116"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "transport",
+            "similarityScore": "1.0",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Ester",
+            "label": "esters",
+            "similarityScore": "1.0",
+            "support": "3738"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fatty_acid",
+            "label": "fatty acids",
+            "similarityScore": "1.0",
+            "support": "3006"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Cooking_oil",
+            "label": "oil-seed",
+            "similarityScore": "1.0",
+            "support": "838"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Waste",
+            "label": "waste",
+            "similarityScore": "1.0",
+            "support": "4117"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Petroleum",
+            "label": "oil",
+            "similarityScore": "0.9999990680011956",
+            "support": "16220"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Technology",
+            "label": "technology",
+            "similarityScore": "0.9999999999381544",
+            "support": "12704"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Microalgae",
+            "label": "algae",
+            "similarityScore": "0.9999999974534148",
+            "support": "496"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fischer–Tropsch_process",
+            "label": "Fischer-Tropsch",
+            "similarityScore": "0.9965106325622605",
+            "support": "282"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Lignocellulosic_biomass",
+            "label": "lignocellulosic biomass",
+            "similarityScore": "1.0",
+            "support": "107"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Mathematical_optimization",
+            "label": "optimization",
+            "similarityScore": "0.9999999999736247",
+            "support": "2800"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Mature_technology",
+            "label": "technological maturity",
+            "similarityScore": "1.0",
+            "support": "45"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Financial_capital",
+            "label": "capital",
+            "similarityScore": "0.9999999999972715",
+            "support": "1434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Ideal_gas",
+            "label": "ideal",
+            "similarityScore": "1.0",
+            "support": "835"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chains",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Time",
+            "label": "temporal",
+            "similarityScore": "1.0",
+            "support": "13812"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas",
+            "label": "greenhouse gases",
+            "similarityScore": "1.0",
+            "support": "3736"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "emissions",
+            "similarityScore": "0.9999928885661599",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aerodynamics",
+            "label": "streamlined",
+            "similarityScore": "1.0",
+            "support": "2226"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sustainability",
+            "label": "sustainable",
+            "similarityScore": "0.9999999991459845",
+            "support": "7512"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Digital_object_identifier",
+            "label": "doi",
+            "similarityScore": "1.0",
+            "support": "2467"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Frontiers_Media",
+            "label": "Frontiers",
+            "similarityScore": "0.9999999999990905",
+            "support": "137"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sin",
+            "label": "Sin",
+            "similarityScore": "1.0",
+            "support": "3548"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Denmark",
+            "label": "Denmark",
+            "similarityScore": "0.9999999995943654",
+            "support": "67242"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Denmark",
+            "label": "Denmark",
+            "similarityScore": "0.9999999995943654",
+            "support": "67242"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Climate_of_Massachusetts",
+            "label": "Massachusetts",
+            "similarityScore": "0.9999999344845513",
+            "support": "293"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/United_States",
+            "label": "United States",
+            "similarityScore": "0.9959214828110123",
+            "support": "468823"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Udugama",
+            "label": "Udugama",
+            "similarityScore": "0.9999999997817213",
+            "support": "21"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Denmark",
+            "label": "Denmark",
+            "similarityScore": "0.9999999995943654",
+            "support": "67242"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Denmark",
+            "label": "Denmark",
+            "similarityScore": "0.9999999995943654",
+            "support": "67242"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/List_of_South_Park_families",
+            "label": "Sheila",
+            "similarityScore": "0.8556540140440789",
+            "support": "69"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Morocco",
+            "label": "article",
+            "similarityScore": "0.5477407940153948",
+            "support": "32722"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Engineering",
+            "label": "Engineering",
+            "similarityScore": "1.0",
+            "support": "19852"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Frontiers_Media",
+            "label": "Frontiers",
+            "similarityScore": "0.9999999999990905",
+            "support": "137"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Steamship",
+            "label": "SS",
+            "similarityScore": "0.982509558737152",
+            "support": "3723"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Narayana",
+            "label": "Narayan",
+            "similarityScore": "0.9965155771762734",
+            "support": "905"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/New_Jersey",
+            "label": "NJ",
+            "similarityScore": "1.0",
+            "support": "120157"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sima_Zhao",
+            "label": "Zhao",
+            "similarityScore": "0.8679598631000862",
+            "support": "514"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fuel",
+            "label": "Fuel",
+            "similarityScore": "1.0",
+            "support": "6461"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "Supply Chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Digital_object_identifier",
+            "label": "doi",
+            "similarityScore": "1.0",
+            "support": "2467"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fuel",
+            "label": "Fuel",
+            "similarityScore": "1.0",
+            "support": "6461"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Narayana",
+            "label": "Narayan",
+            "similarityScore": "0.9965155771762734",
+            "support": "905"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/John_Frederick_of_Holstein-Gottorp",
+            "label": "John Frederick",
+            "similarityScore": "1.0",
+            "support": "41"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sima_Zhao",
+            "label": "Zhao",
+            "similarityScore": "0.8679598631000862",
+            "support": "514"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/List_of_South_Park_families",
+            "label": "Sheila",
+            "similarityScore": "0.8556540140440789",
+            "support": "69"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chemical_engineering",
+            "label": "Chemical Engineering",
+            "similarityScore": "1.0",
+            "support": "2859"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Bath_Rugby",
+            "label": "Bath",
+            "similarityScore": "0.766998938492331",
+            "support": "1676"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Bath_Rugby",
+            "label": "Bath",
+            "similarityScore": "0.766998938492331",
+            "support": "1676"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Government_of_the_United_Kingdom",
+            "label": "United Kingdom",
+            "similarityScore": "0.9969961009669099",
+            "support": "7682"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chemical_engineering",
+            "label": "Chemical Engineering",
+            "similarityScore": "1.0",
+            "support": "2859"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Engineering",
+            "label": "Engineering",
+            "similarityScore": "1.0",
+            "support": "19852"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Philippines",
+            "label": "Philippines",
+            "similarityScore": "1.0",
+            "support": "99615"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/IRRI_station",
+            "label": "Los Baños",
+            "similarityScore": "0.9528381208334044",
+            "support": "12"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/IRRI_station",
+            "label": "Los Baños",
+            "similarityScore": "0.9528381208334044",
+            "support": "12"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Philippines",
+            "label": "Philippines",
+            "similarityScore": "1.0",
+            "support": "99615"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chemical_engineering",
+            "label": "Chemical Engineering",
+            "similarityScore": "1.0",
+            "support": "2859"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/De_La_Salle_University",
+            "label": "De La Salle University-Manila",
+            "similarityScore": "1.0",
+            "support": "985"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Metro_Manila",
+            "label": "Manila",
+            "similarityScore": "0.9999856436318703",
+            "support": "5408"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Philippines",
+            "label": "Philippines",
+            "similarityScore": "1.0",
+            "support": "99615"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Space_Shuttle_Enterprise",
+            "label": "Enterprise",
+            "similarityScore": "0.9903078883226196",
+            "support": "443"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/London",
+            "label": "London",
+            "similarityScore": "0.999716978334114",
+            "support": "253141"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Government_of_the_United_Kingdom",
+            "label": "United Kingdom",
+            "similarityScore": "0.9969961009669099",
+            "support": "7682"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Flatwoods",
+            "label": "Flatwoods",
+            "similarityScore": "1.0",
+            "support": "182"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Bath_Rugby",
+            "label": "Bath",
+            "similarityScore": "0.766998938492331",
+            "support": "1676"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Government_of_the_United_Kingdom",
+            "label": "United Kingdom",
+            "similarityScore": "0.9969961009669099",
+            "support": "7682"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Xiamen_University",
+            "label": "Xiamen University",
+            "similarityScore": "1.0",
+            "support": "235"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Xiamen",
+            "label": "Xiamen",
+            "similarityScore": "0.994617826978493",
+            "support": "2391"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/China",
+            "label": "China",
+            "similarityScore": "0.9999999960218702",
+            "support": "208345"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/ROH_Undeniable",
+            "label": "undeniable",
+            "similarityScore": "0.9999999798210413",
+            "support": "9"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Energy_independence",
+            "label": "dependence",
+            "similarityScore": "1.0",
+            "support": "102"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Low-carbon_economy",
+            "label": "decarbonization",
+            "similarityScore": "1.0",
+            "support": "415"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Climate_change_mitigation",
+            "label": "mitigation",
+            "similarityScore": "1.0",
+            "support": "1878"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Low-carbon_economy",
+            "label": "low-carbon",
+            "similarityScore": "1.0",
+            "support": "415"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Capital_cost",
+            "label": "capital cost",
+            "similarityScore": "1.0",
+            "support": "116"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "transport",
+            "similarityScore": "1.0",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fatty_acid",
+            "label": "fatty acids",
+            "similarityScore": "1.0",
+            "support": "3006"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Cooking_oil",
+            "label": "oil-seed",
+            "similarityScore": "1.0",
+            "support": "838"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Waste",
+            "label": "waste",
+            "similarityScore": "1.0",
+            "support": "4117"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Petroleum",
+            "label": "oil",
+            "similarityScore": "0.9999990680011956",
+            "support": "16220"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Microalgae",
+            "label": "algae",
+            "similarityScore": "0.9999999974534148",
+            "support": "496"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fischer–Tropsch_process",
+            "label": "Fischer-Tropsch",
+            "similarityScore": "0.9965106325622605",
+            "support": "282"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Lignocellulosic_biomass",
+            "label": "lignocellulosic biomass",
+            "similarityScore": "1.0",
+            "support": "107"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "greenhouse gas emissions",
+            "similarityScore": "0.999999890133046",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Mathematical_optimization",
+            "label": "optimization",
+            "similarityScore": "0.9999999999736247",
+            "support": "2800"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Mature_technology",
+            "label": "technological maturity",
+            "similarityScore": "1.0",
+            "support": "45"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Financial_capital",
+            "label": "capital",
+            "similarityScore": "0.9999999999972715",
+            "support": "1434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Ideal_gas",
+            "label": "ideal",
+            "similarityScore": "1.0",
+            "support": "835"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chains",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Time",
+            "label": "temporal",
+            "similarityScore": "1.0",
+            "support": "13812"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas",
+            "label": "greenhouse gases",
+            "similarityScore": "1.0",
+            "support": "3736"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "emissions",
+            "similarityScore": "0.9999928885661599",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aerodynamics",
+            "label": "streamlined",
+            "similarityScore": "1.0",
+            "support": "2226"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sustainability",
+            "label": "sustainable",
+            "similarityScore": "0.9999999991459845",
+            "support": "7512"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sustainability",
+            "label": "sustainable",
+            "similarityScore": "0.9999999991459845",
+            "support": "7512"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Energy_crop",
+            "label": "energy crops",
+            "similarityScore": "1.0",
+            "support": "148"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Waste",
+            "label": "waste",
+            "similarityScore": "1.0",
+            "support": "4117"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Biofuel",
+            "label": "biomass",
+            "similarityScore": "1.0",
+            "support": "2365"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Microalgae",
+            "label": "microalgae",
+            "similarityScore": "1.0",
+            "support": "496"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "transport",
+            "similarityScore": "1.0",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chains",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/World_economy",
+            "label": "global economy",
+            "similarityScore": "1.0",
+            "support": "499"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/United_States_dollar",
+            "label": "USD",
+            "similarityScore": "1.0",
+            "support": "17950"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Long_and_short_scale",
+            "label": "trillion",
+            "similarityScore": "0.9978953818473174",
+            "support": "410"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Economic_growth",
+            "label": "GDP",
+            "similarityScore": "0.8577530151034972",
+            "support": "2836"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chery",
+            "label": "rely",
+            "similarityScore": "1.0",
+            "support": "699"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Web_Accessibility_Initiative",
+            "label": "ATAG",
+            "similarityScore": "1.0",
+            "support": "86"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Airline",
+            "label": "airline industry",
+            "similarityScore": "1.0",
+            "support": "11478"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Web_Accessibility_Initiative",
+            "label": "ATAG",
+            "similarityScore": "1.0",
+            "support": "86"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "GHG emissions",
+            "similarityScore": "0.999999601225761",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Ironman_Heavymetalweight_Championship",
+            "label": "4 times",
+            "similarityScore": "0.9973493221032015",
+            "support": "752"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Economics_of_climate_change_mitigation",
+            "label": "baseline",
+            "similarityScore": "0.9999999999990905",
+            "support": "48"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Sustainability",
+            "label": "sustainable",
+            "similarityScore": "0.9999999991459845",
+            "support": "7512"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "GHG emissions",
+            "similarityScore": "0.999999601225761",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Economics_of_climate_change_mitigation",
+            "label": "baseline",
+            "similarityScore": "0.9999999999990905",
+            "support": "48"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/International_Air_Transport_Association",
+            "label": "IATA",
+            "similarityScore": "1.0",
+            "support": "3064"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/International_Air_Transport_Association",
+            "label": "International Air Transport Association (IATA)",
+            "similarityScore": "1.0",
+            "support": "3064"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/International_Civil_Aviation_Organization",
+            "label": "International Civil Aviation Organisation (ICAO)",
+            "similarityScore": "1.0",
+            "support": "2902"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Marketing",
+            "label": "market",
+            "similarityScore": "0.9926490226523818",
+            "support": "11326"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Juan_Gutiérrez_(baseball)",
+            "label": "Gutiérrez",
+            "similarityScore": "0.7112051860169338",
+            "support": "100"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Antonio_Lopez-Fitzgerald",
+            "label": "Antonio",
+            "similarityScore": "0.6571116029490003",
+            "support": "54"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Trajectory",
+            "label": "trajectories",
+            "similarityScore": "0.9871232483817686",
+            "support": "1045"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "emissions",
+            "similarityScore": "0.9999928885661599",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "GHG emissions",
+            "similarityScore": "0.999999601225761",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Airframe",
+            "label": "Airframe",
+            "similarityScore": "1.0",
+            "support": "811"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Internal_combustion_engine",
+            "label": "engine",
+            "similarityScore": "0.9999996969445879",
+            "support": "6265"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Composite_material",
+            "label": "composite materials",
+            "similarityScore": "1.0",
+            "support": "2160"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft_Designs",
+            "label": "aircraft designs",
+            "similarityScore": "0.999999999994543",
+            "support": "18"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aerodynamics",
+            "label": "aerodynamics",
+            "similarityScore": "1.0",
+            "support": "2226"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Rye",
+            "label": "Rye",
+            "similarityScore": "1.0",
+            "support": "1825"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "CO2",
+            "similarityScore": "0.9999910276467356",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Wing",
+            "label": "wing",
+            "similarityScore": "1.0",
+            "support": "3617"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Web_Accessibility_Initiative",
+            "label": "ATAG",
+            "similarityScore": "1.0",
+            "support": "86"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Intermodal_container",
+            "label": "cargo containers",
+            "similarityScore": "0.989765814773967",
+            "support": "1206"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "GHG emissions",
+            "similarityScore": "0.999999601225761",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Web_Accessibility_Initiative",
+            "label": "ATAG",
+            "similarityScore": "1.0",
+            "support": "86"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Fuel_efficiency",
+            "label": "fuel consumption",
+            "similarityScore": "0.999999976698746",
+            "support": "1159"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Internal_combustion_engine",
+            "label": "engine",
+            "similarityScore": "0.9999996969445879",
+            "support": "6265"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Technology",
+            "label": "technology",
+            "similarityScore": "0.9999999999381544",
+            "support": "12704"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "emissions",
+            "similarityScore": "0.9999928885661599",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Bauen",
+            "label": "Bauen",
+            "similarityScore": "0.9999999998954081",
+            "support": "22"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Financial_capital",
+            "label": "capital",
+            "similarityScore": "0.9999999999972715",
+            "support": "1434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Biofuel",
+            "label": "Biofuel",
+            "similarityScore": "1.0",
+            "support": "2365"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "GHG emissions",
+            "similarityScore": "0.999999601225761",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "conventional jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Petroleum",
+            "label": "crude oil",
+            "similarityScore": "1.0",
+            "support": "16220"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "kerosene",
+            "similarityScore": "0.9999999999990905",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Hydrocarbon",
+            "label": "hydrocarbons",
+            "similarityScore": "0.9999999998080966",
+            "support": "3095"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Hydrocarbon",
+            "label": "hydrocarbon",
+            "similarityScore": "0.9999999998908606",
+            "support": "3095"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Gasoline",
+            "label": "gasoline",
+            "similarityScore": "1.0",
+            "support": "6654"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "diesel",
+            "similarityScore": "1.0",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Classical_mechanics",
+            "label": "classical",
+            "similarityScore": "0.9998294980902882",
+            "support": "1558"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Circle",
+            "label": "S1",
+            "similarityScore": "1.0",
+            "support": "5536"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "kerosene",
+            "similarityScore": "0.9999999999990905",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Oil_refinery",
+            "label": "middle distillate",
+            "similarityScore": "1.0",
+            "support": "2545"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Petroleum",
+            "label": "crude oil",
+            "similarityScore": "1.0",
+            "support": "16220"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Gasoline",
+            "label": "gasoline",
+            "similarityScore": "1.0",
+            "support": "6654"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Physical_chemistry",
+            "label": "physicochemical",
+            "similarityScore": "1.0",
+            "support": "1484"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Gasoline",
+            "label": "gasoline",
+            "similarityScore": "1.0",
+            "support": "6654"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "diesel",
+            "similarityScore": "1.0",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Gasoline",
+            "label": "gasoline",
+            "similarityScore": "1.0",
+            "support": "6654"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Volatile_organic_compound",
+            "label": "volatile",
+            "similarityScore": "1.0",
+            "support": "1025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "diesel",
+            "similarityScore": "1.0",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Wax",
+            "label": "wax",
+            "similarityScore": "1.0",
+            "support": "1901"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Yangtze",
+            "label": "Yang",
+            "similarityScore": "0.9270511916867579",
+            "support": "5580"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chemical_element",
+            "label": "chemical properties",
+            "similarityScore": "0.9995990586703991",
+            "support": "3540"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aviation_fuel",
+            "label": "aviation fuel",
+            "similarityScore": "0.9999998247558477",
+            "support": "379"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Cold_working",
+            "label": "cold",
+            "similarityScore": "0.8799337599782977",
+            "support": "149"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Energy_density",
+            "label": "energy density",
+            "similarityScore": "1.0",
+            "support": "951"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Energy_consumption",
+            "label": "energy demand",
+            "similarityScore": "0.9999765046791131",
+            "support": "595"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Flight_length",
+            "label": "long-haul",
+            "similarityScore": "1.0",
+            "support": "239"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Engineering",
+            "label": "Engineering",
+            "similarityScore": "1.0",
+            "support": "19852"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "Jet A",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "Jet A",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Melting_point",
+            "label": "melting point",
+            "similarityScore": "1.0",
+            "support": "1328"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "Jet A-1",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aromaticity",
+            "label": "aromatics",
+            "similarityScore": "0.5817760130182538",
+            "support": "1926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Combustion",
+            "label": "combustion",
+            "similarityScore": "1.0",
+            "support": "3806"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "infrastructure",
+            "similarityScore": "0.9962662061745247",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Rye",
+            "label": "Rye",
+            "similarityScore": "1.0",
+            "support": "1825"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Global_warming_potential",
+            "label": "carbon",
+            "similarityScore": "1.0",
+            "support": "554"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Digital_footprint",
+            "label": "footprints",
+            "similarityScore": "1.0",
+            "support": "72"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Life-cycle_assessment",
+            "label": "life cycle",
+            "similarityScore": "1.0",
+            "support": "501"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Carbon_footprint",
+            "label": "carbon footprint",
+            "similarityScore": "1.0",
+            "support": "1057"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Tonne",
+            "label": "ton",
+            "similarityScore": "1.0",
+            "support": "3573"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Renewable_energy",
+            "label": "renewable",
+            "similarityScore": "0.9999999660913096",
+            "support": "7956"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aviation_biofuel",
+            "label": "aviation biofuel",
+            "similarityScore": "1.0",
+            "support": "83"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Literature",
+            "label": "literature",
+            "similarityScore": "0.9999999652900448",
+            "support": "10726"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Biofuel",
+            "label": "biofuel",
+            "similarityScore": "1.0",
+            "support": "2365"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "transport",
+            "similarityScore": "1.0",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas",
+            "label": "GHG",
+            "similarityScore": "1.0",
+            "support": "3736"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Yangtze",
+            "label": "Yang",
+            "similarityScore": "0.9270511916867579",
+            "support": "5580"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "emissions",
+            "similarityScore": "0.9999928885661599",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aircraft",
+            "label": "aircraft",
+            "similarityScore": "1.0",
+            "support": "19434"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "Jet A-1",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Rye",
+            "label": "Rye",
+            "similarityScore": "1.0",
+            "support": "1825"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Carbon_cycle",
+            "label": "carbon cycle",
+            "similarityScore": "1.0",
+            "support": "1007"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Biofuel",
+            "label": "biomass",
+            "similarityScore": "1.0",
+            "support": "2365"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Life-cycle_assessment",
+            "label": "life cycle",
+            "similarityScore": "1.0",
+            "support": "501"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Greenhouse_gas_emissions",
+            "label": "carbon emissions",
+            "similarityScore": "0.9999995446379344",
+            "support": "3968"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Robert_Bosch_GmbH",
+            "label": "Bosch",
+            "similarityScore": "1.0",
+            "support": "1709"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Bibliometrics",
+            "label": "bibliometric",
+            "similarityScore": "1.0",
+            "support": "189"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Scopus",
+            "label": "Scopus",
+            "similarityScore": "1.0",
+            "support": "2617"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Search_engine_optimization",
+            "label": "keywords",
+            "similarityScore": "0.9999999999599822",
+            "support": "1113"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Aviation_biofuel",
+            "label": "biojet",
+            "similarityScore": "1.0",
+            "support": "83"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Biofuel",
+            "label": "biofuel",
+            "similarityScore": "1.0",
+            "support": "2365"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Renewable_energy",
+            "label": "renewable",
+            "similarityScore": "0.9999999660913096",
+            "support": "7956"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Jet_fuel",
+            "label": "jet fuel",
+            "similarityScore": "1.0",
+            "support": "926"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Low-carbon_economy",
+            "label": "decarbonize",
+            "similarityScore": "1.0",
+            "support": "415"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Yangtze",
+            "label": "Yang",
+            "similarityScore": "0.9270511916867579",
+            "support": "5580"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/James_Reimer",
+            "label": "Reimer",
+            "similarityScore": "1.0",
+            "support": "245"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Qin_Shi_Huang",
+            "label": "Zheng",
+            "similarityScore": "0.9999986207622403",
+            "support": "1156"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Microalgae",
+            "label": "microalgae",
+            "similarityScore": "1.0",
+            "support": "496"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Lignocellulosic_biomass",
+            "label": "lignocellulosic biomass",
+            "similarityScore": "1.0",
+            "support": "107"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Urbanization",
+            "label": "urban",
+            "similarityScore": "0.9999999995116013",
+            "support": "2364"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Vegetable_oil",
+            "label": "vegetable oils",
+            "similarityScore": "1.0",
+            "support": "1459"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/D_Generation",
+            "label": "Vásquez",
+            "similarityScore": "0.9999999997771738",
+            "support": "93"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Vishnu",
+            "label": "Hari",
+            "similarityScore": "0.9973501059083789",
+            "support": "11467"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Analytical_chemistry",
+            "label": "qualitative",
+            "similarityScore": "0.9892013701771141",
+            "support": "990"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Raw_material",
+            "label": "feedstock",
+            "similarityScore": "1.0",
+            "support": "1031"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Frontiers_Media",
+            "label": "Frontiers",
+            "similarityScore": "0.9999999999990905",
+            "support": "137"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/International_Air_Transport_Association",
+            "label": "IATA",
+            "similarityScore": "1.0",
+            "support": "3064"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Scopus",
+            "label": "Scopus",
+            "similarityScore": "1.0",
+            "support": "2617"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/January_17",
+            "label": "January 17",
+            "similarityScore": "1.0",
+            "support": "850"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Frontiers_Media",
+            "label": "Frontiers",
+            "similarityScore": "0.9999999999990905",
+            "support": "137"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Belgian_Air_Component",
+            "label": "BAF",
+            "similarityScore": "0.9999999993979145",
+            "support": "742"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "logistics",
+            "similarityScore": "1.0",
+            "support": "6005"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Environmental_analysis",
+            "label": "environmental analysis",
+            "similarityScore": "1.0",
+            "support": "17"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Chain_drive",
+            "label": "chain",
+            "similarityScore": "0.9998690450426657",
+            "support": "374"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Diesel_fuel",
+            "label": "fuel",
+            "similarityScore": "0.6938418516004063",
+            "support": "3025"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Supply_chain",
+            "label": "supply chain",
+            "similarityScore": "1.0",
+            "support": "2016"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Raw_material",
+            "label": "feedstock",
+            "similarityScore": "1.0",
+            "support": "1031"
+        },
+        {
+            "uri": "http://dbpedia.org/resource/Transport",
+            "label": "transport",
+            "similarityScore": "1.0",
+            "support": "6005"
+        }
+    ]
+}

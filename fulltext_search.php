@@ -19,7 +19,12 @@
 			<div class="container text-center mt-5">
 				<div class="mb-3">
 					<form action="search_results.php" method="get">
-						<input type="search" name="q" placeholder="Search..." class="form-control" required>
+    					<div class="input-group">
+        					<input type="search" name="q" placeholder="Search..."  class="form-control" required>
+        					<button class="btn btn-outline-secondary" type="submit" aria-label="Search">
+            					<i class="bi bi-search"></i>
+        					</button>
+    					</div>
 					</form>
 				</div>
 			</div>

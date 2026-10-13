@@ -1,11 +1,14 @@
 <?php
+define('BASE_PATH', __DIR__ . '/'); // project root
+define("BASE_URL", "https://a2bf-109-242-35-165.ngrok-free.app/my_project2/");
 
-define("BASE_PATH", __DIR__ . "/"); // project root
-define("BASE_URL", "https://a12d-2a03-f003-142-c300-6455-f961-e9f0-3713.ngrok-free.app/my_project2/");
-
-// Fuseki SPARQL Endpoint 
+//Apache Jena Fuseki SPARQL Endpoint 
 define('SPARQL_ENDPOINT', 'http://localhost:3030/semanticApp/sparql');
 define('SPARQL_UPDATE_ENDPOINT','http://localhost:3030/semanticApp/update');
+
+// Apache Solr Endpoint
+define('SOLR_CORE', 'sem_text_core');
+define('SOLR_SELECT_ENDPOINT', 'http://localhost:8983/solr/' . SOLR_CORE . '/select');
 
 define('BASE_URI', 'http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#');
 
@@ -24,7 +27,7 @@ function executeSparqlQuery($query) {
     $response = curl_exec($ch);
     curl_close($ch);
 
-    return json_decode($response, true); // JSON μορφή
+    return json_decode($response, true); // JSON
 }
 
 function executeSparqlUpdate($updateQuery) {

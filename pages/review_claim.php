@@ -8,7 +8,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
     exit;
 }
 
-$uri = $_GET['uri'] ?? null;
+$uri = base64_decode($_GET['uri']) ?? null;
 
 if (!$uri) {
     echo "<p>Error: No Claim URI provided.</p>";
@@ -65,10 +65,11 @@ $skipKeys = [
 <h3 class="display-6">Review Claim</h3>
 
 <div id="message"></div>
-
+<div class="card shadow-sm border-0 mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Claim Details</h5>
 <div class="table-responsive">
 
-<h5 class="mt-4">Claim</h5>
 
 <table class="table table-bordered">
 
@@ -95,7 +96,7 @@ $skipKeys = [
 
 <?php elseif ($key === 'pubTitle'): ?>
 
-<a href="review_publication.php?uri=<?= urlencode($claim['publication']) ?>">
+<a href="review_publication.php?uri=<?= base64_encode($claim['publication']) ?>">
 <?= htmlspecialchars($claim['pubTitle']) ?>
 </a>
 
@@ -123,29 +124,31 @@ $skipKeys = [
 
 <?php if ($claim['status'] === 'Pending'): ?>
 
-<div class="d-flex justify-content-between gap-3 mt-4">
-
-<button onclick="handleAction('approve')" class="btn btn-success">
-<i class="bi bi-check-circle"></i> Approve
-</button>
-
-<button onclick="showHistory()" class="btn btn-primary">
-<i class="bi bi-clock-history"></i> History
-</button>
-
-<button onclick="handleAction('reject')" class="btn btn-danger">
-<i class="bi bi-trash"></i> Reject
-</button>
-
-</div>
+    <div class="row g-2 mt-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <button onclick="handleAction('approve')" class="btn btn-success w-100">
+                <i class="bi bi-check-circle"></i> Approve
+            </button>
+        </div>    
+        <div class="col-12 col-md-4">
+            <button onclick="showHistory()" class="btn btn-primary w-100">
+                <i class="bi bi-clock-history"></i> History
+            </button>
+        </div>
+        <div class="col-12 col-md-4">
+            <button onclick="handleAction('reject')" class="btn btn-danger w-100">
+                <i class="bi bi-trash"></i> Reject
+            </button>
+        </div>
+    </div>
 
 <?php else: ?>
 
-<div class="d-flex justify-content-center mt-4">
+<div class="row g-2 mt-4 justify-content-center w-100">
 
-<button onclick="showHistory()" class="btn btn-primary">
-<i class="bi bi-clock-history"></i> History
-</button>
+    <button onclick="showHistory()" class="btn btn-primary">
+        <i class="bi bi-clock-history"></i> History
+    </button>
 
 </div>
 
@@ -164,6 +167,7 @@ $skipKeys = [
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
 </div>
+
 
 <div class="modal-body">
 
@@ -192,6 +196,10 @@ Confirm Rejection
 
 </div>
 
+</div>
+
+</div>
+
 </main>
 
 <div class="container">
@@ -199,18 +207,6 @@ Confirm Rejection
 </div>
 
 <script>
-
-const CLAIM_URI = <?= json_encode($uri) ?>;
-
-window.handleAction = function(action) {
-
-    if (action === 'reject') {
-        const modalEl = document.getElementById('rejectModal');
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-        modal.show();
-        return;
-    }
-
     const userEmail = <?= json_encode($claim['userEmail']) ?>;
     const userFirstname = <?= json_encode($claim['userFirstname']) ?>;
     const userLastname = <?= json_encode($claim['userLastname']) ?>;
@@ -220,47 +216,7 @@ window.handleAction = function(action) {
     const userURI = <?= json_encode($claim['userURI']) ?>;
     const oldAuthorURI = <?= json_encode($claim['oldAuthorURI']) ?>;
     const realAuthorURI = <?= json_encode($claim['realAuthorURI']) ?>;
-
-    $.ajax({
-        url: '../backend/review_claim_backend.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            action: action,
-            claim_uri: CLAIM_URI,
-            userEmail: userEmail,
-            userFirstname: userFirstname,
-            userLastname: userLastname,
-            pubTitle: pubTitle,
-            publication: publication,
-            userURI: userURI,
-            oldAuthorURI: oldAuthorURI,
-            realAuthorURI: realAuthorURI
-        },
-        success: function(response) {
-
-            if (response.status === 'success') {
-                window.location.href = 'approve_claims.php';
-            } else {
-                alert(response.message);
-            }
-
-        }
-    });
-
-};
-
-window.showHistory = function() {
-
-    const pubURI = <?= json_encode($claim['publication']) ?>;
-
-    window.location.href =
-        'claim_publication_history.php?publication_uri=' +
-        encodeURIComponent(pubURI);
-
-};
-
-$('#confirmReject').on('click', function() {
+    const CLAIM_URI = <?= json_encode($uri) ?>;
 
     const reason = $('#rejectReason').val().trim();
 
@@ -269,38 +225,9 @@ $('#confirmReject').on('click', function() {
     const userLastname = <?= json_encode($claim['userLastname']) ?>;
     const pubTitle = <?= json_encode($claim['pubTitle']) ?>;
 
-    if (!reason) {
-        alert('Please provide a rejection reason.');
-        return;
-    }
+</script>   
 
-    $.ajax({
-        url: '../backend/review_claim_backend.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            action: 'reject',
-            claim_uri: CLAIM_URI,
-            reject_reason: reason,
-            userEmail: userEmail,
-            userFirstname: userFirstname,
-            userLastname: userLastname,
-            pubTitle: pubTitle
-        },
-        success: function(response) {
-
-            if (response.status === 'success') {
-                window.location.href = 'approve_claims.php';
-            } else {
-                alert(response.message);
-            }
-
-        }
-    });
-
-});
-
-</script>
+<script src="<?= BASE_URL ?>scripts/review_claim.js"></script>
 
 </body>
 </html>

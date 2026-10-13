@@ -15,11 +15,17 @@ $solrError = false;
 
 if ($q !== '') {
 
-    $url = 'http://localhost:8983/solr/sem_text_core/select?q=fulltext_content:' 
-    . urlencode($q) 
-    . '&start=' . $start 
-    . '&rows=' . $limit 
-    . '&wt=json';$response = @file_get_contents($url);
+    $params = http_build_query([
+		'q' => 'fulltext_content:' . $q,
+		'start' => $start,
+		'rows' => $limit,
+		'wt' => 'json',
+		'fl' => '*,score'
+	]);
+
+	$url = SOLR_SELECT_ENDPOINT . '?' . $params;
+	
+	$response = @file_get_contents($url);
 
     if ($response === false) {
         $solrError = true;
@@ -45,7 +51,12 @@ if ($q !== '') {
 		<main class="flex-grow-1">
 			<div class="container mt-5">
 				<form class="d-flex justify-content-center mb-5" action="search_results.php" method="get">
-					<input type="search" name="q" placeholder="Search..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" class="form-control" required>
+					<div class="input-group">
+						<input type="search" name="q" placeholder="Search..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" class="form-control" required>
+						<button class="btn btn-outline-secondary" type="submit" aria-label="Search">
+            				<i class="bi bi-search"></i>
+        				</button>
+					</div>	
 				</form>
 				<h4>Results</h4>
 
@@ -80,6 +91,8 @@ if ($q !== '') {
         $keywords = isset($doc['keywords']) && is_array($doc['keywords'])
             ? $doc['keywords']
             : [];
+
+		$solrScore = isset($doc['score']) ? round((float)$doc['score'], 2) : 0;			
     ?>
 				<div class="card shadow rounded-4 mb-4 search-result-card">
 					<div class="card-body p-4">
@@ -88,6 +101,11 @@ if ($q !== '') {
                     <?= $title ?>
 							</a>
 						</h4>
+						<div class="d-flex justify-content-end mb-2">
+							<small class="text-muted">
+								Relevance score: <?= $solrScore ?>
+							</small>
+						</div>
 						<div class="row g-4">
 							<div class="col-md-7">
 								<h5>Abstract</h5>
@@ -156,7 +174,7 @@ if ($q !== '') {
 					</div>
 				</main>
 				<div class="container">
-    <?php include(BASE_PATH . 'includes/footer.php')?>
+    				<?php include(BASE_PATH . 'includes/footer.php')?>
 				</div>
 			</body>
 		</html>

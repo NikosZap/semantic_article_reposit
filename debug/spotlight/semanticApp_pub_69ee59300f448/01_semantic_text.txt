@@ -1,0 +1,242 @@
+Bio-aviation Fuel: A Comprehensive Review and Analysis of the Supply Chain Components The undeniable environmental ramifications of continued dependence on oil-derived jet fuel have spurred international efforts in the aviation sector toward alternative solutions. Due to the limited options for decarbonization, the successful implementation of bio-aviation fuel is crucial in contributing to the roster of greenhouse gas emissions mitigation strategies for the aviation sector. Since fleet replacement with low-carbon technologies may not be a feasible option, due to the long lifetime and significant capital cost of aircraft, “drop-in” alternatives, which can be used in the engines of existing aircraft in a seamless transition, may be required. This paper presents a detailed
+analysis of the supply chain components of bio-aviation fuel provision: feedstocks, production pathways, storage, and transport. The economic and environmental performance of different potential bio-feedstocks and technologies are investigated and compared in order to make recommendations on short- and long-term strategies that could be employed internationally. Hydroprocessed esters and fatty acids production pathway, utilizing second-generation oil-seed crops and waste oils, could be an effective immediate solution with the potential for substantial greenhouse gas emissions savings. Microalgal oil could potentially offer far greater yields of bio-aviation fuel and
+reductions in greenhouse gas emissions, but the technology for large-scale algae cultivation is inadequately mature at present. Fischer-Tropsch production pathway using lignocellulosic biomass has the potential for the highest greenhouse gas emissions savings, which could potentially be the solution within the medium- to long-term plans of the aviation industry, but further research and optimization are required prior to its large-scale implementation due to its limited technological maturity and high capital costs. In practice, the “ideal” feedstocks and technologies of the supply chains are heavily dependent on spatial and temporal criteria. Moreover, many of the parameters
+investigated are interlinked to each other and the measures that are effective in greenhouse gases emissions reduction are largely associated with increased cost. Hence, policies must be streamlined across the supply chain components that could help in the cost-effective and sustainable deployment of bio-aviation fuel. REVIEW
+published: 10 July 2020
+doi: 10.3389/fenrg.2020.00110 
+Frontiers in Energy Research | www.frontiersin.org	1	July 2020 | Volume 8 | Article 110
+Edited by:
+Gurkan Sin,
+Technical University of
+Denmark, Denmark
+Reviewed by:
+Emre Gencer,
+Massachusetts Institute of
+Technology, United States
+Isuru Udugama,
+Technical University of
+Denmark, Denmark
+*Correspondence:
+Sheila Samsatli
+S.M.C.Samsatli@bath.ac.uk
+Specialty section:
+This article was submitted to
+Process and Energy Systems
+Engineering,
+a section of the journal
+Frontiers in Energy Research
+Received:18 September 2019
+Accepted:11 May 2020
+Published:10 July 2020
+Citation:
+Doliente SS, Narayan A, Tapia JFD,
+Samsatli NJ, Zhao Y and Samsatli S
+(2020) Bio-aviation Fuel: A
+Comprehensive Review and Analysis
+of the Supply Chain Components.
+Front. Energy Res. 8:110.
+doi: 10.3389/fenrg.2020.00110
+Bio-aviation Fuel: A Comprehensive
+Review and Analysis of the Supply
+Chain Components
+Stephen S. Doliente
+1,2
+, Aravind Narayan
+1
+, John Frederick D. Tapia
+1,3
+, Nouri J. Samsatli
+4,5
+,
+Yingru Zhao
+6
+and Sheila Samsatli
+1
+*
+1
+Department of Chemical Engineering, University of Bath, Bath, United Kingdom,
+2
+Department of Chemical Engineering,
+College of Engineering and Agro-Industrial Technology, University of the Philippines Los Baños, Los Baños, Philippines,
+3
+Chemical Engineering Department, De La Salle University-Manila, Manila, Philippines,
+4
+Process Systems Enterprise Ltd.,
+London, United Kingdom,
+5
+Samsatli Solutions, Ventonlace, Flatwoods Crescent, Bath, United Kingdom,
+6
+College of Energy,
+Xiamen University, Xiamen, China
+The undeniable environmental ramiﬁcations of continued dependence on oil-derived
+jet fuel have spurred international efforts in the aviationsector toward alternative
+solutions. Due to the limited options for decarbonization,the successful implementation
+of bio-aviation fuel is crucial in contributing to the roster of greenhouse gas emissions
+mitigation strategies for the aviation sector. Since ﬂeet replacement with low-carbon
+technologies may not be a feasible option, due to the long lifetime and signiﬁcant
+capital cost of aircraft, “drop-in” alternatives, which can be used in the engines of
+existing aircraft in a seamless transition, may be required. This paper presents a detailed
+analysis of the supply chain components of bio-aviation fuel provision: feedstocks,
+production pathways, storage, and transport. The economicand environmental
+performance of different potential bio-feedstocks and technologies are investigated and
+compared in order to make recommendations on short- and long-term strategies that
+could be employed internationally. Hydroprocessed estersand fatty acids production
+pathway, utilizing second-generation oil-seed crops and waste oils, could be an
+effective immediate solution with the potential for substantial greenhouse gas emissions
+savings. Microalgal oil could potentially offer far greater yields of bio-aviation fuel and
+reductions in greenhouse gas emissions, but the technologyfor large-scale algae
+cultivation is inadequately mature at present. Fischer-Tropsch production pathway using
+lignocellulosic biomass has the potential for the highest greenhouse gas emissions
+savings, which could potentially be the solution within themedium- to long-term plans
+of the aviation industry, but further research and optimization are required prior to its
+large-scale implementation due to its limited technological maturity and high capital
+costs. In practice, the “ideal” feedstocks and technologies of the supply chains are
+heavily dependent on spatial and temporal criteria. Moreover, many of the parameters
+investigated are interlinked to each other and the measuresthat are effective in
+greenhouse gases emissions reduction are largely associated with increased cost.
+Hence, policies must be streamlined across the supply chaincomponents that could
+help in the cost-effective and sustainable deployment of bio-aviation fuel.
+Keywords: bio-aviation fuel, sustainable feedstocks, energy crops, waste biomass, microalgae, production
+pathways, storage and transport, supply chains
+
+Doliente et al.	Supply Chains for Bio-aviation Fuels
+INTRODUCTION
+The aviation industry plays a major role in the global economy,
+serving as a crucial backbone for nearly 57 million jobs and USD
+2.2 trillion in global GDP. Businesses, especially those involving
+international transactions, rely on its speed and eﬃciency.By
+2035, the Air Transport Action Group (ATAG) expects 7.2 billion
+passengers will be served by the airline industry through the
+world’s major airports as shown inFigure 1A, which is twice the
+number of passengers in 2016 (ATAG, 2012). Consequently, this
+surge in aviation demand is projected to result in 3.1 billion tons
+of GHG emissions by 2050, which is 4 times greater than the 2015
+baseline of 0.78 billion tons.
+It is a signiﬁcant challenge to ﬁnd a sustainable solution for
+the aviation industry’s GHG emissions reduction due to the
+ambitious target set at 50% less than the 2005 baseline (IATA,
+2009). The International Air Transport Association (IATA)
+and the International Civil Aviation Organisation (ICAO)
+developed the four pillars to achieve this goal: (1) technological
+improvements, (2) operational improvements, (3) measures
+based on the market, and (4) alternative jet fuel (AJF) (Gutiérrez-
+Antonio et al., 2013).Figure 1Bdisplays the timeline of the
+various trajectories based on the actions taken by the industry.
+Without actions taken, the emissions will be twice as much asthe
+2005 level.
+To date, technological improvements have already begun
+contributing to the GHG emissions reduction target. Airframe
+and engine manufacturers have made signiﬁcant technological
+leaps including lighter and stronger composite materials than
+ever before, new innovative aircraft designs with improved
+aerodynamics and incrementally more eﬃcient engines (Rye
+et al., 2010). For example, 15 billion liters of fuel, and 80 million
+tons of CO2, were saved by retro-ﬁtting wing tip devices to the
+wings of over 5,000 existing aircraft (ATAG, 2019). By also using
+weight reduction measures on cargo containers, GHG emissions
+decreased by 10,000 t/year (ATAG, 2014). These improvements
+allow greater eﬃciency in mileage and lower fuel consumption
+during travel. However, the slow incremental changes in already-
+mature engine technology and the long lifetime (>25 years) of
+existing ﬂeets point toward AJF as a much faster and potentially
+more cost eﬀective option to reduce emissions (Bauen et al.,
+2009). AJF can be easily utilized in existing ﬂeets, hence avoiding
+large capital costs involved with buying newer models. Biofuel,
+as an AJF, promises a tremendous cut in GHG emissions and
+possible achievement of the ambitious target by 2040 as depicted
+inFigure 1B. Thus, the bulk of the reduction can be attained by
+replacing conventional jet fuel (CJF) with this alternative.
+CJF produced from crude oil is a blend of various kerosene
+hydrocarbons. The hydrocarbon length of jet fuel is betweenthat
+of gasoline and diesel. In a classical reﬁnery, shown inFigure S1,
+jet fuel (or kerosene) is the middle distillate making up to 10%
+of the crude oil fraction while the majority are gasoline and
+diesel.Table S1shows the comparison of the physicochemical
+properties of gasoline, jet fuel and diesel. As fuel for aviation,
+jet fuel is preferred over gasoline as it is less volatile and denser;
+while compared to diesel, jet fuel is lighter and less prone to
+wax at low temperatures (Yang et al., 2019). An AJF should
+have physical and chemical properties similar to CJF. A suitable
+aviation fuel must have high cold stability, for temperatures−47
+to 40
+◦
+C and elevations above 30,000 feet and have suﬃcient
+energy density to supply the high energy demand of long-haul
+ﬂights (	The Engineering ToolBox, 2003; Wilbrand, 2018). The
+industry uses two major kerosene-based CJF: Jet A and Jet A-
+1. With a lower melting point of−4
+o
+C, Jet A-1 is the better
+choice for international ﬂights. The desirable composition of a jet
+fuel should be 75–85 vol% consisting of paraﬃns, iso-paraﬃns,
+and cycloparaﬃns and the remaining 15–25 vol% of oleﬁns
+and aromatics. Other important characteristics include global
+availability, acceptable costs, good combustion characteristics,
+and good ﬂow behavior. Hence, AJF being a “drop-in” fuel can be
+easily integrated into existing infrastructure allowing aseamless
+transition (Rye et al., 2010). An AJF must also have lower carbon
+footprints over their life cycle than CJF, which typically havea
+carbon footprint of roughly four tons per ton of fuel (de Jong
+et al., 2017a).
+Bio-aviation fuel (also known as bio-jet fuel, renewable jet fuel
+or aviation biofuel in some literature) or BAF (for short in this
+paper), a type of biofuel for the air transport sector, is recognized
+as a short- to medium-term solution toward an overall reduction
+of the sector’s GHG emissions.Table S2shows the standard
+speciﬁcations for both CJF and BAF, with which manufacturers
+must strictly comply (Wilbrand, 2018; Yang et al., 2019). Clearly,
+the resulting emissions proﬁles of an aircraft running on BAF
+would be very similar to one on Jet A-1 (Rye et al., 2010). But the
+closed carbon cycle established by sequestering atmosphericCO2
+during biomass growth and released at the end of its life cycle
+as BAF, results in its signiﬁcantly lower overall carbon emissions
+compared to CJF (Bosch et al., 2017). While this makes BAF an
+attractive AJF option, several issues arose in its implementation.
+It has not been receiving suﬃcient investments due to inadequate
+government support and industry commitment, unreliable
+supply of feedstocks, uncertain commerciality of the production
+pathways, and lack of supply chain certiﬁcation (Gegg et al.,
+2014).
+Figure 1Cpresents recent bibliometric trends for bio-aviation
+fuel research. The data were obtained from Scopus using the
+keywords: bio-jet fuel, biojet fuel, bio-aviation fuel, aviation
+biofuel, or renewable jet fuel. In the last 10 years, there
+is generally an increasing trend in research on BAF, which
+reﬂects increasing recognition of the need to decarbonize the
+aviation sector through AJF options. Recent reviews of BAF
+considered the progress and issues in the production pathways
+(Gutiérrez-Antonio et al., 2017) and of fuel performance (Yang
+et al., 2019).Reimer and Zheng (2017)discussed possible
+strategies for enabling commercial BAF uptake, such as the
+simultaneous implementation of taxes on CJF and incentives
+for BAF utilization. The possibility of BAF production from
+diﬀerent feedstocks, such as microalgae (Bwapwa et al., 2018),
+lignocellulosic biomass (Cheng and Brewer, 2017), urban and
+agricultural wastes (Jiménez-Díaz et al., 2017), and vegetable oils
+(Vásquez et al., 2017) have also been discussed in recent review
+papers.Kandaramath Hari et al. (2015)presented production
+pathways utilizing second- and third-generation feedstocks with
+qualitative discussion on the feedstock. These studies provided
+Frontiers in Energy Research | www.frontiersin.org	2	July 2020 | Volume 8 | Article 110
+
+Doliente et al.	Supply Chains for Bio-aviation Fuels 
+FIGURE 1 |Recent trends for the the aviation industry:(A)Global Airport Distribution (Plotted using data from www.arcgis.com, 2019);(B)Potential global
+atmospheric CO2emissions released by the aviation sector under various development conditions (IATA, 2009); and(C)Publication history on bio-aviation fuel
+research (Plotted using data from Scopus accessed on January 17, 2020).
+Frontiers in Energy Research | www.frontiersin.org	3	July 2020 | Volume 8 | Article 110
+
+Doliente et al.	Supply Chains for Bio-aviation Fuels
+insights on the status and future direction of the bio-aviation
+fuel industry. However, existing review papers are limited to
+individual components of the supply chain for BAF provision
+(e.g., raw materials, pretreatment, and conversion technologies)
+and there are currently no reviews discussing logistics strategies
+(e.g., storage and transportation of resources) or the economic
+and environmental analysis of the whole supply chain. Therefore,
+this review paper addresses this gap by being the ﬁrst to provide
+a critical review of bio-aviation fuel from a whole-system supply
+chain perspective.
+The focus of this review paper is on bio-aviation fuel examined
+holistically of its supply chain components: feedstock, production
+pathways, storage and transport. This review is organized into
+six sections. The next section gives an overview of bio

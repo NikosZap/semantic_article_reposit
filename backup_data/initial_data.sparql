@@ -1,0 +1,16 @@
+PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+INSERT DATA {
+    app:user_admin a app:User ;
+        app:userID "admin" ;
+        app:username "admin" ;
+        app:password "$2y$10$K5Cx8yI5H/dF1dHsbya6uODXzecTUiqBNJnQKTrwgR7BtpAHIyw32" ;
+        app:firstname "System" ;
+        app:lastname "Administrator" ;
+        app:email "admin@example.com" ;
+        app:role "Admin" ;
+        app:is_active "1" ;
+        app:isSuspended "0" ;
+        app:createdAt "2026-09-01T00:00:00"^^xsd:dateTime .
+}

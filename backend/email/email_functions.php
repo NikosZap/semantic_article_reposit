@@ -7,13 +7,13 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
-    die("Η κλάση PHPMailer δεν βρέθηκε!");
+    die("PHPMailer Class not found!");
 }
 
 function sendVerificationEmail($toEmail, $toName, $activationLink) {
     $mail = new PHPMailer(true);
     try {
-        // Ρυθμίσεις SMTP
+       
         $mail->isSMTP();
         $mail->Host = EMAIL_HOST;
         $mail->SMTPAuth = true;
@@ -24,11 +24,11 @@ function sendVerificationEmail($toEmail, $toName, $activationLink) {
         $mail->SMTPDebug = EMAIL_DEBUG_MODE;
         
 
-        // Πληροφορίες αποστολέα
+        
         $mail->setFrom(EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME);
         $mail->addAddress($toEmail, $toName);
 
-        // Περιεχόμενο email
+        
         $mail->isHTML(true);
         $mail->Subject = 'Semantic App Subscription Confirmation';
         $mail->Body = "Welcome to the Semantic article repository!<br>
@@ -43,7 +43,7 @@ function sendVerificationEmail($toEmail, $toName, $activationLink) {
         return true;
     } catch (Exception $e) {
         error_log("Email Error: " . $mail->ErrorInfo);
-        echo "Email sending error: " . $mail->ErrorInfo; // Εμφάνιση του σφάλματος στην οθόνη
+        echo "Email sending error: " . $mail->ErrorInfo; 
         return false;
     }
 }
@@ -77,7 +77,7 @@ function sendResetPasswordEmail($toEmail, $toName, $resetLink) {
 function send_email($to, $name, $subject, $body) {
     $mail = new PHPMailer(true);
     try {
-        // Ρύθμιση SMTP
+        
         $mail->isSMTP();
         $mail->Host = EMAIL_HOST; 
         $mail->SMTPAuth = true;
@@ -86,21 +86,21 @@ function send_email($to, $name, $subject, $body) {
         $mail->SMTPSecure = EMAIL_SMTP_SECURE;
         $mail->Port = EMAIL_PORT;; 
 
-        // Ρύθμιση αποστολέα
+        
         $mail->setFrom(EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME);
-        $mail->addAddress($to, $name); // Προσθήκη παραλήπτη
+        $mail->addAddress($to, $name); 
         $mail->Subject = $subject;
         $mail->isHTML(true);
-        $mail->Body = $body;
+        $mail->Body = nl2br(htmlspecialchars($body));
 
-        // Αποστολή email
+       
         if ($mail->send()) {
             return true;
         } else {
             return false;
         }
     } catch (Exception $e) {
-        error_log("Email sending error: " . $mail->ErrorInfo); // Καταγραφή λάθους
+        error_log("Email sending error: " . $mail->ErrorInfo); 
         return false;
     }
 }

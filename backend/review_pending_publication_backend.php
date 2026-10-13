@@ -32,20 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($action === 'approve') {
-        if ($filePath === '') {
-            echo json_encode(['status' => 'error', 'message' => 'Missing PDF file path']);
+        if (empty($fileName)) {
+            echo json_encode(['status' => 'error', 'message' => 'Missing PDF file name.']);
             exit;
         }
 
-        $pendingPath = BASE_PATH . 'pending/' . $fileName;
-        $uploadsPath = BASE_PATH . 'uploads/' . basename($fileName);
-
-        if (!file_exists($pendingPath) || !is_file($pendingPath)) {
-            echo json_encode(['status' => 'error', 'message' => 'Pending PDF file not found']);
+        if (!file_exists($pendingPath)) {
+            echo json_encode(['status' => 'error', 'message' => 'PDF file was not found in pending folder.']);
             exit;
         }
  
-        $fullText = storeFullTextFromPDF($uri, $filePath);
+        $fullText = storeFullTextFromPDF($uri, $pendingPath);
 
         if ($fullText === null || trim($fullText) === '') {
             echo json_encode(['status' => 'error', 'message' => 'Full text extraction failed']);
@@ -89,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             '04_entity_uris.json' => $entityURIs
         ]);
 
-        // 6. Save mentions only if there are entities
         if (!empty($entityURIs)) {
             $resultSpotlight = addMentionsToPublication($uri, $entityURIs);
 
@@ -111,13 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                                                    'result' => 'No entities found']]);
         }
 
-        // 7. Move file
+        $uploadsPath = BASE_PATH . 'uploads/' . basename($fileName);
         if (!rename($pendingPath, $uploadsPath)) {
             echo json_encode(['status' => 'error', 'message' => 'Failed to move PDF to uploads folder']);
             exit;
         }
 
-        // 8. Approve publication
         if (!approvePublication($uri)) {
             if (file_exists($uploadsPath)) {
                 rename($uploadsPath, $pendingPath);
@@ -137,7 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }elseif ($action === 'reject') {
         if(deletePublication($uri)){
-            unlink($pendingPath);
+            if (file_exists($pendingPath) && is_file($pendingPath)) {
+                unlink($pendingPath);
+            }
             sendPublicationRejectionEmail($email, $name, $title, $reason);
             echo json_encode(['status' => 'success', 'message' => 'Publication rejected and deleted.']);
             exit;

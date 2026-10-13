@@ -8,9 +8,7 @@ if ($_SESSION['user']['role'] !== 'Admin') {
     header("Location: ../pages/login.php");
     exit;
 }
-
-$publicationUri = $_GET['publication_uri'] ?? '';
-$publicationUri = trim($publicationUri);
+$publicationUri = base64_decode($_GET['publication_uri'] ) ?? '';
 
 $claims = getClaimsHistoryByPublication($publicationUri);
 $pubTitle = getPublicationTitleByUri($publicationUri);

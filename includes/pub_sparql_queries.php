@@ -1224,22 +1224,21 @@ return executeSparqlUpdate($sparql);
 
 function countPendingClaims() {
     $sparql = "
-    PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
+        PREFIX app: <http://www.semanticweb.org/nikos/ontologies/2025/2/semanticApp#>
 
-    SELECT (COUNT(DISTINCT ?claim) AS ?pendingCount)
-    WHERE {
-        ?claim a app:Claim ;
-               app:claimStatus \"Pending\" ;
-               app:claimDate ?claimDate ;
-               app:claimedBy ?user ;
-               app:claimedAuthor ?author ;
-               app:isClaimOf ?publication ;
-               app:reason ?reason .
+        SELECT (COUNT(DISTINCT ?claim) AS ?pendingCount)
+        WHERE {
+            ?claim a app:Claim ;
+                   app:claimStatus ?status ;
+                   app:claimedBy ?user ;
+                   app:claimedAuthor ?author ;
+                   app:isClaimOf ?publication .
 
-        ?user a app:User .
-        ?author a app:Author .
-        ?publication a app:Publication .
-    }
+            FILTER(STR(?status) = \"Pending\")
+
+            OPTIONAL { ?claim app:claimDate ?claimDate . }
+            OPTIONAL { ?claim app:reason ?reason . }
+        }
     ";
 
     $results = executeSparqlQuery($sparql);
@@ -1255,31 +1254,25 @@ function getPendingClaims($offset = 0, $limit = 15) {
 
         SELECT ?claim ?claimDate ?reason ?publication 
                ?pubTitle ?user ?userFirstName ?userLastName 
-               ?author ?firstname ?lastname
+               ?author ?firstname ?lastname ?status
         WHERE {
             ?claim a app:Claim ;
-                   app:claimStatus \"Pending\" ;
+                   app:claimStatus ?status ;
                    app:claimDate ?claimDate ;
                    app:claimedBy ?user ;
                    app:claimedAuthor ?author ;
                    app:isClaimOf ?publication ;
                    app:reason ?reason .
 
-            ?user a app:User .
-            ?author a app:Author .
-            ?publication a app:Publication .
+            FILTER(STR(?status) = \"Pending\")
 
             OPTIONAL { ?publication app:title ?pubTitle . }
 
-            OPTIONAL {
-                ?user app:firstname ?userFirstName ;
-                      app:lastname ?userLastName .
-            }
+            OPTIONAL { ?user app:firstname ?userFirstName . }
+            OPTIONAL { ?user app:lastname ?userLastName . }
 
-            OPTIONAL {
-                ?author app:firstname ?firstname ;
-                        app:lastname ?lastname .
-            }
+            OPTIONAL { ?author app:firstname ?firstname . }
+            OPTIONAL { ?author app:lastname ?lastname . }
         }
         ORDER BY DESC(?claimDate)
         OFFSET {$offset}
@@ -1304,7 +1297,6 @@ function getPendingClaims($offset = 0, $limit = 15) {
             'author' => $b['author']['value'] ?? '',
             'authorFirstname' => $b['firstname']['value'] ?? '',
             'authorLastname' => $b['lastname']['value'] ?? '',
-            'pubDate' => $b['publication']['value'] ?? '',
         ];
     }
 

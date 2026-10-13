@@ -5,7 +5,6 @@ require BASE_PATH . 'includes/sparql_queries.php';
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
-    // Αναζήτηση χρήστη με το token
     $user = getUserByActivationToken($token);
     echo $user['uri'];
 

@@ -626,7 +626,7 @@ function insertAuthorWithUser($author_uri, $userID, $data) {
             app:lastname \"{$data['lastname']}\" ;
             app:email \"{$data['email']}\" ;
             app:role \"Researcher\" ;
-            app:is_active \"0\" ;
+            app:is_active \"1\" ;
             app:isSuspended \"0\" ;
             app:createdAt \"$createdAt\"^^xsd:dateTime ;
             app:isCorrespondingUser <$author_uri> .

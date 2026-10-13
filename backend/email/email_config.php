@@ -11,14 +11,16 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 
-// Ρυθμίσεις του Email Server
-define("EMAIL_HOST", "smtp.gmail.com");
-define("EMAIL_USERNAME", "nikdionzapa@gmail.com");
-define("EMAIL_PASSWORD", "vktrdysvvgsbamks");
-define("EMAIL_PORT", 587);
-define("EMAIL_FROM_NAME", "SemanticApp");
-define("EMAIL_FROM_ADDRESS", "nikdionzapa@gmail.com");
+// Email Server Configuration
 
-// Λειτουργία SMTP
-define("EMAIL_SMTP_SECURE", "tsl"); // Ή "ssl" αν χρειάζεται (465)
-define("EMAIL_DEBUG_MODE", 0); // 0 = Off, 1 = Client messages, 2 = Client and server messages
+define("EMAIL_HOST", "smtp.gmail.com");
+define("EMAIL_USERNAME", "semanticresearchexplorer@gmail.com");
+define("EMAIL_PASSWORD", "ydekxrmpdwzxibub");
+define("EMAIL_PORT", 587);
+define("EMAIL_FROM_NAME", "Semantic Research Explorer Team");
+define("EMAIL_FROM_ADDRESS", "semanticresearchexplorer@gmail.com");
+
+
+// SMTP
+define("EMAIL_SMTP_SECURE", "tsl"); // ssl (465)
+define("EMAIL_DEBUG_MODE", 0);

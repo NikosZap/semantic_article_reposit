@@ -54,7 +54,7 @@ if (!empty($searchTerm)) {
     <?php foreach ($publications as $pub): ?>
 					<div class="card mb-3 p-3">
 						<h5>
-							<a href="../publication.php?uri=<?= urlencode($pub['uri']) ?>">
+							<a href="../publication.php?uri=<?= base64_encode($pub['uri']) ?>">
                 <?= htmlspecialchars($pub['title']) ?>
 							</a>
 						</h5>
@@ -63,7 +63,7 @@ if (!empty($searchTerm)) {
 						<p>
 							<strong>Authors:</strong> <?= implode(', ', array_map(fn($a) => trim(($a['firstname'] ?? '') . ' ' . ($a['lastname'] ?? '')), $pub['authors'])) ?>
 						</p>
-						<a href="claim_publication_author.php?uri=<?= urlencode($pub['uri']) ?>" class="btn btn-outline-success btn-sm">Claim this publication</a>
+						<a href="claim_publication_author.php?uri=<?= base64_encode($pub['uri']) ?>" class="btn btn-outline-success btn-sm">Claim this publication</a>
             <?php else: ?>
 						<p class="text-muted">No authors found.</p>
             <?php endif; ?>
@@ -74,20 +74,6 @@ if (!empty($searchTerm)) {
     <?php include(BASE_PATH . 'includes/footer.php')?>
 				</div>
 			</body>
-			<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const alertBox = document.getElementById("flashMessage");
-
-    if (alertBox) {
-        setTimeout(function () {
-            alertBox.classList.remove("show");
-            alertBox.classList.add("fade");
-
-            setTimeout(function () {
-                alertBox.remove();
-            }, 500); 
-        }, 3000); 
-    }
-});
-</script>
+			<script src="<?= BASE_URL ?>scripts/claim_publication.js"></script>
+        
 		</html>

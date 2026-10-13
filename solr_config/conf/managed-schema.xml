@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Solr managed schema - automatically generated - DO NOT EDIT -->
+<schema name="semantic_text_core" version="1.6">
+  <uniqueKey>id</uniqueKey>
+  <fieldType name="long" class="solr.LongPointField"/>
+  <fieldType name="string" class="solr.StrField" omitNorms="true" sortMissingLast="true"/>
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <field name="_version_" type="long" indexed="true" stored="true"/>
+  <field name="abstract" type="text_general" indexed="false" uninvertible="false" stored="true"/>
+  <field name="authors" type="text_general" uninvertible="false" multiValued="true" indexed="true" stored="true"/>
+  <field name="fulltext_content" type="text_general" indexed="true" stored="true"/>
+  <field name="id" type="string" indexed="true" required="true" stored="true"/>
+  <field name="keywords" type="string" multiValued="true" indexed="true" stored="true"/>
+  <field name="publication_uri" type="string" indexed="true" stored="true"/>
+  <field name="title" type="text_general" indexed="true" stored="true"/>
+</schema>
